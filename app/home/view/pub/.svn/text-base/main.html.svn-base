@@ -1,0 +1,5 @@
+<table class="tableForm">
+<volist name="info1" id="v">
+<tr><th width="15%">{$key}</th><td>{$v}</td></tr>
+</volist>
+</table>

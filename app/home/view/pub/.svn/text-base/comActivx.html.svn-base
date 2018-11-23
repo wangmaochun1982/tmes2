@@ -1,0 +1,11 @@
+<div style="display:none" >  
+<OBJECT CLASSID="clsid:DBA32531-BC35-480D-A327-277FA2BD0B5D" id="MyComm" codebase="mycomm.OCX"   type="application/x-oleobject"
+style="LEFT:1px;TOP:1px;bottom:1px;right:1px" > 
+   <PARAM   NAME="Mcomport"   VALUE="1">   
+   <PARAM   NAME="Msettings"   VALUE="9600,N,8,1">
+   <PARAM   NAME="MInputMode"   VALUE="0">  
+   <PARAM   NAME="MSThreshold"   VALUE="0">   
+   <PARAM   NAME="MRThreshold"   VALUE="28">   
+   <PARAM   NAME="MEOFEnable"   VALUE="true">   
+  </OBJECT>
+</div>

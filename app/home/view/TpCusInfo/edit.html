@@ -1,0 +1,411 @@
+<style type="text/css">
+.uploadmain{
+	margin: 0 auto;
+	padding: 0px;
+	width: 200px;
+    height:200px;
+	font-family: "microsoft yahei";
+	background-color: #F5F5F5;
+}
+.cf:before,.cf:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+.cf:after {
+	clear: both;
+}
+.cf {
+	*zoom: 1;
+}
+.upload-area {
+	position: relative;
+	float: left;
+	margin-right: 30px;
+	width: 200px;
+	height: 200px;
+	background-color: #F5F5F5;
+    border: 2px solid #E1E1E1;
+}
+.upload-area .file-tips {
+	position: absolute;
+	top: 90px;
+	left: 0;
+    padding: 0 15px;
+    width: 170px;
+    line-height: 1.4;
+    font-size: 12px;
+	color: #A8A8A3;
+}
+.userup-icon {
+    display: inline-block;
+    margin-right: 3px;
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+	background: url("__PUBLIC__/upPhoto/img/userup_icon.png") no-repeat;
+}
+.uploadify-button {
+	line-height: 120px!important;
+	text-align: center;
+}
+.preview-area {
+	float: left;
+}
+.tcrop {
+    clear: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+.update-pic .crop {
+    background: url("__PUBLIC__/upPhoto/img/mystery.png") no-repeat scroll center center #EEEEEE;
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.crop100 {
+    height: 100px;
+    width: 100px;
+}
+.crop60 {
+    height: 60px;
+    margin-left: 20px;
+    width: 60px;
+}
+.update-pic .save-pic {
+    clear: left;
+    margin-right: 20px;
+}
+a{text-decoration:none}
+.update-pic .uppic-btn {
+    background-color: #348FD4;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 202px;
+}
+.preview {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 11;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	background:#fff;
+	display: none;
+}
+.tableForm input{
+    width:250px;
+}
+</style>
+<form id="__MODULE__EdtForm" method="post" enctype="multipart/form-data">
+      <input name="id" type="hidden" />
+		<table class="tableForm" style="white-space: nowrap;margin: auto;width:60%">
+            <tr>
+				<td style="width: 100px;">客戶編號</td>
+				<td><input name="cus_code" id="cus_code" class="easyui-validatebox" data-options="required:false" readonly="readonly" style="border-style:none;background-color:transparent;"/>
+				</td>
+            </tr>
+            <tr>
+				<td style="width: 80px;">客戶全稱</td>
+				<td><input name="cus_full_name" class="easyui-validatebox" data-options="required:false"/>
+				</td>
+			</tr>
+            <tr>
+				<td style="width: 100px;">客戶名稱(簡稱)</td>
+				<td><input name="cus_name"  class="easyui-validatebox" data-options="required:true" />
+				</td>
+            </tr>
+            <tr>
+				<td style="width: 80px;">國家</td>
+				<td><input name="country" class="easyui-validatebox" data-options="required:false" />
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 80px;">客戶所在地</td>
+				<td><input name="cus_address" class="easyui-validatebox" data-options="required:false" />
+				</td>
+			</tr>
+            <tr>
+				<td style="width: 100px;">客戶行業</td>
+				<td>
+					<input id="cus_trade" class="easyui-combobox"  name="cus_trade" data-options=" valueField: 'id',
+                                                                                                             textField: 'text',
+                                                                                                             url: '__URL__/x_xgetCusTrade',
+                                                                                                             panelHeight:'auto'" />
+				</td>
+            </tr>
+            <tr>
+				<td style="width: 80px;">客戶性質</td>
+				<td><input id="cus_nature" class="easyui-combobox"  name="cus_nature" data-options=" valueField: 'id',
+                                                                                                   textField: 'text',
+                                                                                                    url: '__URL__/x_xgetCusNature',
+                                                                                                    panelHeight:'auto'" />
+				</td>
+			</tr>
+            <tr>
+				<td style="width: 100px;">客戶類型</td>
+				<td><input id="cus_type" class="easyui-combobox"  name="cus_type" data-options=" valueField: 'id',
+                                                                                                   textField: 'text',
+                                                                                                    url: '__URL__/x_xgetCusType',
+                                                                                                    panelHeight:'auto'" />
+				</td>
+           </tr>
+            <tr>
+				<td style="width: 80px;">員工數</td>
+				<td><input name="staff_num" class="easyui-validatebox" data-options="required:false" />
+				</td>
+			</tr>
+			<tr>
+				<td>狀態</td>
+				<td>
+                <select name="status">  
+				    <option value="1">可用</option>  
+				    <option value="0">禁用</option>  
+				    <option value="-2">暫停交易</option>  
+				</select>
+				</td>
+            </tr>
+            <tr>
+				<td>交易幣別</td>
+                <td><input name="money" class="easyui-validatebox" data-options="required:false" />
+				</td>
+			</tr>
+            <tr>
+                <td>訂單方式</td>
+				<td>
+                <input id="order_type" class="easyui-combobox"  name="order_type" data-options=" valueField: 'id',
+                                                                                                   textField: 'text',
+                                                                                                    url: '__URL__/x_xgetOrderType',
+                                                                                                    panelHeight:'auto'" />
+                </td>
+            </tr>
+            <tr>
+                <td>公司網站</td>
+				<td>
+                <input name="website" class="easyui-validatebox" data-options="required:false"/>
+                </td>
+            </tr>
+            <tr>
+                <td>產品</td>
+				<td>
+                <input name="production" class="easyui-validatebox" data-options="required:false"/>
+                </td>
+			</tr>
+            <tr>
+                <td>電話</td>
+				<td>
+                <input name="tel" class="easyui-validatebox" data-options="required:false"/>
+                </td>
+            </tr>
+            <tr>
+                <td>傳真</td>
+				<td>
+                <input name="fax" class="easyui-validatebox" data-options="required:false"/>
+                </td>
+			</tr>
+            <tr>
+				<td style="width: 100px;">事業部別</td>
+				<td><input name="cus_busi" id="cus_busi" class="easyui-combobox" data-options=" valueField: 'id',
+                                                                                                textField: 'text',
+                                                                                                url: '__URL__/x_xgetCusBusi',
+                                                                                                panelHeight:'auto',
+                                                                                                required:true"/>
+				</td>
+             </tr>
+             <tr>
+                <td style="width: 100px;">客戶優先級</td>
+				<td><input name="cus_maste" id="cus_maste" class="easyui-combobox" data-options=" valueField: 'id',
+                                                                                                textField: 'text',
+                                                                                                url: '__URL__/x_xgetCusMaste',
+                                                                                                panelHeight:'auto',
+                                                                                                required:false"/>
+				</td>
+			</tr>
+            <tr>
+                <td style="width: 100px;">貿易術語</td>
+				<td><input name="trade_terms" id="trade_terms" class="easyui-combobox" data-options=" valueField: 'id',
+                                                                                                textField: 'text',
+                                                                                                url: '__URL__/x_xgetTradeTerms',
+                                                                                                panelHeight:'auto',
+                                                                                                required:false"/>
+				</td>
+			</tr>
+            <tr>
+                <td style="width: 100px;">收款方式</td>
+				<td><input name="payment" id="payment" class="easyui-combobox" data-options=" valueField: 'id',
+                                                                                                textField: 'text',
+                                                                                                url: '__URL__/x_xgetPayment',
+                                                                                                panelHeight:'auto',
+                                                                                                required:false"/>
+				</td>
+			</tr>
+            <tr>
+                <td>Logo</td>
+				<td>
+					<php> for($i=0;$i<$num;$i++){
+							if(!empty($logo[$i])){
+								echo '<img src="/Public/Uploads/UserPhoto/m_'.$logo[$i].'" />';
+							}
+						  }
+					</php> 
+                <input id="cus_logo_modify" name="cus_logo_modify" type="file" />
+                <div class="demo-info">
+                    <div class="demo-tip icon-tip">&nbsp;&nbsp;&nbsp;&nbsp;{$Think.lang.LANG_CUS_TIPS}</div>
+                </div>
+                </td>
+			</tr>
+            <tr>
+				<td>企業簡介</td>
+				<td colspan="3"><textarea name="describe" style="width:390px;height:80px;">{$vo[0].describe}</textarea>
+				</td>				
+			</tr>
+            <tr>
+				<td>企業大事記</td>
+				<td colspan="3"><!--<textarea name="chronicle" style="width:390px;height:80px;"></textarea>-->
+                <textarea class="easyui-kindeditor" name="chronicle"  style="width:100%; height:600px;">{$vo[0].chronicle}</textarea>
+				</td>				
+			</tr>
+            <tr>
+				<td style="width: 100px;">組織架構</td>
+                <td rowspan="8">
+				<div class="uploadmain">
+                        <div id="pic" class="update-pic cf">
+                        	<div class="upload-area">
+                        		<input type="file" id="user-pic">
+                        		<div class="file-tips">
+                                格式:JPG,PNG,GIF<br />
+                                大小:小于2MB<br />
+                                尺寸:大于100px*100px</div>
+                        		<div class="preview hidden" id="preview-hidden"></div>
+                                <div style="position:absolute;left:0;top:0;"><img src="/Public/Uploads/UserPhoto/_200{$vo[0].organization}" /></div>
+                        	</div>
+                        	<div class="preview-area">
+                        		<input type="hidden" id="x" name="x" />
+                        		<input type="hidden" id="y" name="y" />
+                        		<input type="hidden" id="w" name="w" />
+                        		<input type="hidden" id="h" name="h" />
+                        		<input type="hidden" id='img_src' name='src' />
+                        		<a class="uppic-btn reupload-img" href="javascript:$('#user-pic').uploadify('cancel','*');">重新上傳圖片</a>
+                        	</div>
+                        </div>
+                </div>
+				</td>
+            </tr>
+		</table>
+	</form>
+<script>
+$(function(){
+    //上传头像(uploadify插件)
+		$("#user-pic").uploadify({
+			'queueSizeLimit' : 1,
+			'removeTimeout' : 0.5,
+			'preventCaching' : true,
+			'multi'    : false,
+			'swf' 			: '__PUBLIC__/upPhoto/js/uploadify-v3.1/uploadify.swf',
+			'uploader' 		: '__URL__/x_xDoUploadPhoto',
+			'buttonText' 	: '<i class="userup-icon"></i>上傳圖片',
+			'width' 		: '200',
+			'height' 		: '200',
+			'fileTypeExts'	: '*.jpg; *.png; *.gif;',
+			'onUploadSuccess' : function(file, data, response){
+				var data = $.parseJSON(data);
+				if(data['status'] == 0){
+					//$.ThinkBox.error(data['info'],{'delayClose':3000});
+                    $.messager.alert('提示', data['info']);
+					return;
+				}
+				var preview = $('.upload-area').children('#preview-hidden');
+				preview.show().removeClass('hidden');
+				//两个预览窗口赋值
+				$('.crop').children('img').attr('src',data['data']+'?random='+Math.random());
+				//隐藏表单赋值
+				$('#img_src').val(data['data']);
+				//绑定需要裁剪的图片
+				var img = $('<img />');
+				preview.append(img);
+				preview.children('img').attr('src',data['data']+'?random='+Math.random());
+				var crop_img = preview.children('img');
+				crop_img.attr('id',"cropbox").show();
+				var img = new Image();
+				img.src = data['data']+'?random='+Math.random();
+				//根据图片大小在画布里居中
+				img.onload = function(){
+					var img_height = 0;
+					var img_width = 0;
+					var real_height = img.height;
+					var real_width = img.width;
+					if(real_height > real_width && real_height > 200){
+						var persent = real_height / 200;
+						real_height = 200;
+						real_width = real_width / persent;
+					}else if(real_width > real_height && real_width > 200){
+						var persent = real_width / 200;
+						real_width = 200;
+						real_height = real_height / persent;
+					}
+					if(real_height < 200){
+						img_height = (200 - real_height)/2;	
+					}
+					if(real_width < 200){
+						img_width = (200 - real_width)/2;
+					}
+					preview.css({width:(200-img_width)+'px',height:(200-img_height)+'px'});
+					preview.css({paddingTop:img_height+'px',paddingLeft:img_width+'px'});			
+				}
+				//裁剪插件
+				$('#cropbox').Jcrop({
+		            bgColor:'#333',   //选区背景色
+		            bgFade:true,      //选区背景渐显
+		            fadeTime:1000,    //背景渐显时间
+		            allowSelect:false, //是否可以选区，
+		            allowResize:true, //是否可以调整选区大小
+		            aspectRatio: 0,     //约束比例
+		            minSize : [100,100],//可选最小大小
+		            boxWidth : 200,		//画布宽度
+		            boxHeight : 200,	//画布高度		           
+		            setSelect:[ 0, 0, 100, 100],//初始化时位置
+		            onSelect: function (c){	//选择时动态赋值，该值是最终传给程序的参数！
+			            $('#x').val(c.x);//需裁剪的左上角X轴坐标
+			            $('#y').val(c.y);//需裁剪的左上角Y轴坐标
+			            $('#w').val(c.w);//需裁剪的宽度
+			            $('#h').val(c.h);//需裁剪的高度
+		          }
+		        });
+				//重新上传,清空裁剪参数
+				var i = 0;
+				$('.reupload-img').click(function(){
+					$('#preview-hidden').find('*').remove();
+					$('#preview-hidden').hide().addClass('hidden').css({'padding-top':0,'padding-left':0});
+				});
+		     }
+		});    
+    
+//*******88888888888888888lhplhplhplhplhphplhp--------------------------------/    
+   var busiSelect = $('#cus_busi'); //alert(0);
+   if( $('#cus_busi option').length==0){
+    busiSelect.combobox({
+     url:'__URL__/x_xgetCusBusi',
+     valueField:'id',
+     textField:'text',
+     panelHeight:'auto',
+     onChange:function(){
+      var cusBusi = $('#cus_busi').combobox('getValue'); //alert(cusBusi);
+      $('#cus_code').combobox({
+       url:'__URL__/x_xgetCusCode/remark/'+cusBusi,
+       valueField:'id',
+       textField:'text',
+       panelHeight:'auto',
+      });
+     }
+    });
+  }    
+});
+</script>

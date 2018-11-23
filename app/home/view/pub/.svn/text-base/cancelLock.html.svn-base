@@ -1,0 +1,50 @@
+<table class="tableForm" width="100%" style="text-align: center;">
+    <tr>
+		<th colspan="2">&nbsp;</th>
+	</tr>
+	<tr>
+		<th width="35%">锁定者</th>
+		<td style="color: red;font-weight:blod;">{$Think.cookie.loginUserName}
+		</td>
+	</tr>
+	<tr>
+		<th>密码</th>
+		<td>
+        <input type="password" id="cancelLockSystemPassword" name="password" class="easyui-validatebox" data-options="required:true" />
+        </td>
+	</tr>
+    <tr>
+		<th colspan="2">&nbsp;</th>
+	</tr>
+    <tr>
+		<td colspan="2">提示：请输入您登录的密码进行解锁。</td>
+	</tr>
+</table>
+<script>
+	$("#cancelLockSystemPassword").keypress(function(e){
+        var key =  e.which; 
+        if(key == 13){ 
+			$('#cancelLock_sub').click(); 
+        }
+    });
+/*
+$(document).keydown(function(event){  
+    if ((event.altKey)&&  
+      ((event.keyCode==37)||   //屏蔽 Alt+ 方向键 ←   
+       (event.keyCode==39)))   //屏蔽 Alt+ 方向键 →   
+   {   
+       event.returnValue=false;   
+       return false;  
+   }   
+    if(event.keyCode==8){  
+        return false; //屏蔽退格删除键    
+    }  
+    if(event.keyCode==116){  
+        return false; //屏蔽F5刷新键   
+    }  
+    if((event.ctrlKey) && (event.keyCode==82)){  
+        return false; //屏蔽alt+R   
+    }  
+});
+*/
+</script>

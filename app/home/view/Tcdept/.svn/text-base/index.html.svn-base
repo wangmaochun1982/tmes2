@@ -1,0 +1,393 @@
+<div id="__MODULE__PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div data-options="title:'{$Think.lang.LANG_DEPT_TITLE_TREE}',region:'west'" style="width:240px;padding:0px">
+		 <ul id="__MODULE__LeftTree"></ul>
+	</div>
+	<div id="__MODULE__NodeChild" data-options="region:'center',border:false">
+		<table id="__MODULE__DataGrid"></table>
+	</div>
+</div> 
+
+<script>
+ $(function(){
+            $('#__MODULE__LeftTree').tree({
+                 checkbox: false,
+                 animate:true,
+                 lines:true,
+                 url: '__URL__/x_xgetDeptTree',
+                 onBeforeExpand:function(node,param){
+					 $('#__MODULE__LeftTree').tree('options').url = "__URL__/x_xgetDeptTree/id/" + node.id ;
+                 },
+                onClick:function(node){
+				var node = $('#__MODULE__LeftTree').tree('getSelected');
+					$('#__MODULE__DataGrid').datagrid({
+						url:'__URL__/x_xlist2/id/'+node.id,
+						queryParams:{
+							id: node.id
+						},
+						striped:true
+					});
+				if (!node.state){
+					$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg :"{$Think.lang.LANG_DEPT_MSG1}",
+									showType:'show',
+									height:100,
+									width:250,
+									timeout :1000
+									});
+				};
+               }
+            });
+   });
+   
+   $(function() {
+		$('#__MODULE__DataGrid').datagrid({
+			url : '__URL__/x_xlist2',
+			fit : true,
+			border : false,
+			rownumbers:true,
+			pagination : true,
+			idField : 'id',
+			pageSize :10,
+			pageList : [10,15,20,30,40,50],
+			sortName : 'dept_name',
+			sortOrder : 'asc',
+			checkOnSelect : true,
+			selectOnCheck : true,
+			nowrap : true,
+			singleSelect:true,
+			frozenColumns : [ [  {
+				field : 'id',
+				title : '{$Think.lang.LANG_DEPT_ID}',
+				width : 50,
+				checkbox : true
+			}, {
+				field : 'dept_code',
+				title : '{$Think.lang.LANG_DEPT_CODE}',
+				width : 80,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'dept_name',
+				title : '{$Think.lang.LANG_DEPT_NAME}',
+				//width : 80,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'cost_code',
+				title : '{$Think.lang.LANG_DEPT_COST_CODE}',
+				//width : 80,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'pid',
+				title : '父節點ID',
+				width : 80,
+				sortable : true,
+				hidden : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			} ] ],
+			columns : [ [ {
+				field : 'status',
+				title : '{$Think.lang.LANG_STATUS}',
+				width : 60,
+				//hidden : true,
+				formatter :formatStatus
+			} ] ],
+			toolbar : [ {
+				text : '{$Think.lang.LANG_ADD}',
+				iconCls : 'icon-add',
+				handler : function() {
+					__MODULE__AddFun();
+				}
+			}/*, '-', {
+				text : '刪除',
+				iconCls : 'icon-remove',
+				handler : function() {
+					__MODULE__DelDeptFun();
+				}
+			}*/, '-', {
+				text : '{$Think.lang.LANG_EDIT}',
+				iconCls : 'icon-edit',
+				handler : function() {
+					__MODULE__EditFun();
+				}
+			}, '-', {
+				text : '{$Think.lang.LANG_DEPT_BTN_APUSER}',
+				iconCls : 'icon-group_gear',
+				handler : function() {
+					__MODULE__SetUserFun();
+				}
+			}, '-', {
+				text : '{$Think.lang.LANG_DEPT_BTN_APROLE}',
+				iconCls : 'icon-role',
+				handler : function() {
+					__MODULE__SetRoleFun();
+				}
+			}]
+		});
+
+	});
+
+//新增部門的方法
+   function __MODULE__AddFun() {
+		$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		$('<div/>').dialog({
+			href : '__URL__/add',
+			width : 350,
+			height : 250,
+			modal : true,
+			title : '{$Think.lang.LANG_ADD}',
+			id : '__MODULE__AddDia',
+			buttons : [ {
+				text : '{$Think.lang.LANG_ADD}',
+				iconCls : 'icon-add',
+				handler : function() {  
+					$('#admin_department_addForm').form('submit', { 
+						url : '__URL__/x_xInsert', 
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('load');
+									$('#__MODULE__AddDia').dialog('destroy');
+									$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}1',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}2',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}3', result);
+							}//重新加載當前頁面
+						//	$('#__MODULE__DataGrid').datagrid('reload');
+							//清除所有選擇
+						//	$('#__MODULE__DataGrid').datagrid('clearSelections'); 
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+	}	
+//編輯部門的方法
+function __MODULE__EditFun() {
+		//var rows= $('#__MODULE__DataGrid').datagrid('getChecked'); //打勾
+		var rows= $('#__MODULE__DataGrid').datagrid('getSelections');  //選中
+		if (rows.length > 1) {
+			$.messager.show({
+				title: '{$Think.lang.LANG_TIPS}',
+				msg: '{$Think.lang._SELECT_ERROR_}'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '{$Think.lang.LANG_TIPS}',
+					msg: '{$Think.lang._NO_SELECT_ERROR_}'
+				});
+		}else {
+		$('<div/>').dialog({
+			href : '__URL__/edit',
+			width : 350,
+			height :250,
+			modal : true,
+			cache: false,
+			title : '{$Think.lang.LANG_EDIT}',
+			id : '__MODULE__EdtDia',
+			buttons : [ {
+				text : '{$Think.lang.LANG_SAVE}',
+				iconCls : 'icon-edit',
+				handler : function() { 
+					$('#admin_department_editForm').form('submit', {
+						url : '__URL__/x_xUpdate',
+						type:"post",
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result); 
+									$('#__MODULE__DataGrid').datagrid('reload');
+									$('#__MODULE__EdtDia').dialog('destroy');
+									$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg :r.info,
+									}); 
+							} catch (e) {
+									$('#__MODULE__EdtDia').dialog('destroy');
+									$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg :result,
+									}); 
+							}//重新加載當前頁面
+							$('#__MODULE__DataGrid').datagrid('reload');
+							//清除所有選擇
+							//$('#__MODULE__DataGrid').datagrid('clearSelections'); 
+							
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+				var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+				var o =rows[0]; 
+				$('#admin_department_editForm').form('load',o); 
+			}
+		});
+	}//else end
+}	
+function __MODULE__SetUserFun() {
+	var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+	//console.info(rows);
+	if (rows.length > 1) {
+	    $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		$.messager.show({
+			title: '{$Think.lang.LANG_TIPS}',
+			msg: '{$Think.lang._SELECT_ERROR_}'
+		});
+	}else if (rows.length == 0) {
+			$.messager.show({
+				title: '{$Think.lang.LANG_TIPS}',
+				msg: '{$Think.lang._NO_SELECT_ERROR_}'
+			});
+	}else {
+	$('<div/>').dialog({
+		href : '__URL__/setUser/roleId/'+rows[0].id,
+		width : 650,
+		height :500,
+		modal : true,
+		title : '{$Think.lang.LANG_DEPT_BTN_APUSER}- '+rows[0].dept_name,
+		buttons : [ {
+			text : '{$Think.lang.LANG_SAVE}',
+			iconCls : 'icon-filesave',
+			handler : function() { 
+                var userRows = $('#__MODULE__SetUserDataGrid').datagrid('getChecked');
+                var userAllRows = $('#__MODULE__SetUserDataGrid').datagrid('getRows','id');
+                var allArr = [];
+                for(var i=0;i<userAllRows.length;i++){
+                    allArr.push(userAllRows[i].id);
+                }
+                //console.info(roleAllRows.id);                                                
+                var chkArr = [];
+                for ( var i = 0; i < userRows.length; i++) {
+					chkArr.push(userRows[i].id);
+                }
+				$.ajax({
+				    type:'POST',
+					url : '__URL__/x_xSetUser',
+                    data : { allUser:allArr, chkUser: chkArr,roleId:rows[0].id },
+                    dataType : 'json',
+					success : function(result) {
+						try {
+							if (result.status==1) {
+								$('#__MODULE__SetUserDataGrid').datagrid('load');
+								$('#__MODULE__SetUserDataGrid').datagrid('clearChecked').datagrid('clearSelections');
+								
+								$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : result.info
+								});
+                            }else{
+                                $.messager.alert('{$Think.lang.LANG_TIPS}', result.info);
+                            }
+						} catch (e) {
+							$.messager.alert('{$Think.lang.LANG_TIPS}', result.info);
+						}
+					}
+				});
+			}
+		} ],
+		onClose : function() {
+			$(this).dialog('destroy');
+		},
+		onLoad : function() {
+			//var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+			var editData =rows[0];
+			$('#__MODULE__EdtForm').form('load',editData);
+		}
+	});
+}
+}
+
+function __MODULE__SetRoleFun() {
+		var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+		if (rows.length > 1) {
+		    $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '{$Think.lang.LANG_TIPS}',
+				msg: '{$Think.lang._SELECT_ERROR_}'
+			});
+		}
+		else 
+			if (rows.length == 0) {
+				$.messager.show({
+					title: '{$Think.lang.LANG_TIPS}',
+					msg: '{$Think.lang._NO_SELECT_ERROR_}'
+				});
+			}
+			else {
+			$('<div/>').dialog({
+				href : '__URL__/setRole/deptId/'+rows[0].id,
+				width : 500,
+				height : 400,
+				modal : true,
+				title : '{$Think.lang.LANG_DEPT_ROLESET}- '+rows[0].dept_name,                
+				buttons : [ {
+					text : '{$Think.lang.LANG_SAVE}',
+					iconCls : 'icon-filesave',
+					handler : function() { 
+                        var roleRows = $('#__MODULE__EditRoleDatagrid').datagrid('getChecked');
+                        var roleAllRows = $('#__MODULE__EditRoleDatagrid').datagrid('getRows','id');
+                        var idPages = [];
+                        for(var i=0;i<roleAllRows.length;i++){
+                            idPages.push(roleAllRows[i].id);
+                        }                                               
+                        var ids = [];
+                        for ( var i = 0; i < roleRows.length; i++) {
+							ids.push(roleRows[i].id);
+                        }                        
+						$.ajax({
+							url : '__URL__/x_xsetRole',
+                            data : { pageId:idPages, ids: ids.join('_'),userId:rows[0].id },
+                            dataType : 'json',
+							success : function(result) {
+								try {
+									if (result.status==1) {
+										$('#__MODULE__EditRoleDatagrid').datagrid('load');
+										$('#__MODULE__EditRoleDatagrid').datagrid('clearChecked').datagrid('clearSelections'); 
+    									$.messager.show({
+    										title : '{$Think.lang.LANG_TIPS}',
+    										msg : result.info
+    									});
+                                    }else{
+                                        $.messager.alert('{$Think.lang.LANG_TIPS}', result.info);
+                                    }
+								} catch (e) {
+									$.messager.alert('{$Think.lang.LANG_TIPS}', result.info);
+								}
+							}
+						});
+					}
+				} ],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}
+</script>
+
+

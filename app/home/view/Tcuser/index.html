@@ -1,0 +1,317 @@
+<script type="text/javascript">
+	$(function(){
+            var dg = $('#{$Request.controller}DataGrid').datagrid();
+            dg.datagrid('removeFilterRule');
+			dg.datagrid('enableFilter', [{
+				field:'login_count',
+				type:'numberbox',
+				options:{precision:0},
+				op:['equal','notequal','less','greater']
+			},{
+				field:'u_account',
+				type:'text'
+			},{
+				field:'user_title',
+				type:'text'
+			},{
+				field:'user_sex',
+				type:'combobox',
+				options:{
+					panelHeight:'auto',
+					url : '{:url('XxgetOption')}',
+					queryParams : { cusCode:'sex',filter:1 },
+					valueField:'id',
+					textField:'text',
+					onChange:function(value){
+						if (value == ''){
+							dg.datagrid('removeFilterRule', 'user_sex');
+						} else {
+							dg.datagrid('addFilterRule', {
+								field: 'user_sex',
+								op: 'equal',
+								value: value
+							});
+						}
+						dg.datagrid('doFilter');
+					}
+				}
+			},{
+				field:'user_email',
+				type:'text'
+			},{
+				field:'user_phone',
+				type:'text'
+			},{
+				field:'user__mobile',
+				type:'text'
+			},{
+				field:'dept_name',
+				type:'text'
+			},{
+				field:'last_login_time',
+				type:'datebox',
+                op:['less','lessorequal','greater','greaterorequal']
+			},{
+				field:'status_name',
+				type:'combobox',
+				options:{
+					panelHeight:'auto',
+					url : '{:url('XxgetOption')}',
+					queryParams : { cusCode:'status',filter:1 },
+					valueField:'id',
+					textField:'text',
+					onChange:function(value){
+						if (value == ''){
+							dg.datagrid('removeFilterRule', 'status');
+						} else {
+							dg.datagrid('addFilterRule', {
+								field: 'status',
+								op: 'equal',
+								value: value
+							});
+						}
+						dg.datagrid('doFilter');
+					}
+				}
+			}]);
+   });
+   function formatSex(value, row, index) {
+		if(value==1){
+			return '<span title="'+value+'">男</span>';
+		}else if(value==0){
+			return '<span title="'+value+'">女</span>';
+		}
+  }
+</script>
+<div id="{$Request.controller}PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<form id="{$Request.controller}SearchForm" onsubmit="$('#{$Request.controller}Search').click();return false;">
+	<div data-options="region:'center',border:false">
+		<table id="{$Request.controller}DataGrid"
+		 data-options="url : '{:url('XxGetTableJson')}',
+			fit : true,
+			border : false,
+            rownumbers:true,
+			pagination : true,
+			idField : 'id',
+			pageSize :20,
+			pageList : dg_pageList,
+			sortName : 'u_account',
+			sortOrder : 'desc',
+			checkOnSelect : true,
+			selectOnCheck : true,
+			nowrap : false,
+            striped:true,
+			singleSelect:true,
+            filterBtnIconCls:'icon-filter',
+			onBeforeLoad:function(param){
+				$(this).datagrid('clearChecked').datagrid('clearSelections');
+			},
+			toolbar : [ {$toolBar} ]
+			">
+		 <thead data-options="frozen:true">
+		    <tr>
+				<th data-options="field:'id',width:30,checkbox:true" sortable="true">{$Think.lang.LANG_USER_ID}</th>
+                <th data-options="field:'u_account',width:80" sortable="true">{$Think.lang.LANG_USER_U_ACCOUNT}</th>
+                <th data-options="field:'user_title',width:120" sortable="true">{$Think.lang.LANG_USER_USER_TITLE}</th>
+				<th data-options="field:'emp_no',width:70" sortable="true">{$Think.lang.LANG_USER_USER_NO}</th>
+			</tr>
+		</thead>
+		<thead>
+            <tr>
+                <th data-options="field:'user_sex',width:50,align: 'center',formatter:formatSex" sortable="true">{$Think.lang.LANG_USER_USER_SEX}</th>
+                <th data-options="field:'dept_name',width:300" sortable="true">{$Think.lang.LANG_USER_USER_DEPT}</th>
+				<th data-options="field:'manger_code',width:100" sortable="true">{$Think.lang.LANG_USER_USER_MAG}</th>
+                <th data-options="field:'post_code',width:100" sortable="true">{$Think.lang.LANG_USER_USER_POST}</th>
+				<th data-options="field:'user_email',width:200" sortable="true">{$Think.lang.LANG_USER_USER_EMAIL}</th>
+                <th data-options="field:'user_phone',width:60" sortable="true">{$Think.lang.LANG_USER_USER_PHONE}</th>
+                <th data-options="field:'user_mobile',width:100" sortable="true">{$Think.lang.LANG_USER_USER_MOBILE}</th>
+				<th data-options="field:'online_status',width:60,align: 'center'" sortable="true">{$Think.lang.LANG_USER_USER_ONLINE}</th>
+                <th data-options="field:'login_count',width:60,align: 'center'" sortable="true">{$Think.lang.LANG_USER_USER_LOGINTIMES}</th>
+                <th data-options="field:'last_login_time',width:150" sortable="true">{$Think.lang.LANG_USER_USER_LASTLOGIN}</th>
+                <th data-options="field:'bu_name',width:50,align: 'center'" sortable="true">{$Think.lang.LANG_USER_USER_BUNAME}</th>
+                <th data-options="field:'lang_sets',width:50,align: 'center'" sortable="true">{$Think.lang.LANG_USER_USER_LANGSETS}</th>
+                <th data-options="field:'last_login_ip',width:80" sortable="true">{$Think.lang.LANG_USER_USER_LTLNAREA}</th>
+                <th data-options="field:'update_time',width:140" sortable="true">{$Think.lang.LANG_UPDATE_TIME}</th>
+                <th data-options="field:'status_name',width:60,align: 'center',formatter:formatStatus" sortable="true">{$Think.lang.LANG_STATUS}</th>
+                <th data-options="field:'remark',width:150">{$Think.lang.LANG_REMARK}</th>
+            </tr>
+          </thead>
+		</table>
+	</div>
+ </form>
+	<div id="{$Request.controller}DiaLog"></div>
+</div>
+<script type="text/javascript">
+	function {$Request.controller}SearchFun() {
+		$('#{$Request.controller}DataGrid').datagrid('load', serializeObject($('#{$Request.controller}SearchForm')));
+	}
+	function {$Request.controller}CleanFun() {
+		$('#{$Request.controller}SearchForm input').val('');
+		$('#{$Request.controller}DataGrid').datagrid('load', {});
+	}
+
+
+	// 編輯
+	function {$Request.controller}EditFun(){
+		if(isChecked('#{$Request.controller}DataGrid', 0)){
+			var rows= $('#{$Request.controller}DataGrid').datagrid('getChecked');
+			new DatagridMethod().show('edit', '550px', '450px','{$Think.lang.LANG_EDIT}-'+rows[0].user_title).opt({},"#{$Request.controller}EditForm");
+		}
+	}
+	//新增
+	function {$Request.controller}AddFun() {
+		new DatagridMethod().show('add', '', '', '{$Think.lang.LANG_ADD}');
+	}
+	function {$Request.controller}DeleteFun() {
+		new DatagridMethod().del();
+	}
+	function {$Request.controller}EditPwdFun(){
+		if(isChecked('#{$Request.controller}DataGrid', 0)){
+			var rows= $('#{$Request.controller}DataGrid').datagrid('getChecked');
+			new DatagridMethod().show('editPwd', '350px', '350px','{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_PASS}-'+rows[0].user_title,'1').opt({},"#{$Request.controller}EditPwdForm");
+		}
+	}
+
+    
+
+	function {$Request.controller}PrvlgSetFun(){
+		var rows = $('#{$Request.controller}DataGrid').datagrid('getChecked');
+		if(rows.length == 0){
+			$.messager.show({
+				title:'{$Think.lang.LANG_TIPS}',
+				msg:'{$Think.lang.LANG_CHECK_CONFIRM}'
+			});
+		}else if(rows.length > 1){
+			 $('#{$Request.controller}DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+				$.messager.show({
+					title: '{$Think.lang.LANG_TIPS}',
+					msg: '{$Think.lang.LANG_EDIT_CONFIRM}'
+				});
+
+		}else{
+			$('<div/>').dialog({
+				href : '{:url('prvlgSet')}',
+				queryParams : { id:rows[0].id,empId:rows[0].u_account },
+				width : 900,
+				height : 580,
+				modal : true,
+				//maximizable:true,
+				//maximized:true,
+				title : '{$Think.lang.LANG_APPOINT}:'+rows[0].u_account+':'+rows[0].user_title,
+				id : '{$Request.controller}PrvlgDia',
+				buttons : [ {
+					text : '{$Think.lang.LANG_SAVE}',
+					id : '{$Request.controller}ApSave',
+					iconCls : 'icon-filesave',
+					handler : function() {
+						//var vTitle = $('#{$Request.controller}PrvlgSet').tabs('getSelected').panel('options').title;
+						var index =  $('#{$Request.controller}PrvlgSet').tabs('getTabIndex', $('#{$Request.controller}PrvlgSet').tabs('getSelected'));
+						var j_action,j_chkIds,j_flag,j_grid,j_list,j_firstDB;//alert(index);
+						switch(index){
+							case 0://设置接入点
+								j_action = "XxSetBu";
+								var j_selectDB=[];
+								$('input:checkbox:checked[name="selectDB[]"]').each(function(){
+								   j_selectDB.push($(this).val());
+								   //alert($(this).val());
+								});
+								j_chkIds = j_selectDB;
+								//默認
+								var j_firstDB = $('input:radio:checked[name="firstDB"]').val();
+								j_grid = 0;
+								j_list = 0;
+								break;
+							case 1://删除角色
+								j_action="XxCancelRole";
+								var roleData = $('#{$Request.controller}RoleList').datagrid('getChecked');//全部
+								var roleArr = [];
+								for ( var i = 0; i < roleData.length; i++) {
+									roleArr.push(roleData[i].id);
+								}
+								j_chkIds = roleArr;
+								//j_flag = 1;
+								j_grid = '{$Request.controller}RoleGrid';
+								j_list = '{$Request.controller}RoleList';
+								break;
+							case 2://设置角色
+
+								j_action = "XxSetRole";
+								var rowData  = $('#{$Request.controller}RoleAppoint').datagrid('getRows');//全部
+								var roleArr = [];
+								for ( var i = 0; i < rowData.length; i++) {
+									roleArr.push(rowData[i].id);
+								}
+								j_chkIds= roleArr;
+								//j_flag = 2;
+								j_grid = '{$Request.controller}RoleGrid';
+								j_list = '{$Request.controller}RoleList';
+								$('#{$Request.controller}RoleAppoint').datagrid('loadData', { total: 0, rows: [] });
+								break;
+							case 3://删除群组
+								j_action = "XxSetGroup";
+								var groupData = $('#{$Request.controller}GroupList').datagrid('getChecked');//全部
+								var groupArr = [];
+								for ( var i = 0; i < groupData.length; i++) {
+									groupArr.push(groupData[i].id);
+								}
+								j_chkIds = groupArr;
+								j_flag = 1;
+								j_grid = '{$Request.controller}GroupGrid';
+								j_list = '{$Request.controller}GroupList';
+								break;
+							case 4://设置群组
+								j_action = "XxSetGroup";
+								var groupData = $('#{$Request.controller}GroupAppoint').datagrid('getRows');//全部
+								var groupArr = [];
+								for ( var i = 0; i < groupData.length; i++) {
+									groupArr.push(groupData[i].id);
+								}
+								j_chkIds = groupArr;
+								j_flag = 2;
+								j_grid = '{$Request.controller}GroupGrid';
+								j_list = '{$Request.controller}GroupList';
+								$('#{$Request.controller}GroupAppoint').datagrid('loadData', { total: 0, rows: [] });
+								break;
+						}
+						$.ajax({
+								type : 'post',
+								url : '{:url('+j_action+')}',
+								data:{uId:rows[0].id,chkIds:j_chkIds,flag:j_flag,firstDB:j_firstDB},
+								dataType :'json',
+								success :function(res){
+									if(res.status == 1){
+										$.messager.show({
+											title : '{$Think.lang.LANG_TIPS}',
+											msg : res.info
+										});
+									}else{
+										$.messager.show({
+										title : '{$Think.lang.LANG_TIPS}',
+										msg :res.info,
+										});
+									}
+									$('#'+j_grid).datagrid('reload');
+									$('#'+j_list).datagrid('reload');
+									/*if(j_grid!=''){
+										$('#'+j_grid).datagrid('reload');
+									}
+									if(j_list!=''){
+										$('#'+j_list).datagrid('reload');
+									}*/
+								}
+						});
+					}
+				},{
+					text:'{$Think.lang.LANG_CLOSE}',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#{$Request.controller}PrvlgDia').dialog('destroy');
+					}
+				} ],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}
+</script>

@@ -1,0 +1,71 @@
+<div align="center">
+<form id="__MODULE__EdtForm" method="post">
+<input name="id" type="hidden" />
+		<table class="tableForm" style="width: 100%;"> 
+			<tr>
+				<th>角色名称</th>
+				<td><input name="role_name" class="easyui-validatebox" data-options="required:true" />
+				</td>
+            </tr>
+			<tr>
+				<th>角色類別:</th> 
+				<td><input  name="role_type2" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type2',
+								panelHeight: 'auto'" /></td> 
+			</tr>
+			<tr>
+				<th>維度管理:</th> 
+				<td><input  name="role_type3" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type3', 
+								panelHeight: 'auto'" />
+				</td>
+			</tr>
+			<tr>
+				<th>部門:</th>
+				<td><input id="__MODULE__pathid" name="pathid" type="hidden" />
+					<input name="dept_id" id="__MODULE__Deptidd" class="easyui-combotree"  style="width:220px" 
+						data-options="url:'__URL__/x_xgetDeptTree',
+								      required:true,
+									  editable:false ,
+									  onLoadSuccess(){
+										loadTreeData('#__MODULE__pathid',this);
+										//var node = $(this).tree('find', 1);
+										//$(this).tree('expandAll',node.target);
+										//$(this).tree('collapseAll',node.target);
+									  }" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>状态</th> 
+				<td><input  name="status" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/status',
+								panelWidth: 100,
+								width: 140" />
+				</td>
+			</tr>
+			<tr>
+				<th>备注</th>
+				<td colspan="3"><textarea name="remark" style="width:250px;height:80px;"></textarea>
+				</td>
+			</tr>
+		</table>
+</form>
+</div> 
+<script>
+function loadTreeData(pid,trid){
+	var paid = $(pid).val();
+	var row = paid.split('-');
+	for(var i = 0;i<row.length;i++){ 
+		var node = $(trid).tree('find', row[i]);
+		if(node){
+			$(trid).tree('expand',node.target);
+		}
+	}
+} 
+</script>

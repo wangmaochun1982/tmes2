@@ -1,0 +1,168 @@
+<form id="__MODULE__EditRoleFrom" method="post" style="width:670px;height:500px">
+<div class="easyui-tabs"  style="width:670px;height:500px;">
+	<div title="已有角色" class="easyui-layout" data-options="fit:true,border:false" style="padding:10px">
+			<div data-options="region:'north',border:false,title:'已有角色'" style="height:300px">
+				<table class="easyui-datagrid" id="__MODULE__ExtendGrig"
+				data-options="
+					url:'__URL__/x_xGetHavingRole?node_id={$_REQUEST['nodeId']}',
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :10,
+					pageList : [10,15,20,30,40,50],
+					sortName : 'role_name',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					nowrap : true,
+					singleSelect:false">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:50,checkbox:true">ID</th>
+							<th data-options="field:'role_name',width:100">角色名</th>
+							<th data-options="field:'remark',width:100">備註</th>
+							<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+							<th data-options="field:'node_id',width:80,hidden:true">節點ID</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+	</div>		
+	<div title="指派角色" class="easyui-layout" data-options="fit:true,border:false" style="width:650px;height:450px" >
+	
+				<div data-options="region:'west',title:'角色'" style="width:200px;height:400px; padding:1px"> 
+					 <ul id="__MODULE__Selections"></ul>
+				</div> 
+				<div style="width:400px;height:400px; padding:1px" data-options="region:'east',border:false,title:'角色'">
+					<div style="height:480px;width:380px;" align="left" >
+						<table class="easyui-datagrid" id="__MODULE__SeachGrid" style="height:324px;"
+								data-options="checkOnSelect : true,//选择checkbox则选择行
+								idField : 'id',
+								fit : true,
+								border : false,//定义边框 
+								pagination : true,//定义分页组件 
+								pageSize : 10,
+								pageList : [10,20,50],
+								sortName : 'role_name',
+								sortOrder : 'desc', 
+								checkOnSelect : true,//选择checkbox则选择行
+								selectOnCheck : true">
+							<thead>
+								<tr>
+									<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+									<th data-options="field:'role_name',width:100">角色名</th>
+									<th data-options="field:'remark',width:100">備註</th>
+								
+								</tr>
+							</thead>
+					</table>
+					</div>	
+				</div>  
+				<div data-options="region:'center'" style="width:50px;height:400px" >
+					<div style="width:26px;padding-top:100px" align="left" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddSelect();">>></a>
+					 </div>
+					<div style="padding-top:100px" align="left" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__DelSelect();"><<</a>
+					</div>
+				</div>
+	</div>
+	
+</div>
+</form>
+<script>
+	//組織+角色的樹
+	$(function(){
+		 $('#__MODULE__Selections').tree({
+                 checkbox: true,
+                 animate:true,
+                 lines:true,
+				 onlyLeafCheck:true,
+                 url: '__URL__/x_xGetAllRole',
+                 onBeforeExpand:function(node,param){
+					 $('#__MODULE__Selections').tree('options').url = "__URL__/x_xGetAllRole/id/" + node.id+'/node_id/'+{$_REQUEST['nodeId']} ;
+                 }
+            });
+	});
+	
+	//點擊將左邊的角色移到右邊
+	function __MODULE__AddSelect() {
+		var rowData = $('#__MODULE__Selections').tree('getChecked');
+		//alert(rowData.length);
+		for ( var i = 0; i < rowData.length; i++) {
+			//alert(rowData[i].id);
+			//alert(rowData[i].role_name);
+			//delete rowData[i].rn;
+			//alert($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1);
+
+			if($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#__MODULE__SeachGrid').datagrid('insertRow',{
+					index:i,
+					row:{
+						id : rowData[i].id,
+						role_name :rowData[i].text,
+						remark :rowData[i].attributes.remark,
+					}
+				});
+			}
+		}
+		$('#__MODULE__Selections').datagrid('clearChecked');
+	}
+	
+	//將右邊的角色刪除
+	function __MODULE__DelSelect(){
+		var rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+		var rowLen=rows.length;
+		if (rowLen > 0) {
+			for ( var i = 0; i < rowLen; i++) {
+				var rowIndex = $('#__MODULE__SeachGrid').datagrid('getRowIndex',rows[0]);
+				if(rowIndex>-1){
+					$('#__MODULE__SeachGrid').datagrid('deleteRow',rowIndex); 
+					rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+				}
+			}
+			$('#__MODULE__SeachGrid').datagrid('clearChecked');
+		}else{
+			$.messager.show({
+					title : '提示',
+					msg : '请勾选要删除的记录！'
+				});
+		}
+	}
+	
+	function __MODULE__Action(value,row,index){
+		//alert(row.frole_id);
+		//alert(row.brole_id);
+		var d = "<a href=\"javascript:void(0);\" onclick=\"__MODULE__Step('"+row.id+"','"+row.node_id+"')\">"+'取消'+"</a>";
+		return d;
+	}
+	function __MODULE__Step(role_id,node_id){
+		alert(role_id);
+		alert(node_id);
+		$.ajax({
+			url:'__URL__/x_xCancelAppoint',
+			type:'post',
+			data:{role_id:role_id,node_id:node_id},
+			dataType:'json',
+			success:function(r){
+				if(r.status==1){
+					$('#__MODULE__ExtendGrig').datagrid('reload');
+					$('#__MODULE__ReExtendGrig').datagrid('reload');
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}else{
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}
+			}
+		});
+		
+	}
+</script>
+

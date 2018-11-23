@@ -1,0 +1,70 @@
+<script type="text/javascript">
+$(function() {
+        var uId = '{$userId}';
+		$('#__MODULE__EditRoleDatagrid').datagrid({
+			url : '__URL__/x_xGetRole',
+            fit : true,
+			//fitColumns : true,//使用该属性后不能用冻结列
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :50,
+			sortName : 'user_id',
+			sortOrder : 'asc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选
+            //toolbar:'#toolDiv',
+            queryParams:{userId:uId},
+			columns : [ [ {
+				field : 'id',
+				title : '编号',
+				width : 0,
+				checkbox : true
+			}, {
+				field : 'name',
+				title : '角色名称',
+				width : 0,
+				sortable : true
+			}, {
+				field : 'okflag',
+				title : '指派状态',
+				width : 0,
+				sortable : true,
+				formatter : function(value, row, index) {
+				    if(value==1){
+				     return '<span title="已指派"><font color=green>已指派</font></span>';   
+				    }else{
+				     return '<span title="未指派"><font color=gray>未指派</font></span>';   
+				    }					
+				}
+			}, {
+				field : 'remark',
+				title : '角色备注',
+				width : 0,
+				sortable : true
+			} ] ],
+            onLoadSuccess:function(row){               
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1){
+                        $("#__MODULE__EditRoleDatagrid").datagrid("selectRow", idx);
+                      }
+                });              
+            }
+		});
+
+	});
+</script>
+<!--<form id="__MODULE__EditRoleFrom" method="post">
+<input type="hidden" name="userId" value="{$userId}" />
+    <div id="toolDiv">    
+        <span>关键字：</span>    
+        <input id="searchKeyWords" name="searchKeyWords" />   
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>    
+    </div>-->
+<table id="__MODULE__EditRoleDatagrid"></table>
+<!--</form>-->

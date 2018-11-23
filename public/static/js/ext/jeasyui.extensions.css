@@ -1,0 +1,9 @@
+﻿
+/*添加下一行css代码，修复页面中 input 与 easyui-combo 组件同行时位置偏移的问题*/
+input { vertical-align: middle; } 
+/*jeasyui.extensions.gridselector.js*/
+.grid-selector-buttons { border-top-width: 0; border-bottom-width: 0; text-align: center; background-color: #efefef; padding-top: 50px; }
+.grid-selector-buttons a { margin: 5px 0 5px 0; }
+
+/*jquery.comboselector.js*/
+ 

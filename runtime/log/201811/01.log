@@ -1,0 +1,2890 @@
+---------------------------------------------------------------
+[ 2018-11-01T09:21:01+08:00 ] 0.0.0.0 GET /TMES/thinkphp/helper.php
+[ info ] localhost/TMES/thinkphp/helper.php [运行时间：0.070004s][吞吐率：14.28req/s] [内存消耗：1,132.38kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'thinkphp',
+    2 => 'helper.php',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:01+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Tcnode.php
+[ info ] localhost/TMES/app/home/controller/Tcnode.php [运行时间：0.071004s][吞吐率：14.08req/s] [内存消耗：1,133.24kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Tcnode.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:29+08:00 ] 127.0.0.1 GET /
+[ info ] tmes.topkey.com.tw/ [运行时间：0.033001s][吞吐率：30.30req/s] [内存消耗：1,131.38kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:43+08:00 ] 127.0.0.1 GET /home/Pub/login
+[ info ] tmes.topkey.com.tw/home/Pub/login [运行时间：0.072004s][吞吐率：13.89req/s] [内存消耗：1,569.77kb] [文件加载：40]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->login[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\login.html [ array (
+  0 => 'loginPic',
+  1 => 'ipAddr',
+  2 => 'skd',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:53+08:00 ] 127.0.0.1 POST /home/Pub/checkLogin
+[ info ] tmes.topkey.com.tw/home/Pub/checkLogin [运行时间：2.500143s][吞吐率：0.40req/s] [内存消耗：2,284.51kb] [文件加载：50]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'checkLogin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '51',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/Pub/login',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if',
+)
+[ info ] [ PARAM ] array (
+  'account' => '465113',
+  'password' => '123456',
+  'UserPcAddr' => '127.0.0.1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->checkLogin[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:53+08:00 ] 127.0.0.1 GET /home/index/index
+[ info ] tmes.topkey.com.tw/home/index/index [运行时间：0.116006s][吞吐率：8.62req/s] [内存消耗：2,077.78kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/Pub/login',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Index\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:54+08:00 ] 127.0.0.1 GET /home/Pub/top?_=1541035313777
+[ info ] tmes.topkey.com.tw/home/Pub/top?_=1541035313777 [运行时间：0.161010s][吞吐率：6.21req/s] [内存消耗：2,194.44kb] [文件加载：46]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'top',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541035313777',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->top[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\top.html [ array (
+  0 => 'loginPcAddr',
+  1 => 'firstCkd',
+  2 => 'selecCkd',
+  3 => 'navList',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:54+08:00 ] 127.0.0.1 GET /home/Pub/left?_=1541035313778
+[ info ] tmes.topkey.com.tw/home/Pub/left?_=1541035313778 [运行时间：0.180011s][吞吐率：5.56req/s] [内存消耗：1,548.88kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'left',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541035313778',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->left[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\left.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:54+08:00 ] 127.0.0.1 GET /home/Pub/center?_=1541035313779
+[ info ] tmes.topkey.com.tw/home/Pub/center?_=1541035313779 [运行时间：0.185011s][吞吐率：5.41req/s] [内存消耗：1,548.84kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'center',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541035313779',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->center[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\center.html [ array (
+  0 => 'v_refresh',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:54+08:00 ] 127.0.0.1 POST /home/Pub/menu
+[ info ] tmes.topkey.com.tw/home/Pub/menu [运行时间：0.535030s][吞吐率：1.87req/s] [内存消耗：2,233.91kb] [文件加载：44]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'menu',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->menu[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:54+08:00 ] 127.0.0.1 GET /static/images/patrol/Employee.jpg
+[ info ] tmes.topkey.com.tw/static/images/patrol/Employee.jpg [运行时间：0.345020s][吞吐率：2.90req/s] [内存消耗：1,135.83kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'images',
+    2 => 'patrol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:56+08:00 ] 127.0.0.1 POST /home/Pub/chageNavGroup
+[ info ] tmes.topkey.com.tw/home/Pub/chageNavGroup [运行时间：0.049003s][吞吐率：20.41req/s] [内存消耗：1,563.98kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'chageNavGroup',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '8',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0',
+)
+[ info ] [ PARAM ] array (
+  'navId' => '10',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->chageNavGroup[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:56+08:00 ] 127.0.0.1 POST /home/Pub/menu
+[ info ] tmes.topkey.com.tw/home/Pub/menu [运行时间：0.159009s][吞吐率：6.29req/s] [内存消耗：2,165.91kb] [文件加载：44]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'menu',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->menu[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:58+08:00 ] 127.0.0.1 GET /home/TcNode?_=1541035313780
+[ info ] tmes.topkey.com.tw/home/TcNode?_=1541035313780 [运行时间：0.109006s][吞吐率：9.17req/s] [内存消耗：2,247.24kb] [文件加载：48]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'TcNode',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541035313780',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Tcnode\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:58+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.118007s][吞吐率：8.47req/s] [内存消耗：2,156.38kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '32',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:58+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.316018s][吞吐率：3.16req/s] [内存消耗：2,175.75kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '11',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:21:58+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.143008s][吞吐率：6.99req/s] [内存消耗：2,175.77kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '16',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+  'id' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:22:04+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.143008s][吞吐率：6.99req/s] [内存消耗：2,156.44kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '43',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'id' => '9',
+  'pid' => '9',
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:22:21+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Base.php
+[ info ] localhost/TMES/app/home/controller/Base.php [运行时间：0.029002s][吞吐率：34.48req/s] [内存消耗：1,133.47kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Base.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:23:19+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Base.php
+[ info ] localhost/TMES/app/home/controller/Base.php [运行时间：0.057003s][吞吐率：17.54req/s] [内存消耗：1,134.07kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'no-cache',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'pragma' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Base.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:23:24+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.026002s][吞吐率：38.46req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:23:37+08:00 ] 127.0.0.1 GET /home/tcnode/XxgetTableJson/id/1
+[ info ] tmes.topkey.com.tw/home/tcnode/XxgetTableJson/id/1 [运行时间：0.148009s][吞吐率：6.76req/s] [内存消耗：2,155.63kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'XxgetTableJson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:24:26+08:00 ] 127.0.0.1 GET /home/tcnode/add
+[ info ] tmes.topkey.com.tw/home/tcnode/add [运行时间：0.050003s][吞吐率：20.00req/s] [内存消耗：1,551.53kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'add',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->add[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:27:02+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.182011s][吞吐率：5.49req/s] [内存消耗：2,156.44kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '47',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'id' => '563',
+  'pid' => '563',
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:34:52+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Index/index.html
+[ info ] localhost/TMES/app/home/view/Index/index.html [运行时间：0.031002s][吞吐率：32.26req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Index',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:38:47+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Index/index.html
+[ info ] localhost/TMES/app/home/view/Index/index.html [运行时间：0.032002s][吞吐率：31.25req/s] [内存消耗：1,134.12kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'no-cache',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'pragma' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Index',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:42+08:00 ] 127.0.0.1 GET /home/index/index
+[ info ] tmes.topkey.com.tw/home/index/index [运行时间：0.179010s][吞吐率：5.59req/s] [内存消耗：2,260.57kb] [文件加载：49]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/Pub/login',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Index\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:42+08:00 ] 127.0.0.1 GET /home/Pub/top?_=1541036562385
+[ info ] tmes.topkey.com.tw/home/Pub/top?_=1541036562385 [运行时间：0.188010s][吞吐率：5.32req/s] [内存消耗：2,194.44kb] [文件加载：46]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'top',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541036562385',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->top[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\top.html [ array (
+  0 => 'loginPcAddr',
+  1 => 'firstCkd',
+  2 => 'selecCkd',
+  3 => 'navList',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:42+08:00 ] 127.0.0.1 GET /home/Pub/left?_=1541036562386
+[ info ] tmes.topkey.com.tw/home/Pub/left?_=1541036562386 [运行时间：0.190011s][吞吐率：5.26req/s] [内存消耗：1,548.88kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'left',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541036562386',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->left[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\left.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:42+08:00 ] 127.0.0.1 GET /home/Pub/center?_=1541036562387
+[ info ] tmes.topkey.com.tw/home/Pub/center?_=1541036562387 [运行时间：0.200012s][吞吐率：5.00req/s] [内存消耗：1,548.84kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'center',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541036562387',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->center[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\center.html [ array (
+  0 => 'v_refresh',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:42+08:00 ] 127.0.0.1 POST /home/Pub/menu
+[ info ] tmes.topkey.com.tw/home/Pub/menu [运行时间：0.176010s][吞吐率：5.68req/s] [内存消耗：2,165.91kb] [文件加载：44]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'menu',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->menu[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:43+08:00 ] 127.0.0.1 GET /static/images/patrol/Employee.jpg
+[ info ] tmes.topkey.com.tw/static/images/patrol/Employee.jpg [运行时间：0.141008s][吞吐率：7.09req/s] [内存消耗：1,135.83kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'images',
+    2 => 'patrol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:44+08:00 ] 127.0.0.1 GET /home/TcNode?_=1541036562388
+[ info ] tmes.topkey.com.tw/home/TcNode?_=1541036562388 [运行时间：0.149008s][吞吐率：6.71req/s] [内存消耗：2,247.24kb] [文件加载：48]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'TcNode',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541036562388',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Tcnode\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:45+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.157009s][吞吐率：6.37req/s] [内存消耗：2,175.75kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '11',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:45+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.256015s][吞吐率：3.91req/s] [内存消耗：2,156.38kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '32',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:45+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.244014s][吞吐率：4.10req/s] [内存消耗：2,175.77kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '16',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+  'id' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:42:55+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.028002s][吞吐率：35.71req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:43:07+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Tcnode.php
+[ info ] localhost/TMES/app/home/controller/Tcnode.php [运行时间：0.026001s][吞吐率：38.46req/s] [内存消耗：1,133.47kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Tcnode.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:43:30+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Tcnode.php
+[ info ] localhost/TMES/app/home/controller/Tcnode.php [运行时间：0.044003s][吞吐率：22.73req/s] [内存消耗：1,134.07kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'no-cache',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'pragma' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Tcnode.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:52:16+08:00 ] 127.0.0.1 GET /home/tcnode/add
+[ info ] tmes.topkey.com.tw/home/tcnode/add [运行时间：0.107006s][吞吐率：9.35req/s] [内存消耗：1,737.31kb] [文件加载：43]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'add',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->add[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\tcnode\add.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:18+08:00 ] 127.0.0.1 GET /home/index/index
+[ info ] tmes.topkey.com.tw/home/index/index [运行时间：0.158009s][吞吐率：6.33req/s] [内存消耗：2,078.23kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/Pub/login',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Index\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:18+08:00 ] 127.0.0.1 GET /home/Pub/top?_=1541037318578
+[ info ] tmes.topkey.com.tw/home/Pub/top?_=1541037318578 [运行时间：0.190011s][吞吐率：5.26req/s] [内存消耗：2,194.44kb] [文件加载：46]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'top',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037318578',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->top[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\top.html [ array (
+  0 => 'loginPcAddr',
+  1 => 'firstCkd',
+  2 => 'selecCkd',
+  3 => 'navList',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:18+08:00 ] 127.0.0.1 GET /home/Pub/left?_=1541037318579
+[ info ] tmes.topkey.com.tw/home/Pub/left?_=1541037318579 [运行时间：0.185011s][吞吐率：5.41req/s] [内存消耗：1,548.88kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'left',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037318579',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->left[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\left.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:18+08:00 ] 127.0.0.1 GET /home/Pub/center?_=1541037318580
+[ info ] tmes.topkey.com.tw/home/Pub/center?_=1541037318580 [运行时间：0.169010s][吞吐率：5.92req/s] [内存消耗：1,548.84kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'center',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037318580',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->center[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\center.html [ array (
+  0 => 'v_refresh',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:19+08:00 ] 127.0.0.1 POST /home/Pub/menu
+[ info ] tmes.topkey.com.tw/home/Pub/menu [运行时间：0.155009s][吞吐率：6.45req/s] [内存消耗：2,165.91kb] [文件加载：44]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'menu',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->menu[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:19+08:00 ] 127.0.0.1 GET /static/images/patrol/Employee.jpg
+[ info ] tmes.topkey.com.tw/static/images/patrol/Employee.jpg [运行时间：0.116006s][吞吐率：8.62req/s] [内存消耗：1,135.83kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'images',
+    2 => 'patrol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:20+08:00 ] 127.0.0.1 GET /home/TcNode?_=1541037318581
+[ info ] tmes.topkey.com.tw/home/TcNode?_=1541037318581 [运行时间：0.119007s][吞吐率：8.40req/s] [内存消耗：2,247.28kb] [文件加载：48]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'TcNode',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037318581',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Tcnode\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:21+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.127007s][吞吐率：7.87req/s] [内存消耗：2,156.42kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '32',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:21+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.259014s][吞吐率：3.86req/s] [内存消耗：2,175.79kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '11',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:21+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.159010s][吞吐率：6.29req/s] [内存消耗：2,175.81kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '16',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+  'id' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:55:23+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.128008s][吞吐率：7.81req/s] [内存消耗：2,156.48kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '43',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'id' => '9',
+  'pid' => '9',
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:09+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.029002s][吞吐率：34.48req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:35+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.033002s][吞吐率：30.30req/s] [内存消耗：1,134.12kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'no-cache',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'pragma' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:40+08:00 ] 127.0.0.1 GET /home/index/index
+[ info ] tmes.topkey.com.tw/home/index/index [运行时间：0.109007s][吞吐率：9.17req/s] [内存消耗：2,078.23kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/Pub/login',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Index\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:40+08:00 ] 127.0.0.1 GET /home/Pub/top?_=1541037400291
+[ info ] tmes.topkey.com.tw/home/Pub/top?_=1541037400291 [运行时间：0.209012s][吞吐率：4.78req/s] [内存消耗：2,194.44kb] [文件加载：46]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'top',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037400291',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->top[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\top.html [ array (
+  0 => 'loginPcAddr',
+  1 => 'firstCkd',
+  2 => 'selecCkd',
+  3 => 'navList',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:40+08:00 ] 127.0.0.1 GET /home/Pub/left?_=1541037400292
+[ info ] tmes.topkey.com.tw/home/Pub/left?_=1541037400292 [运行时间：0.230013s][吞吐率：4.35req/s] [内存消耗：1,548.88kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'left',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037400292',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->left[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\left.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:40+08:00 ] 127.0.0.1 GET /home/Pub/center?_=1541037400293
+[ info ] tmes.topkey.com.tw/home/Pub/center?_=1541037400293 [运行时间：0.254014s][吞吐率：3.94req/s] [内存消耗：1,548.84kb] [文件加载：39]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'center',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037400293',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->center[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\pub\center.html [ array (
+  0 => 'v_refresh',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:41+08:00 ] 127.0.0.1 POST /home/Pub/menu
+[ info ] tmes.topkey.com.tw/home/Pub/menu [运行时间：0.277016s][吞吐率：3.61req/s] [内存消耗：2,165.91kb] [文件加载：44]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'Pub',
+    2 => 'menu',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Pub->menu[ D:\xampp\htdocs\TMES\app\home\controller\Pub.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:41+08:00 ] 127.0.0.1 GET /static/images/patrol/Employee.jpg
+[ info ] tmes.topkey.com.tw/static/images/patrol/Employee.jpg [运行时间：0.229013s][吞吐率：4.37req/s] [内存消耗：1,135.83kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'images',
+    2 => 'patrol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:43+08:00 ] 127.0.0.1 GET /home/TcNode?_=1541037400294
+[ info ] tmes.topkey.com.tw/home/TcNode?_=1541037400294 [运行时间：0.166010s][吞吐率：6.02req/s] [内存消耗：2,392.45kb] [文件加载：50]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'TcNode',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  '_' => '1541037400294',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Base->index[ D:\xampp\htdocs\TMES\app\home\controller\Base.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ VIEW ] D:\xampp\htdocs\TMES\public/../app/home\view\Tcnode\index.html [ array (
+  0 => 'toolBar',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:43+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.176010s][吞吐率：5.68req/s] [内存消耗：2,156.42kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '32',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:44+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.344020s][吞吐率：2.91req/s] [内存消耗：2,175.79kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '11',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:44+08:00 ] 127.0.0.1 POST /home/tcnode/xxgetnodetree.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgetnodetree.html [运行时间：0.222012s][吞吐率：4.50req/s] [内存消耗：2,175.81kb] [文件加载：47]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgetnodetree',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '16',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'node_type' => '1',
+  'id' => '1',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->Xxgetnodetree[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:46+08:00 ] 127.0.0.1 POST /home/tcnode/xxgettablejson.html
+[ info ] tmes.topkey.com.tw/home/tcnode/xxgettablejson.html [运行时间：0.175010s][吞吐率：5.71req/s] [内存消耗：2,156.48kb] [文件加载：45]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'tcnode',
+    2 => 'xxgettablejson',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tmes.topkey.com.tw',
+  'connection' => 'keep-alive',
+  'content-length' => '43',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://tmes.topkey.com.tw',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://tmes.topkey.com.tw/home/index/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+  'cookie' => 'PHPSESSID=9dhbopms66veuugavhp5n009if; ckCookieSet=1; loginPcAddr=127.0.0.1; authId=8; loginAccount=465113; loginEmail=ken%40keentech-xm.com; loginUserName=%E7%8E%8B%E8%8C%82%E6%98%A5; lastLoginTime=31-OCT-18; login_count=416; costCode=2; sponsor=0; _navId=10',
+)
+[ info ] [ PARAM ] array (
+  'id' => '9',
+  'pid' => '9',
+  'page' => '1',
+  'rows' => '20',
+  'sort' => 'id',
+  'order' => 'asc',
+)
+[ info ] [ LANG ] D:\xampp\htdocs\TMES\public/../app/home\lang\zh-tw.php
+[ info ] [ RUN ] app\home\controller\Tcnode->XxgetTableJson[ D:\xampp\htdocs\TMES\app\home\controller\Tcnode.php ]
+[ info ] [ DB ] INIT \think\oracle\Connection
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:56:54+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.040002s][吞吐率：25.00req/s] [内存消耗：1,134.12kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'no-cache',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'pragma' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:57:11+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Base.php
+[ info ] localhost/TMES/app/home/controller/Base.php [运行时间：0.028002s][吞吐率：35.71req/s] [内存消耗：1,133.47kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Base.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:57:13+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/add.html
+[ info ] localhost/TMES/app/home/view/Tcnode/add.html [运行时间：0.028002s][吞吐率：35.71req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:57:14+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.029002s][吞吐率：34.48req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:58:01+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/add.html
+[ info ] localhost/TMES/app/home/view/Tcnode/add.html [运行时间：0.027001s][吞吐率：37.04req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:58:02+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Base.php
+[ info ] localhost/TMES/app/home/controller/Base.php [运行时间：0.028002s][吞吐率：35.71req/s] [内存消耗：1,133.47kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Base.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T09:58:03+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.025001s][吞吐率：40.00req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T10:00:44+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/add.html
+[ info ] localhost/TMES/app/home/view/Tcnode/add.html [运行时间：0.036002s][吞吐率：27.78req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T10:00:45+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.035002s][吞吐率：28.57req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T10:02:16+08:00 ] 0.0.0.0 GET /TMES/app/home/controller/Base.php
+[ info ] localhost/TMES/app/home/controller/Base.php [运行时间：0.032002s][吞吐率：31.25req/s] [内存消耗：1,133.47kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'Base.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T10:08:45+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/add.html
+[ info ] localhost/TMES/app/home/view/Tcnode/add.html [运行时间：0.033002s][吞吐率：30.30req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T10:08:47+08:00 ] 0.0.0.0 GET /TMES/app/home/view/Tcnode/index.html
+[ info ] localhost/TMES/app/home/view/Tcnode/index.html [运行时间：0.027001s][吞吐率：37.04req/s] [内存消耗：1,133.52kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'app',
+    2 => 'home',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+  'view' => 'Tcnode',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T15:17:06+08:00 ] 0.0.0.0 GET /TMES/conf/config.php
+[ info ] localhost/TMES/conf/config.php [运行时间：0.035002s][吞吐率：28.57req/s] [内存消耗：1,132.72kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'conf',
+    2 => 'config.php',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-11-01T15:17:20+08:00 ] 0.0.0.0 GET /TMES/conf/database.php
+[ info ] localhost/TMES/conf/database.php [运行时间：0.035002s][吞吐率：28.57req/s] [内存消耗：1,132.74kb] [文件加载：31]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'TMES',
+    1 => 'conf',
+    2 => 'database.php',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36',
+  'accept-encoding' => 'gzip,deflate',
+  'accept-language' => 'en-us,en;q=0.8',
+  'cookie' => 'PHPSESSID=q17dve8s1pip3il36rj8vp24hh',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

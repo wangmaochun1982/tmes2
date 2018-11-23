@@ -1,0 +1,629 @@
+<form name="__MODULE__AddResource" id="__MODULE__AddResource" method="POST">
+	<div class="easyui-tabs" data-options="border:false" >
+		<div title="角色關係"style="padding:10px" data-options="border:false" >
+			<div class="easyui-layout" data-options="border:false"  style="height:460px;">
+				<div data-options="region:'north',collapsible:false,split:true,title:'父角色'" style="height:200px">
+					<table class="easyui-datagrid" id="__MODULE__ExtendGrig"
+					data-options="
+						url:'__URL__/x_xgetExtendRole?roleId={$_REQUEST['roleId']}',
+						fit : true,
+						border : false,
+						rownumbers:true,
+						pagination : true,
+						idField : 'id',
+						pageSize :10,
+						pageList : [10,15,20,30,40,50],
+						sortName : 'role_name',
+						sortOrder : 'asc',
+						checkOnSelect : true,
+						selectOnCheck : true,
+						nowrap : true,
+						singleSelect:false">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:50,checkbox:true">ID</th>
+								<th data-options="field:'role_name',width:100">角色名</th>
+								<th data-options="field:'partname',width:200">部門名</th>
+								<th data-options="field:'remark',width:100">備註</th>
+								<th data-options="field:'frole_id',width:100,hidden:true">父角色ID</th>
+								<th data-options="field:'brole_id',width:100,hidden:true">子角色ID</th>
+								<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div data-options="region:'center',title:'子角色'" >
+					<table class="easyui-datagrid" id="__MODULE__ReExtendGrig"  
+					data-options="
+						url:'__URL__/x_xgetReExtendRole?roleId={$_REQUEST['roleId']}',
+						fit : true,
+						border : false,
+						rownumbers:true,
+						pagination : true,
+						idField : 'id',
+						pageSize :10,
+						pageList : [10,15,20,30,40,50],
+						sortName : 'role_name',
+						sortOrder : 'asc',
+						checkOnSelect : true,
+						selectOnCheck : true,
+						nowrap : true,
+						singleSelect:false">
+						<thead>
+							<th data-options="field:'id',width:50,checkbox:true">ID</th>
+							<th data-options="field:'role_name',width:100">角色名</th>
+							<th data-options="field:'partname',width:200">部門名</th>
+							<th data-options="field:'frole_id',width:100,hidden:true">父角色ID</th>
+							<th data-options="field:'brole_id',width:100,hidden:true">子角色ID</th>
+							<th data-options="field:'remark',width:100">備註</th>
+							<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--                                                                            -->
+		<div title="角色繼承"style="padding:10px" data-options="border:false" >
+			<div class="easyui-layout" data-options="border:false" style="height:460px" >
+				<div data-options="region:'west',collapsible:false,title:'用户列表'" style="width:400px;"> 
+					 <ul id="__MODULE__Selections"></ul>
+				</div> 
+				<div style="width:395px;height:350px; padding:1px" data-options="region:'east',collapsible:false,title:'指派的用户'">
+				 <table class="easyui-datagrid" id="__MODULE__SeachGrid" style="height:324px;"
+							data-options="checkOnSelect : true,//选择checkbox则选择行
+							fit : true,
+							idField : 'id', 
+							border : false,//定义边框 
+							pagination : true,//定义分页组件 
+							pageSize : 10,
+							pageList : [10,20,50],
+							sortName : 'role_name',
+							sortOrder : 'desc', 
+							checkOnSelect : true,//选择checkbox则选择行
+							selectOnCheck : true">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+								<th data-options="field:'role_name',width:180">角色名</th>
+								<th data-options="field:'remark',width:180">備註</th>
+							</tr>
+						</thead>
+					</table> 
+				</div>  
+				<div data-options="region:'center'" style="width:80px" align="center">
+					<div style="width:26px;padding-top:100px" align="center" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddSelect();">>></a>
+					 </div>
+					<div style="padding-top:100px" align="center" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__DelSelect();"><<</a>
+					</div>
+				</div>
+				<div data-options="region:'south'" style="height:30px" align="right">
+					<a id="btnInherit" data-options="iconCls:'icon-filesave'" class="easyui-linkbutton" onclick="__MODULE__SaveInherit()">保存</a>
+				</div>
+			</div>
+		</div>
+		<!-----------------------------------------------------------------               -->               
+		<div id="__MODULE__SetNodePagePanel"  title="資源指派"style="padding:10px" data-options="border:false" >
+			<div class="easyui-layout" data-options="border : false"  style="height:460px" >
+				<div data-options="title:'菜单节点筛选=>右侧显示',region:'west',collapsible:false" style="width:250px;">
+					 <ul id="__MODULE__NodeTree"></ul>
+				</div>
+				<div data-options="region:'center',border:false">
+					<table id="__MODULE__Resource" class="easyui-treegrid" > 
+					</table>
+				</div>
+				<div data-options="region:'south'" style="height:30px" align="right">
+					<a id="btnResource" data-options="iconCls:'icon-filesave'" class="easyui-linkbutton" onclick="__MODULE__SaveResource()">保存</a>
+				</div>
+			</div>
+		</div>
+		<!-----------------------------------------------------------------  1.17             -->
+		<div id="__MODULE__SetUserPagePanel" title="用戶指派"style="padding:10px" data-options="border:false" >
+			<div class="easyui-layout" data-options="border : false"  style="height:460px" >
+				<div data-options="region:'west',collapsible:false,split:true,title:'部門檢索'" style="width:250px"> 
+					 <ul id="__MODULE__Bu"></ul>
+				</div> 
+				<div data-options="region:'center',split:true" >
+					<div class="easyui-layout" data-options="border : false"  style="height:425px" >
+						<div data-options="region:'west',split:true" style="width:300px">
+							<table id="__MODULE__UserBu"></table>
+						</div>
+						<div data-options="region:'center',split:true" align="center">
+							<div style="width:26px;padding-top:100px" align="center" >
+								<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddAction('__MODULE__UserBu','__MODULE__UserAppoint');">>></a>
+							</div>
+							<div style="padding-top:100px" align="center" >
+								<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddAction('__MODULE__UserAppoint','__MODULE__UserBu');"><<</a>
+							</div>
+						</div>
+						<div data-options="region:'east',split:true" style="width:300px">
+							<table id="__MODULE__UserAppoint"></table>
+						</div>
+					</div>
+				</div>
+				<div data-options="region:'south'" style="height:30px" align="right">
+					<a id="btnUser" data-options="iconCls:'icon-filesave'" class="easyui-linkbutton" onclick="__MODULE__SaveUser()">保存</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function() {
+	    var roleId = '{$roleId}';
+		$('#__MODULE__Selections').tree({
+			checkbox: false,
+			animate:true,
+			lines:true,
+			//onlyLeafCheck:true,
+			url: '__URL__/x_xgetDepartment',
+			onBeforeExpand:function(node,param){
+				//alert(node.id);
+				$('#__MODULE__LeftTree').tree('options').url = "__URL__/x_xgetDepartment/id/" + node.id ;
+			},
+			onClick:function(node){
+				var node = $('#__MODULE__LeftTree').tree('getSelected');
+				$('#__MODULE__DataGrid').datagrid({
+					url:'__URL__/x_xgetTableJson/id/'+node.id,
+					queryParams:{
+						id: node.id
+					},
+					striped:true
+				});
+				if (!node.state){
+					$.messager.show({
+						title : '提示',
+						msg :"已經到最底層了",
+						showType:'show',
+						height:100,
+						width:250,
+						timeout :1000
+					});
+				};
+			}
+		});
+		
+		$('#__MODULE__NodeTree').tree({
+			checkbox: false,
+			animate:true,
+			lines:true,
+			url: '__APP__/TcNode/x_xgetNodeTree',
+			onBeforeExpand:function(node,param){
+				$('#__MODULE__NodeTree').tree('options').url = "__APP__/TcNode/x_xgetNodeTree/id/" + node.id;
+			},
+			onClick:function(node){
+				if (node.ismenu==0){
+					var nodeId = '';
+					var node = $('#__MODULE__NodeTree').tree('getSelected');
+					if(node){nodeId = node.id;}
+					$('#__MODULE__Resource').treegrid('loadData', { total: 0, rows: [] });
+					$('#__MODULE__Resource').treegrid({
+						url:'__URL__/x_xGetResource',
+						queryParams:{
+							pid: nodeId,
+							rId: roleId
+						}
+					});
+				};
+		    }
+		});
+		$('#__MODULE__Resource').treegrid({
+			url : '__URL__/x_xGetResource',
+			fit : true,
+			//fitColumns : true,//有了这个属性就不能用冻结列
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : false,//定义分页组件
+			idField : 'id',
+            treeField:'title',
+            queryParams:{rId:roleId},           
+			sortName : 'id',
+			sortOrder : 'asc',
+			checkOnSelect : false,//选择checkbox则选择行
+			selectOnCheck : false,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选
+            autoRowHeight:false,		
+			columns : [ [{
+				field : 'id',
+				title : '编号',
+				width : 10,
+				hidden : true
+			},{
+				field : 'title',
+				title : '节点名称',
+				width : 200,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'ckbox',
+				title : '操作授权',
+				width : 0,
+				sortable : false,
+				formatter : function(value, row, index) {
+				     var row2 = row.operation;
+					 var ckStr='';
+                     $.each(row2,function(idx,val){
+                       var checkStr='';
+					   var fontStr='';
+                       if(val.okflag==1){
+                            checkStr = 'checked="checked"';
+                            fontStr='<font style="font-weight: bold;">'+val.title+'</font>';
+                        }else{
+                            fontStr='<font style="color:gray;">'+val.title+'</font>';
+                        }
+                       ckStr = ckStr + '<input type="checkbox" name="actionId" '+checkStr+' value="'+val.id+'" >'+fontStr+'.';
+                     });
+					return ckStr;
+				}
+			} ] ],
+			onBeforeLoad:function(){
+				$(this).treegrid('loadData',{total:0,rows:[]}); 
+            },
+            onLoadSuccess:function(value,row,index){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1 && idx!=0){
+                      }
+                });
+            }
+		});
+		$('#__MODULE__Bu').tree({
+			checkbox: false,
+			animate:true,
+			lines:true,
+			//onlyLeafCheck:true,
+			url: '__URL__/x_xgetDepartment',
+			onBeforeExpand:function(node,param){
+				//alert(node.id);
+				$('#__MODULE__Bu').tree('options').url = "__URL__/x_xgetDepartment/id/" + node.id ;
+			},
+			onClick:function(node){
+				var node = $('#__MODULE__Bu').tree('getSelected');
+				$('#__MODULE__UserBu').datagrid({
+					url:'__URL__/x_xgetUserBu',
+					queryParams:{
+						id: node.id,
+						rId: roleId
+					},
+					striped:true
+				});
+				$('#__MODULE__UserAppoint').datagrid({
+					url:'__URL__/x_xgetUserAppoint',
+					queryParams:{
+						id: node.id,
+						rId: roleId
+					},
+					striped:true
+				});
+				$('#__MODULE__UserBu').datagrid('removeFilterRule');
+				$('#__MODULE__UserBu').datagrid('enableFilter',[{
+					field:'account',
+					type:'text'
+				},{
+					field:'nickname',
+					type:'text'
+				}]);
+				if (!node.state){
+					$.messager.show({
+						title : '提示',
+						msg :"已經到最底層了",
+						showType:'show',
+						height:100,
+						width:250,
+						timeout :1000
+					});
+				};
+			}
+		});
+		var userDG = $('#__MODULE__UserBu').datagrid({
+			url : '__URL__/x_xgetUserBu',
+			fit : true,
+			title: '未指派',
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+            queryParams:{rId:roleId},
+			pageSize :20,
+			pageList : [15,20,25,50,100],            
+			sortName : 'okflag',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选            
+			columns : [ [{
+				field : 'id',
+				title : '编号',
+				width : 10,
+				checkbox : true
+			},{
+				field : 'account',
+				title : '员工账号',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'nickname',
+				title : '员工姓名',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}] ],
+			onBeforeLoad:function(){
+				$(this).datagrid('clearChecked').datagrid('clearSelections');
+			},
+            onLoadSuccess:function(row){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1){
+                        $("#__MODULE__UserBu").datagrid("selectRow", idx);
+                      }
+                });
+            }
+		});
+		userDG.datagrid('removeFilterRule');
+		userDG.datagrid('enableFilter',[{
+			field:'account',
+			type:'text'
+		},{
+			field:'nickname',
+			type:'text'
+		}]);
+		$('#__MODULE__UserAppoint').datagrid({
+			url : '__URL__/x_xgetUserAppoint',
+			fit : true,
+			title: '已指派',
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+            queryParams:{rId:roleId},
+			pageSize :20,
+			pageList : [15,20,25,50,100],            
+			sortName : 'okflag',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选            
+			columns : [ [{
+				field : 'id',
+				title : '编号',
+				width : 10,
+				checkbox : true
+			},{
+				field : 'account',
+				title : '员工账号',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'nickname',
+				title : '员工姓名',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}] ],
+			onBeforeLoad:function(){
+				$(this).datagrid('clearChecked').datagrid('clearSelections');
+			},
+            onLoadSuccess:function(row){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1){
+                        $("#__MODULE__UserAppoint").datagrid("selectRow", idx);
+                      }
+                });
+            }
+		});
+	});
+	
+	//點擊將左邊的角色移到右邊
+	function __MODULE__AddSelect() {
+		var rowData = $('#__MODULE__Selections').tree('getChecked');
+		//alert(rowData.length);
+		for ( var i = 0; i < rowData.length; i++) {
+			//alert(rowData[i].id);
+			//alert(rowData[i].role_name);
+			//delete rowData[i].rn;
+			//alert($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1);
+
+			if($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#__MODULE__SeachGrid').datagrid('insertRow',{
+					index:i,
+					row:{
+						id : rowData[i].id,
+						role_name :rowData[i].text,
+						remark :rowData[i].attributes.remark,
+					}
+				});
+			}
+		}
+		$('#__MODULE__Selections').datagrid('clearChecked');
+	}
+	
+	//將右邊的角色刪除
+	function __MODULE__DelSelect(){
+		var rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+		var rowLen=rows.length;
+		if (rowLen > 0) {
+			for ( var i = 0; i < rowLen; i++) {
+				var rowIndex = $('#__MODULE__SeachGrid').datagrid('getRowIndex',rows[0]);
+				if(rowIndex>-1){
+					$('#__MODULE__SeachGrid').datagrid('deleteRow',rowIndex); 
+					rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+				}
+			}
+			$('#__MODULE__SeachGrid').datagrid('clearChecked');
+		}else{
+			$.messager.show({
+					title : '提示',
+					msg : '请勾选要删除的记录！'
+				});
+		}
+	}
+	
+	//------------------------------------------------- 角色關係 ----------------------------------------------
+	function __MODULE__Action(value,row,index){
+		//alert(row.frole_id);
+		//alert(row.brole_id);
+		var d = "<a href=\"javascript:void(0);\" onclick=\"__MODULE__Step('"+row.frole_id+"','"+row.brole_id+"')\">"+'取消'+"</a>";
+		return d;
+	}
+	function __MODULE__Step(frole,brole){
+		//alert(frole);
+		//alert(brole);
+		$.ajax({
+			url:'__URL__/x_xCancelExtend',
+			type:'post',
+			data:{frole:frole,brole:brole},
+			dataType:'json',
+			success:function(r){
+				if(r.status==1){
+					$('#__MODULE__ExtendGrig').datagrid('reload');
+					$('#__MODULE__ReExtendGrig').datagrid('reload');
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}else{
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}
+			}
+		});
+		
+	}
+	function __MODULE__SaveInherit(){
+		var roleIdGet = '{$roleId}';
+		var roleList = [];
+		$('#__MODULE__SeachGrid').datagrid('checkAll');
+		roleList  = $('#__MODULE__SeachGrid').datagrid('getChecked');
+		$.ajax({
+			type : 'post',
+			url : '__URL__/x_xRoleInsert',
+			data:{roleId:roleIdGet,role:roleList},
+			dataType :'json',
+			success :function(res){
+						//alert(O2String(res));
+				if(res.status == 1){
+					$.messager.show({
+						title : '提示',
+						msg : res.info
+					});							
+				}else{
+					$.messager.show({
+					title : '提示',
+					msg :res.info,
+					});
+				}
+			}
+		});
+	}
+	function __MODULE__SaveResource(){
+		var roleIdGet = '{$roleId}';
+		var ckdList = []; 
+		$("input[name='actionId']").each(function(){
+			if($(this).attr("checked")){                        
+			   ckdList.push($(this).val());
+			}                    
+		}); 
+		var nodeIdGet = '';
+		var node = $('#__MODULE__NodeTree').tree('getSelected');
+		if(node){nodeIdGet = node.id;}
+		$.ajax({
+			type:'post',
+			url : '__URL__/x_xSaveResource',
+			data : { ckActionList: ckdList,roleId:roleIdGet,nodeId:nodeIdGet },
+			dataType : 'json',
+			success : function(result) {
+				if (result.status==1){
+					$('#__MODULE__Resource').treegrid('loadData', { total: 0, rows: [] });
+					$('#__MODULE__Resource').treegrid({
+						url:'__URL__/x_xGetResource',
+						queryParams:{
+							pid: nodeIdGet,
+							rId: roleIdGet
+						}
+					});
+					$.messager.show({
+						title : '提示',
+						msg : result.info
+					});
+				}else{
+					$.messager.show({
+					title : '提示',
+					msg :result.info,
+					});
+				}							
+			}
+		});
+	}
+	function __MODULE__SaveUser(){
+		var roleIdGet = '{$roleId}';
+		//var userRows = $('#__MODULE__UserAppoint').datagrid('getChecked');	
+		var userRows = $('#__MODULE__UserAppoint').datagrid('getRows','id');
+		var chkArr = [];
+		for ( var i = 0; i < userRows.length; i++) {
+			chkArr.push(userRows[i].id);
+		}  
+		var nodeGet = 1;
+		var node = $('#__MODULE__Bu').tree('getSelected');
+		if(node){nodeGet = node.id;}
+		$.ajax({
+			url : '__URL__/x_xSaveUser',
+			data : { chkUser: chkArr,roleId:roleIdGet,nodeId:nodeGet},
+			dataType : 'json',
+			success : function(result) {
+				try {
+					if (result.status==1) {
+						$('#__MODULE__UserBu').datagrid('load');
+						$('#__MODULE__UserBu').datagrid('clearChecked').datagrid('clearSelections');
+						$.messager.show({
+							title : '提示',
+							msg : result.info
+						});
+					}else{
+						$.messager.alert('提示', result.info);
+					}
+				} catch (e) {
+					$.messager.alert('提示', result.info);
+				}
+			}
+		});
+	}
+	function __MODULE__AddAction(t1,t2) {
+		var j_id1='#'+t1;
+		var j_id2='#'+t2;
+		var rowData = $(j_id1).datagrid('getChecked');
+		var rowLen=rowData.length;
+        //console.info(rowData);
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[0]);
+            //alert(rowData[0].rn);
+			if($(j_id2).datagrid('getRowIndex',rowData[0].id)==-1){
+				$(j_id2).datagrid('insertRow',{row:rowData[0]});
+			}
+			$(j_id1).datagrid('deleteRow',rowIndex);
+			rowData = $(j_id1).datagrid('getChecked');
+		}
+	}
+</script>

@@ -1,0 +1,79 @@
+<div id="logo" style="background-image:url('__STATIC__/style/images/logo.png');position:absolute;left:10px;top:3px;">
+	<img src="__STATIC__/style/images/logo.png" />
+</div>
+
+<div style="position: absolute; right: 0px;top:3px; bottom: 0px; ">
+     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-computer'"><span style="font-weight: bold;color:blue;">{$loginPcAddr}</span></a>
+     <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_cjMenu',iconCls:'icon-database'">{$Think.session.DB_FLAG|getDbName}({$Think.lang.LANG_INDEXTOP_SWITCH})</a>
+     <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'icon-settings'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL}</a>
+     <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_zxMenu',iconCls:'icon-exit'">{$Think.lang.LANG_INDEXTOP_LOGOUT}</a>
+</div>
+<div style="position: absolute; right: 0px;bottom: 0px; ">
+     {volist name="navList" id="voNav"}
+        &nbsp;<a href="javascript:void(0);" class="easyui-linkbutton"  {notempty name="voNav.iconcls"} data-options="iconCls:'icon-{$voNav.iconcls}'"{/notempty} onclick="changeMenu( '{$voNav.id}','{$voNav.title}' );">{$voNav.title}</a>
+        
+     {/volist}
+</div>
+<div id="layout_north_cjMenu" style="width: 90px; display: none;">
+    {volist id="voc" name="selecCkd"}
+        {eq name="$voc.db_id" value="$Think.session.DB_FLAG"}
+            <div data-options="iconCls:'icon-tick'" style="color:blue;font-weight:bold;">@{$voc.db_id|getDbName}</div>
+        {else/}
+            <div onclick="changeDbConn('{$voc.db_id}');" data-options="iconCls:'icon-disconnect'">{$voc.db_id|getDbName}</div>
+        {/eq}
+    {/volist}
+</div>
+
+<div id="layout_north_kzmbMenu" style="width: 120px; display: none;">
+	<div onclick="userInfoFun();" data-options="iconCls:'icon-user'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_USER}</div>
+	{if condition="cookie('loginAccount') neq 'guest'"}
+    <div onclick="changeUPwd();" data-options="iconCls:'icon-key'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_PASS}</div>
+	{/if}
+	<div class="menu-sep"></div>
+	<div data-options="iconCls:'icon-theme'">
+		<span>{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_THEM}</span>
+		<div style="width: 100px;">
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('default');"><eq name="_COOKIE.easyuiThemeName" value="default">@</eq>{$Think.lang.LANG_THEMES_DEFAU}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('bootstrap');"><eq name="_COOKIE.easyuiThemeName" value="bootstrap">@</eq>{$Think.lang.LANG_THEMES_GRAYS}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('metro');"><eq name="_COOKIE.easyuiThemeName" value="metro">@</eq>{$Think.lang.LANG_THEMES_METRO}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('cupertino');"><eq name="_COOKIE.easyuiThemeName" value="cupertino">@</eq>{$Think.lang.LANG_THEMES_CUPER}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('dark-hive');"><eq name="_COOKIE.easyuiThemeName" value="dark-hive">@</eq>{$Think.lang.LANG_THEMES_DARKH}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('grinder');"><eq name="_COOKIE.easyuiThemeName" value="grinder">@</eq>{$Think.lang.LANG_THEMES_PEPER}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('sunny');"><eq name="_COOKIE.easyuiThemeName" value="sunny">@</eq>{$Think.lang.LANG_THEMES_SUNNY}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('green');"><eq name="_COOKIE.easyuiThemeName" value="green">@</eq>{$Think.lang.LANG_THEMES_GREEN}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('blue');"><eq name="_COOKIE.easyuiThemeName" value="blue">@</eq>{$Think.lang.LANG_THEMES_BLUE}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('orange');"><eq name="_COOKIE.easyuiThemeName" value="orange">@</eq>{$Think.lang.LANG_THEMES_ORANGE}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('material-teal');"><eq name="_COOKIE.easyuiThemeName" value="material-teal">@</eq>material-teal</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('red');"><eq name="_COOKIE.easyuiThemeName" value="red">@</eq>red</div>
+		</div>
+	</div>
+    <div class="menu-sep"></div>
+	<div data-options="iconCls:'icon-font'">
+		<span>{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_LANG}</span>
+		<div style="width: 100px;">
+			<div data-options="iconCls:'icon-font'" onclick="changeLang('en-us');">{eq name="Request.langset" value="en-us"}@{/eq}English</div>
+			<!-- <div data-options="iconCls:'icon-font'" onclick="changeLang('zh-cn');">{eq name="Request.langset" value="zh-cn"}@{/eq}简体</div> -->
+			<div data-options="iconCls:'icon-font'" onclick="changeLang('zh-tw');">{eq name="Request.langset" value="zh-tw"}@{/eq}繁體</div>
+		</div>
+	</div>
+</div>
+
+<div id="layout_north_zxMenu" style="width: 110px; display: none;">
+	<div onclick="sysInfoFun();" data-options="iconCls:'icon-information'">{$Think.lang.LANG_INDEXTOP_LOGOUT_ABOUT}</div>
+	<div class="menu-sep"></div>
+    <div onclick="changeLoginUser();" data-options="iconCls:'icon-user_go'">{$Think.lang.LANG_INDEXTOP_LOGOUT_SWUSER}</div>
+    <div onclick="systemLockFun();" data-options="iconCls:'icon-lock'">{$Think.lang.LANG_INDEXTOP_LOGOUT_LOCK}</div>
+	<div onclick="logoutFun(true);" data-options="iconCls:'icon-exit'">{$Think.lang.LANG_INDEXTOP_LOGOUT_LOGOFF}</div>
+</div>
+{if condition="$Think.session.username"}
+<script>systemLockFun();</script>
+{/if}
+<script id = "pub_top" src="__STATIC__/js/index/Pub/top.js" 
+	tips="{$Think.lang.LANG_TIPS}" 
+	swuser="{$Think.lang.LANG_INDEXTOP_LOGOUT_SWUSER}"
+	btn="{$Think.lang.LANG_LOGIN_BTN_LOGIN}"
+	logout_lock="{$Think.lang.LANG_INDEXTOP_LOGOUT_LOCK}"
+	unlock="{$Think.lang.LANG_INDEXTOP_UNLOCK}"
+	chgpass = "{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_PASS}"
+	topsave = "{$Think.lang.LANG_SAVE}"></script>
+

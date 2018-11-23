@@ -1,0 +1,212 @@
+<div class="easyui-layout" data-options="fit : true,border : false">
+	<!--<div data-options="region:'north',title:'',border:false,collapsed:false," style="height:0px;overflow: hidden;" align="center">
+		<form id="__MODULE__SearchSubForm">
+			<table class="tableForm">
+				<tr>
+					<td>代碼/描述: </td>
+					<td><input id="__MODULE__SearchSubTxt" name="sear_txt" style="width:80px"></td>
+					<td>
+				      <a href="javascript:void(0);" id="__MODULE__SearchSubSear"  class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="__MODULE__SearchSubFun();">查詢</a>
+			          <a href="javascript:void(0);"  id="__MODULE__SearchSubClean"class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="__MODULE__CleanCgCusSubFun();">清空條件</a>
+			        </td>
+				</tr>
+			</table>
+			<input type="hidden" id="__MODULE__CgCusSubPid" name="pid" value="{$_REQUEST.pid}">
+		</form>
+	</div>-->
+	<div data-options="region:'center',border:false">
+	  <form id="__MODULE__SearchSubForm">
+			<input type="hidden" id="__MODULE__CgCusSubPid" name="pid" value="{$_REQUEST.pid}">
+		</form>
+	 <table id="__MODULE__SubDatagrid"
+		 data-options="url : '__URL__/x_xgetSubJson?pid={$_REQUEST.pid}',
+			fit : true,
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :20,
+			pageList : [10,20,50],
+			sortName : 'id',
+			sortOrder : 'asc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : false,
+            striped:true,//单元格显示条纹
+			singleSelect:true,//默认不单选
+			toolbar : [{
+				text : '新增',
+				iconCls : 'icon-user_add',
+				handler : function() {
+					__MODULE__AddSubFun();
+				}
+			}, '-', {
+				text : '編輯',
+				iconCls : 'icon-user_edit',
+				handler : function() {
+					__MODULE__EditSubFun();
+				}
+			},'-']
+			">
+		<thead data-options="frozen:true">
+            <tr>
+			<th data-options="field:'id',width:50,checkbox:true">ID</th>
+			<th data-options="field:'cus_code',width:150">列表代碼</th>
+			<th data-options="field:'option_name',width:80">語言常量</th>
+			<th data-options="field:'lang_value',width:100">顯示名</th>
+			<th data-options="field:'option_val',width:80">值</th>
+			</tr>
+		</thead>
+		<thead>
+			<tr>
+			<th data-options="field:'ord',width:60">排序</th>
+			<th data-options="field:'sg_desc',width:80">描述</th>
+			<th data-options="field:'bg_color',width:80,formatter:__MODULE__SubColor">背景顏色</th>
+			<th data-options="field:'status',width:80,formatter:formatStatus">狀態</th>
+			<th data-options="field:'create_emp',width:80">修改人</th>
+			<th data-options="field:'update_time',width:130">修改時間</th>
+			</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+//過濾
+$(function(){
+	//var curTabTitle = $('#layout_center_tabsMenu').data('tabTitle');
+	//$('#__MODULE__SearTeam').val(curTabTitle);
+	var dg = $('#__MODULE__SubDatagrid').datagrid();
+	dg.datagrid('removeFilterRule');
+	dg.datagrid('enableFilter',[{field:'option_name',
+						 type:'text'
+						},
+						{field:'option_val',
+						 type:'text'
+						}
+	]);
+});
+function __MODULE__SubColor(value,row,index){
+	if (value !=''){
+		return '<spsn style="background-color:'+value+'">'+value+'</span>';
+		//return value;
+	}
+}
+//搜索
+function __MODULE__SearchAdTypeDefFun() {
+	$('#__MODULE__SubDatagrid').datagrid('load', serializeObject($('#__MODULE__SearchSubForm')));
+}
+//取消搜索
+function __MODULE__CleanAdTypeDefFun() {
+	$('#__MODULE__SearchSubForm input').val('');
+	$('#__MODULE__SubDatagrid').datagrid('load', {});
+}
+
+//新增
+function __MODULE__AddSubFun(){
+	$('#__MODULE__SubDatagrid').datagrid('clearChecked').datagrid('clearSelections');
+	  
+		$('<div/>').dialog({
+			href : '__URL__/addSub/pid/'+$("#__MODULE__CgCusSubPid").val(),
+			width : 400,
+			height : 250,
+			modal : true,
+			title : '新增',
+			id : '__MODULE__AddSubDia',
+			buttons : [ {
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					$('#__MODULE__AddSubForm').form('submit', {
+						url : '__URL__/x_xInsertSub',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__SubDatagrid').datagrid('reload');
+									$('#__MODULE__AddSubDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+}
+
+//編輯
+function __MODULE__EditSubFun(){
+	var rows= $('#__MODULE__SubDatagrid').datagrid('getChecked');
+	if (rows.length > 1) {
+		$('#__MODULE__SubDatagrid').datagrid('clearChecked').datagrid('clearSelections');
+		$.messager.show({
+			title: '提示',
+			msg: '不能同时编辑多条记录，请选择一条！'
+		});
+	}else if (rows.length == 0) {
+			$.messager.show({
+				title: '提示',
+				msg: '请勾选要编辑的记录！'
+			});
+	}else {
+		$('<div/>').dialog({
+			href : '__URL__/editSub',
+			width : 400,
+			height : 250,
+			modal : true,
+			title : '編輯',
+			id : '__MODULE__EdtSubDia',
+			buttons : [ {
+				text : '保存編輯',
+				iconCls : 'icon-edit',
+				handler : function() {
+					$('#__MODULE__EditSubForm').form('submit', {
+						url : '__URL__/x_xUpdateSub',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__SubDatagrid').datagrid('reload');
+									$('#__MODULE__EdtSubDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+				var rows= $('#__MODULE__SubDatagrid').datagrid('getChecked');
+				var editData =rows[0];
+				$('#__MODULE__EditSubForm').form('load',editData);
+			}
+		});
+	}
+}
+</script>

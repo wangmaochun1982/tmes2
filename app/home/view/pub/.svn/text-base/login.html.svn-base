@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 4.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html>
+<head>
+<title>{$Think.config.sitename}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="{$Think.config.sitename}" />
+<link rel="icon" href="__PUBLIC__/style/images/mes_white_icon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__PUBLIC__/style/images/mes_white_icon.ico" type="image/x-icon" />
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="__PUBLIC__/js/easyui/themes/{$_COOKIE.easyuiThemeName|default='default'}/easyui.css" />
+<link href="__PUBLIC__/style/login.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/jquery-easyui-1.3.6/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/mesCss.css" />
+<script type="text/javascript" src="__PUBLIC__/js/easyui/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/easyui/jquery.easyui.min.js"></script>
+<script id="easyuiLang" type="text/javascript" src="__PUBLIC__/js/easyui/locale/easyui-lang-{$_COOKIE.easyuiLangType|default='en'}.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/easyui/jquery.cookie.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mesUtil.js" charset="utf-8"></script>
+<script type="text/javascript">
+		var APP='__APP__';
+		var TMPL='__TMPL__';
+		var PUBLIC='__PUBLIC__';
+		var ROOT='__ROOT__';
+		var TMPL='__TMPL__';
+	function loginUser(uname,upass){
+	    var uName = uname?uname:$('#account').val();
+        var uPass = upass?upass:$('#password').val();
+        var pName = $('#UserPcAddr').val();
+		// 驗證賬號密碼是否為空
+		if(uName=="" || uPass==""){
+			$.messager.alert('提示', "賬號或密碼不能為空！");
+			return;
+		}
+        $.ajax({
+            url:'__APP__/Public/checkLogin',
+            type:'POST',
+            data : {
+                account     : uName,
+                password    : uPass,
+                UserPcAddr  : pName
+            },
+            cache : false,
+            dataType : 'JSON',
+            success:function(obj){
+			   if(obj.status==1){
+					//alert(document.cookie);
+					window.location.replace(APP+'/Index');
+					//window.location=APP+'/Index'
+			   }else{
+			     $.messager.alert('提示', obj.message);
+			   }
+		    }
+        });
+	}
+    $(function(){
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                loginUser();
+             }
+        }
+    });
+	</script>
+</head>
+<body>
+<div id="login">
+	<div id="login_header">
+		<h1 class="login_logo">
+			<a href="__APP__"><img src="__PUBLIC__/style/images/login_logo.gif" /></a>
+		</h1>
+		<div class="login_headerContent">
+			<div class="navList">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="changeLang('en-us');">English&nbsp;</a></li>
+					<li><a href="javascript:void(0)" onclick="changeLang('zh-cn');">简体&nbsp;</a></li>
+					<li><a href="javascript:void(0)" onclick="changeLang('zh-tw');">繁體&nbsp;</a></li>
+				</ul>
+			</div>
+			<h1 class="login_title" style="text-align: left;">{$skd}<!--<img src="__PUBLIC__/style/images/login_title.png" />--></h1>
+		</div>
+	</div>
+	<div id="login_content">
+		<div class="loginForm">
+			<form method="post" id="loginForm">
+				<p>
+					<label>{$Think.lang.LANG_LOGIN_USERNAME}:</label>
+					<input type="text" name="account" id="account" class="easyui-validatebox" data-options="required:true" />
+				</p>
+				<p>
+					<label>{$Think.lang.LANG_LOGIN_USERPASS}:</label>
+					<input type="password" id="password" name="password" class="easyui-validatebox" data-options="required:true" />
+				</p>
+                <!--<p>
+                    <label>事業部：</label>
+                    <select name="logindb" class="login_input">
+                     <option value="1">1.輪業一廠[杏林]</option>
+                     <option value="2">2.安全帽廠[杏林]</option>
+                     <option value="3">3.輪業二廠[後溪]</option>
+                     <option value="4">4.球拍廠[後溪]</option>
+                     <option value="5">5.供料事業部[後溪]</option>
+                     <option value="6">6.航醫事業部[後溪]</option>
+                     <option value="7">7.WMS[新凱]</option>
+                    </select>
+                </p>
+				<p>
+					<label>验证码：</label>
+					<input class="code" name="verify" type="text" size="5" disabled="true" value="无需填写" />
+					<span><img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" border="0" alt="点击刷新验证码" style="cursor:pointer" align="absmiddle"></span>
+				</p>-->
+                <p>&nbsp;</p>
+                <p>
+				<div class="login_bar">
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-user_go" onclick="loginUser()"> {$Think.lang.LANG_LOGIN_BTN_LOGIN} </a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-account" onclick="$.messager.alert('提示','申请通道尚未开通...');"> {$Think.lang.LANG_LOGIN_BTN_REGER} </a>
+				</div>
+                </p>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">
+                    <a href="#" class="easyui-linkbutton" onclick="loginUser('guest','123456');" data-options="plain:true,iconCls:'icon-user_red'">游客身份直接访问>></a>
+                </p>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">
+                <span id="showPcName" style="color:blue;font-weight:blod;"><notempty name="ipAddr">IP地址：{$ipAddr}</notempty></span>
+                <input type="hidden" name="UserPcAddr" id="UserPcAddr" value="{$ipAddr}" />
+                </p>
+			</form>
+		</div>
+		<div class="login_banner"><img src="__PUBLIC__/style/images/{$loginPic}" /></div>
+		<div class="login_main">
+			<div class="login_inner">
+            <p>V1.0.0 Alpha</p>
+            <p><font color=red>温馨提示:首次登陆后请修改密码，帐号为您的员工卡号，初始密码：123456。</font></p>
+			</div>
+		</div>
+	</div>
+	<div id="login_footer">
+		Copyright &copy; 2013 {$Think.config.COMPANY} All Rights Reserved.
+	</div>
+</div>
+</body>
+<!--[if IE]>
+<object id="locator" classid="CLSID:76A64158-CB41-11D1-8B02-00600806D9B6" height="0px"></object>
+<object id="foo" classid="CLSID:75718C9A-F029-11d1-A1AC-00C04FB6C223"  height="0px"></object>
+<script lang="javascript" event="OnCompleted(hResult,pErrorObject, pAsyncContext)" for=foo>
+    var j_pcname = unescape(sDNSName);
+    if(j_pcname!='' && j_pcname!='undefined'){
+    $("#UserPcAddr").val(j_pcname);
+    $("#showPcName").html('本機編號：'+j_pcname);
+    }else{
+    alert('获取主机名失败，请确认系统是否被浏览器阻止访问？');
+    }
+</script>
+<script lang="javascript" event="OnObjectReady(objObject,objAsyncContext)" for=foo>
+if(objObject.IPEnabled != null && objObject.IPEnabled != "undefined" && objObject.IPEnabled == true){
+    if(objObject.MACAddress != null && objObject.MACAddress != "undefined")
+	    MACAddr = objObject.MACAddress;
+    if(objObject.IPEnabled && objObject.IPAddress(0) != null && objObject.IPAddress(0) != "undefined")
+	    IPAddr = objObject.IPAddress(0);
+    if(objObject.DNSHostName != null && objObject.DNSHostName != "undefined")
+	    sDNSName = objObject.DNSHostName;
+}
+</script>
+<script lang="javascript">
+       var service = locator.ConnectServer();
+       var MACAddr ;
+       var IPAddr ;
+       var DomainAddr;
+       var sDNSName;
+       service.Security_.ImpersonationLevel=3;
+       service.InstancesOfAsync(foo, 'Win32_NetworkAdapterConfiguration');
+</script>
+<![endif]-->
+</html>

@@ -1,0 +1,562 @@
+<script type="text/javascript">
+	$(function(){
+            var dg = $('#__MODULE__DataGrid').datagrid();
+            dg.datagrid('removeFilterRule');
+			dg.datagrid('enableFilter', [{
+				field:'login_count',
+				type:'numberbox',
+				options:{precision:0},
+				op:['equal','notequal','less','greater']
+			},{
+				field:'u_account',
+				type:'text'
+			},{
+				field:'user_title',
+				type:'text'
+			},{
+				field:'user_sex',
+				type:'combobox',
+				options:{
+					panelHeight:'auto',
+					url: '__URL__/x_xgetOption?cusCode=sex&filter=1',
+					valueField:'id',  
+					textField:'text',
+					onChange:function(value){
+						if (value == ''){
+							dg.datagrid('removeFilterRule', 'user_sex');
+						} else {
+							dg.datagrid('addFilterRule', {
+								field: 'user_sex',
+								op: 'equal',
+								value: value
+							});
+						}
+						dg.datagrid('doFilter');
+					}
+				}
+			},{
+				field:'user_email',
+				type:'text'
+			},{
+				field:'user_phone',
+				type:'text'
+			},{
+				field:'user__mobile',
+				type:'text'
+			},{
+				field:'dept_name',
+				type:'text'
+			},{
+				field:'last_login_time',
+				type:'datebox',
+                op:['less','lessorequal','greater','greaterorequal']
+			},{
+				field:'status_name',
+				type:'combobox',
+				options:{
+					panelHeight:'auto',
+					url: '__URL__/x_xgetOption?cusCode=status&filter=1',
+					valueField:'id',  
+					textField:'text',
+					onChange:function(value){
+						if (value == ''){
+							dg.datagrid('removeFilterRule', 'status');
+						} else {
+							dg.datagrid('addFilterRule', {
+								field: 'status',
+								op: 'equal',
+								value: value
+							});
+						}
+						dg.datagrid('doFilter');
+					}
+				}
+			}]);
+   });
+   function formatSex(value, row, index) {
+		if(value==1){
+			return '<span title="'+value+'">男</span>';
+		}else if(value==0){
+			return '<span title="'+value+'">女</span>';
+		}					
+  }
+</script>
+<div id="__MODULE__PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<form id="__MODULE__SearchForm" onsubmit="$('#__MODULE__Search').click();return false;"> 
+	<div data-options="region:'center',border:false"> 
+		<table id="__MODULE__DataGrid" 
+		 data-options="url : '__URL__/x_xGetTableJson',
+			fit : true,
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :20,
+			pageList : dg_pageList,
+			sortName : 'u_account',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : false,
+            striped:true,//单元格显示条纹
+			singleSelect:true,//默认不单选
+            filterBtnIconCls:'icon-filter',
+			onBeforeLoad:function(param){ 
+				$(this).datagrid('clearChecked').datagrid('clearSelections'); 
+			}, 
+			toolbar : [ {$toolBar} ]
+			">  
+		 <thead data-options="frozen:true">
+		    <tr>                
+				<th data-options="field:'id',width:30,checkbox:true" sortable="true">编号</th>
+                <th data-options="field:'u_account',width:80" sortable="true">用戶帳號</th> 
+                <th data-options="field:'user_title',width:120" sortable="true">用戶姓名</th> 
+				<th data-options="field:'emp_no',width:70" sortable="true">卡號</th>
+			</tr>
+		</thead>
+		<thead>
+            <tr>
+                <th data-options="field:'user_sex',width:50,align: 'center',formatter:formatSex" sortable="true">性別</th>                
+                <th data-options="field:'dept_name',width:300" sortable="true">所屬部門</th>
+				<th data-options="field:'manger_code',width:100" sortable="true">職務</th>
+                <th data-options="field:'post_code',width:100" sortable="true">職位</th>
+				<th data-options="field:'user_email',width:200" sortable="true">电子邮件</th>
+                <th data-options="field:'user_phone',width:60" sortable="true">办公电话</th>
+                <th data-options="field:'user_mobile',width:100" sortable="true">移动电话</th>
+				<th data-options="field:'online_status',width:60,align: 'center'" sortable="true">登錄狀態</th>
+                <th data-options="field:'login_count',width:60,align: 'center'" sortable="true">登錄次數</th>
+                <th data-options="field:'last_login_time',width:150" sortable="true">最后登录</th>
+                <th data-options="field:'bu_name',width:50,align: 'center'" sortable="true">接入點</th>
+                <th data-options="field:'lang_sets',width:50,align: 'center'" sortable="true">語言</th>
+                <th data-options="field:'last_login_ip',width:80" sortable="true">登录位置</th> 
+                <th data-options="field:'update_time',width:140" sortable="true">更新时间</th>
+                <th data-options="field:'status_name',width:60,align: 'center',formatter:formatStatus" sortable="true">状态</th>
+                <th data-options="field:'remark',width:150">备注</th>
+                <th data-options="field:'dept_id',hidden:true" sortable="true">所屬部門</th>
+                <th data-options="field:'login_area',hidden : true">默認登錄</th>
+				<th data-options="field:'dept_id',hidden : true">部門ID</th>
+            </tr>
+          </thead> 
+		</table>       
+	</div>
+ </form>  
+	<div id="__MODULE__DiaLog"></div>  
+</div>
+<script type="text/javascript">	
+	function __MODULE__SearchFun() {
+		$('#__MODULE__DataGrid').datagrid('load', serializeObject($('#__MODULE__SearchForm')));
+	}
+	function __MODULE__CleanFun() {
+		$('#__MODULE__SearchForm input').val('');
+		$('#__MODULE__DataGrid').datagrid('load', {});
+	}
+	
+	
+	// 編輯
+	function __MODULE__EditFun(){
+		var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+		new DatagridMethod().show('edit', '550px', '450px','编辑用户-'+rows[0].user_title).opt({},"#__MODULE__EditForm");
+	}
+	
+	/*
+	function __MODULE__EditFun() {
+		var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+		    $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同时编辑多条记录，请选择一条！'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '请勾选要编辑的记录！'
+				});
+		}else {
+		$('<div/>').dialog({
+			href : '__URL__/edit',
+			width : 550,
+			height :450,
+			modal : true,
+			title : '编辑用户- '+rows[0].user_title,
+			id : '__MODULE__EdtDia',
+			buttons : [ {
+				text : '保存',
+				iconCls : 'icon-edit',
+				handler : function() { 
+					$('#__MODULE__EditForm').form('submit', {
+						url : '__URL__/x_xUpdate',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('reload');
+									$('#__MODULE__EdtDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+				var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+				var editData =rows[0];
+				$('#__MODULE__EditForm').form('load',editData);
+			}
+		});
+	}
+	}
+	*/
+	function __MODULE__AddFun() {
+		$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		$('<div/>').dialog({
+			href : '__URL__/add',
+			width : 550,
+			height : 500,
+			modal : true,
+			title : '新增(二選一)',
+			id : '__MODULE__AddDia',
+			buttons : [ {
+				text : '保存',
+				iconCls : 'icon-add',
+				handler : function() { 
+					var index = $('#__MODULE__Add').tabs('getTabIndex', $('#__MODULE__Add').tabs('getSelected'));
+					 
+					if(index==0 ){ 
+						var j_formid="__MODULE__AddForm";
+						var j_action="x_xInsert"; 
+					}
+					else if(index==1 ){
+						var j_formid="__MODULE__AddHrForm";
+						var j_action="x_xInsertHr";
+					} //alert(j_action);
+					$('#'+j_formid).form('submit', {
+						url : '__URL__/'+j_action,
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('reload');
+									$('#__MODULE__AddDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			},{
+				text : '關閉',
+				iconCls :'icon-cancel',
+				handler: function(){
+					$('#__MODULE__AddDia').dialog('destroy');
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+	} 
+	function __MODULE__DeleteFun() {
+		var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+		var ids = [];
+		if (rows.length > 0) {
+			$.messager.confirm('确认', '是否要将当前选中的项放入回收站？', function(r) {
+				if (r) {
+					var currentUserId = '{$Think.cookie.authId}';/*当前登录用户的ID*/
+					var flag = false;
+					for ( var i = 0; i < rows.length; i++) {
+						if (currentUserId != rows[i].id) {
+							ids.push(rows[i].id);
+						} else {
+							flag = true;
+						}
+					}
+                    if (flag==true) {
+						$.messager.show({
+							title : '提示',
+							msg : '不能操作自己'
+						});
+                        return false;
+					}
+					$.ajax({
+						url : '__URL__/x_xDelete',
+						data : { id: ids.join('_') },
+						dataType : 'json',
+						success : function(result) {
+							if (result.status==1){
+								$('#__MODULE__DataGrid').datagrid('reload');
+								$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+								$.messager.show({
+									title : '提示',
+									msg : result.info
+								});
+							}else{
+									$.messager.show({
+									title : '提示',
+									msg :result.info,
+									});
+							}							
+						}
+					});
+				}
+			});
+		} else {
+			$.messager.show({
+				title : '提示',
+				msg : '请勾选要删除的记录！'
+			});
+		}
+	}
+	function __MODULE__EditPwdFun(){
+		var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+		    $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同时编辑多条记录，请选择一条！'
+			});
+		}
+		else 
+			if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '请勾选要编辑的记录！'
+				});
+			}
+			else {
+				$('<div/>').dialog({
+					href: '__URL__/editPwd',
+					width: 350,
+					height: 350,
+					modal: true,
+					title: '更新用户密码',
+					id : '__MODULE__EdtPwdDia',
+					buttons: [{
+						text: '保存',
+						iconCls: 'icon-filesave',
+						handler: function(){ 
+							$('#__MODULE__EditPwdForm').form('submit', {
+								url: '__URL__/x_xEditPwd',
+								success: function(result){
+									try {
+										var r = $.parseJSON(result);
+										if (r.status == 1) { 
+											$('#__MODULE__EdtPwdDia').dialog('destroy');
+											$.messager.show({
+												title: '提示',
+												msg: r.info,
+											});
+										}
+										else 
+											if (r.status == 0) {
+												$.messager.show({
+													title: '提示',
+													msg: r.info,
+												});
+											}
+											else 
+												if (r.status == 3) {
+													$.messager.show({
+														title: '提示',
+														msg: r.data,
+													});
+												}
+									} 
+									catch (e) {
+										$.messager.alert('提示',result);
+									}
+								}
+							});
+						}
+					}],
+					onClose: function(){
+						$(this).dialog('destroy');
+					},
+					onLoad: function(){
+						var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+						var edtFromData = rows[0];
+						$('#__MODULE__EditPwdForm').form('load', edtFromData);
+					}
+				});
+			}
+	}  
+    
+    function __MODULE__ExportExcel() { 
+    	$('#__MODULE__SearchForm').form('submit', {
+    		url : '__URL__/x_xExportExcel',
+            success : function(result) {
+				try {
+					return true;
+				} catch (e) {
+					$.messager.alert('提示', result);
+				}
+			}
+    	});
+	}
+ 
+	function __MODULE__PrvlgSetFun(){
+		var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+		if(rows.length == 0){
+			$.messager.show({
+				title:'提示',
+				msg:'請選擇一條要指派角色的記錄'
+			});
+		}else if(rows.length > 1){
+			 $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+				$.messager.show({
+					title: '提示',
+					msg: '不能同时编辑多条记录，请选择一条！'
+				});
+			
+		}else{
+			$('<div/>').dialog({
+				href : '__URL__/prvlgSet/id/'+rows[0].id+'/empId/'+rows[0].u_account,
+				width : 900,
+				height : 580, 
+				modal : true,
+				//maximizable:true,
+				//maximized:true,
+				title : '指派:'+rows[0].u_account+':'+rows[0].user_title,
+				id : '__MODULE__PrvlgDia',
+				buttons : [ {
+					text : '保存',
+					id : '__MODULE__ApSave',
+					iconCls : 'icon-filesave',
+					handler : function() { 
+						//var vTitle = $('#__MODULE__PrvlgSet').tabs('getSelected').panel('options').title;
+						var index =  $('#__MODULE__PrvlgSet').tabs('getTabIndex', $('#__MODULE__PrvlgSet').tabs('getSelected'));
+						var j_action,j_chkIds,j_flag,j_grid,j_list,j_firstDB;//alert(index);
+						switch(index){
+							case 0://设置接入点
+								j_action = "x_xSetBu"; 
+								var j_selectDB=[];
+								$('input:checkbox:checked[name="selectDB[]"]').each(function(){
+								   j_selectDB.push($(this).val());
+								   //alert($(this).val());
+								});
+								j_chkIds = j_selectDB; 
+								//默認
+								var j_firstDB = $('input:radio:checked[name="firstDB"]').val();
+								j_grid = 0;
+								j_list = 0;
+								break;
+							case 1://删除角色
+								j_action="x_xCancelRole";
+								var roleData = $('#__MODULE__RoleList').datagrid('getChecked');//全部 
+								var roleArr = [];
+								for ( var i = 0; i < roleData.length; i++) {
+									roleArr.push(roleData[i].id);
+								}
+								j_chkIds = roleArr; 
+								//j_flag = 1;
+								j_grid = '__MODULE__RoleGrid';
+								j_list = '__MODULE__RoleList';
+								break;
+							case 2://设置角色
+								
+								j_action = "x_xSetRole"; 
+								var rowData  = $('#__MODULE__RoleAppoint').datagrid('getRows');//全部
+								var roleArr = [];
+								for ( var i = 0; i < rowData.length; i++) {
+									roleArr.push(rowData[i].id); 
+								}
+								j_chkIds= roleArr;
+								//j_flag = 2;
+								j_grid = '__MODULE__RoleGrid'; 
+								j_list = '__MODULE__RoleList'; 
+								$('#__MODULE__RoleAppoint').datagrid('loadData', { total: 0, rows: [] });
+								break;
+							case 3://删除群组
+								j_action = "x_xSetGroup";
+								var groupData = $('#__MODULE__GroupList').datagrid('getChecked');//全部 
+								var groupArr = [];
+								for ( var i = 0; i < groupData.length; i++) {
+									groupArr.push(groupData[i].id);
+								}
+								j_chkIds = groupArr;
+								j_flag = 1;
+								j_grid = '__MODULE__GroupGrid';
+								j_list = '__MODULE__GroupList';
+								break;
+							case 4://设置群组
+								j_action = "x_xSetGroup";
+								var groupData = $('#__MODULE__GroupAppoint').datagrid('getRows');//全部  
+								var groupArr = [];
+								for ( var i = 0; i < groupData.length; i++) {
+									groupArr.push(groupData[i].id);
+								}
+								j_chkIds = groupArr;
+								j_flag = 2;
+								j_grid = '__MODULE__GroupGrid';
+								j_list = '__MODULE__GroupList';
+								$('#__MODULE__GroupAppoint').datagrid('loadData', { total: 0, rows: [] });
+								break; 
+						} 
+						$.ajax({
+								type : 'post',
+								url : '__URL__/'+j_action,
+								data:{uId:rows[0].id,chkIds:j_chkIds,flag:j_flag,firstDB:j_firstDB},
+								dataType :'json',
+								success :function(res){ 
+									if(res.status == 1){
+										$.messager.show({
+											title : '提示',
+											msg : res.info
+										});
+									}else{
+										$.messager.show({
+										title : '提示',
+										msg :res.info,
+										});
+									}
+									$('#'+j_grid).datagrid('reload');
+									$('#'+j_list).datagrid('reload');
+									/*if(j_grid!=''){
+										$('#'+j_grid).datagrid('reload');
+									}
+									if(j_list!=''){
+										$('#'+j_list).datagrid('reload');
+									}*/
+								}
+						});
+					}
+				},{
+					text:'關閉',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#__MODULE__PrvlgDia').dialog('destroy');
+					}
+				} ],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}  
+</script>

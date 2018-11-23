@@ -1,0 +1,342 @@
+<script type="text/javascript" charset="utf-8">
+	function logoutFun(b) {
+        $.ajax({
+        type:"post",
+        url:"__APP__/Public/logout",
+        dataType:"json",
+        //data:"dbId="+dbId,
+        success:function(jsonData){
+            if(jsonData.status==1){
+              location.replace('__APP__/Index/index');
+            }else{
+                $.messager.show({
+    				title : '{$Think.lang.LANG_TIPS}',
+    				msg : jsonData.info
+    			});
+            }
+         }
+        });
+	}
+	function userInfoFun() {
+		$('<div/>').dialog({
+			href : '__URL__/userInfo',
+			width : 800,
+			height :550,
+			modal : true,
+			title : '{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_USER}',
+			id : 'IndexTopUserInfo',
+			buttons : [ {
+				text : '{$Think.lang.LANG_SAVE}',
+				iconCls : 'icon-filesave',
+				handler : function() {
+					$('#user_userInfo_form').form('submit', {
+						url : '__URL__/changeInfo',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status) {
+									$('#IndexTopUserInfo').dialog('destroy');
+								}
+								$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : r.info
+								});
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+			}
+		});
+	}
+    function changeUPwd() {
+		$('<div/>').dialog({
+			href : '__URL__/password',
+			width : 300,
+			height :180,
+			modal : true,
+            iconCls : 'icon-key',
+			title : '{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_PASS}',
+			id : 'IndexTopPwd',
+			buttons : [ {
+				text : '{$Think.lang.LANG_SAVE}',
+				iconCls : 'icon-filesave',
+				handler : function() {
+					$('#userChgPwdForm').form('submit', {
+						url : '__URL__/changePwd',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status) {
+									$('#IndexTopPwd').dialog('destroy');
+								}
+								$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : r.info
+								});
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+			}
+		});
+	}
+	function sysInfoFun() {
+		var jqver = jQuery.fn.jquery;
+		var jeauiver = $.easyui.getVersion();
+		$('<div/>').dialog({
+			href : '__URL__/main?jqver='+jqver+'&jeauiver='+jeauiver,
+			width : 490,
+			height :380,
+			modal : true,
+			title : '{$Think.lang.LANG_INDEXTOP_LOGOUT_ABOUT}',
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+			}
+		});
+	}
+    function changeLoginUser() {
+		$('<div/>').dialog({
+			href : '__URL__/login_dialog/flag/1',
+			width : 350,
+			height :250,
+			modal : true,
+			title : '{$Think.lang.LANG_INDEXTOP_LOGOUT_SWUSER}',
+			id : 'IndexTopLoginDia',
+            iconCls:'icon-user_go',
+			buttons : [ {
+				text : '{$Think.lang.LANG_LOGIN_BTN_LOGIN}',
+				id : 'login_dialog_sub',
+				iconCls : 'icon-user_go',
+				handler : function() {
+					$('#user_userInfo_form').form('submit', {
+						url : '__URL__/checkLogin',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status) {
+									$('#IndexTopLoginDia').dialog('destroy');
+                                    location.replace('__APP__/Index/index');
+								}
+								$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : r.info
+								});
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+			}
+		});
+	}
+    function timeoutLoginUser() {
+		$('<div/>').dialog({
+			href : '__URL__/login_dialog/flag/2',
+			width : 350,
+			height :250,
+			modal : true,
+			title : '{$Think.lang._LOGIN_TIMEOUT_ERROR_}',
+            iconCls:'icon-user_go',
+			id : 'IndexTopLoginTimeDia',
+			buttons : [ {
+				text : '{$Think.lang.LANG_LOGIN_BTN_LOGIN}',
+				id : 'login_timeout_sub',
+				iconCls : 'icon-user_go',
+				handler : function() {
+					$('#user_userInfo_form').form('submit', {
+						url : '__URL__/checkLogin',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status) {
+									$('#IndexTopLoginTimeDia').dialog('destroy');
+                                    location.replace('__APP__/Index/index');
+								}
+								$.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : r.info
+								});
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+			}
+		});
+	}
+	function changeMenu(gId,gName){
+        $.ajax({
+        type:"post",
+        url:"__URL__/chageNavGroup",
+        dataType:"json",
+        data:"navId="+gId,
+        success:function(jsonData){
+            if(jsonData.status==1){
+              $("#menuTreeTitle").panel('setTitle',gName);
+			  /*var ttl = $("#layoutMenu").panel('options').title;
+			  ttl = ttl.split('[')[0]+" ["+gName+"]";
+			  $("#layoutMenu").panel('setTitle',ttl);*/
+              $('#layout_west_tree').tree('reload');
+            }else{
+              alert(jsonData.info);
+            }
+        }
+        });
+	}
+	function north_addTab(opts,title){
+		layout_center_addTabFun({
+			title : title,
+			closable : true,
+			content : '<iframe src="'+opts+'" frameborder="0" style="border:0;width:100%;height:99%;"></iframe>'
+		});
+	}
+    function changeDbConn(dbId){
+        $.ajax({
+        type:"post",
+        url:"__URL__/changeDB",
+        dataType:"json",
+        data:"dbId="+dbId,
+        success:function(jsonData){
+            if(jsonData.status==1){
+              location.replace('__APP__/Index/index');
+            }else{
+               $.messager.show({
+				title : '{$Think.lang.LANG_TIPS}',
+				msg : jsonData.info
+			  });
+            }
+        }
+    });
+    }
+    function systemLockFun() {
+        $('<div/>').dialog({
+			href : '__APP__/Public/cancelLock',
+			width : 350,
+			height :250,
+			modal : true,
+			title : '{$Think.lang.LANG_INDEXTOP_LOGOUT_LOCK}',
+            iconCls:'icon-lock',
+            closable: false,
+            bodyStyle: {overflow: 'hidden'},
+			id : 'IndexTopLockDia',
+			buttons : [ {
+				text : '{$Think.lang.LANG_INDEXTOP_UNLOCK}',
+				id : 'cancelLock_sub',
+				iconCls : 'icon-user_go',
+				handler: function() {
+                    var pwd = $.trim($('#cancelLockSystemPassword').val());
+                    $.ajax({
+                    type:"post",
+                    url:"__APP__/Public/doCancelLogin",
+                    dataType:"json",
+                    data:"pwd="+pwd,
+                    success:function(jsonData){
+                        if(jsonData.status==1){
+                            $('#IndexTopLockDia').dialog('destroy');
+                            $.messager.show({
+									title : '{$Think.lang.LANG_TIPS}',
+									msg : jsonData.info
+				            });
+                        }else{
+                            $.messager.alert('{$Think.lang.LANG_TIPS}', jsonData.info);
+                        }
+                    }
+                    });
+                }
+			} ]
+		});
+    }
+</script>
+<div id="logo" style="background-image:url('__PUBLIC__/style/images/logo.png');position:absolute;left:10px;top:6px;">
+	<img src="__PUBLIC__/style/images/logo.png" />
+</div>
+<div style="position: absolute; right: 0px;top:5px; bottom: 0px; ">
+     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-computer'"><span style="font-weight: bold;color:blue;">{$Think.cookie.loginPcAddr}</span></a>
+	 <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_cjMenu',iconCls:'icon-database'">{$Think.session.DB_FLAG|getDbName}({$Think.lang.LANG_INDEXTOP_SWITCH})</a>
+	 <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'icon-settings'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL}</a>
+	 <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_zxMenu',iconCls:'icon-exit'">{$Think.lang.LANG_INDEXTOP_LOGOUT}</a>
+</div> 
+<div style="position: absolute; right: 0px;bottom: 0px; ">
+     <volist id="voNav" name="navList">
+       &nbsp;<a href="javascript:void(0);" class="easyui-linkbutton" <notempty name="voNav.iconcls">data-options="iconCls:'icon-{$voNav.iconcls}'"</notempty> onclick="changeMenu( '{$voNav.id}','{$voNav.title}' );">{$voNav['title']}</a>
+     </volist>
+</div>
+<div id="layout_north_cjMenu" style="width: 90px; display: none;">
+    <volist id="voc" name="selecCkd">
+        <eq name="Think.session.DB_FLAG" value="$voc.bu_id">
+            <div data-options="iconCls:'icon-tick'" style="color:blue;font-weight:bold;">@{$voc.bu_id|getDbName}</div>
+        <else/>
+            <div onclick="changeDbConn('{$voc.bu_id}');" data-options="iconCls:'icon-disconnect'">{$voc.bu_id|getDbName}</div>
+        </eq>
+    </volist>
+</div>
+<div id="layout_north_kzmbMenu" style="width: 120px; display: none;">
+	<div onclick="userInfoFun();" data-options="iconCls:'icon-user'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_USER}</div>
+	<if condition="cookie('loginAccount') neq 'guest'">
+    <div onclick="changeUPwd();" data-options="iconCls:'icon-key'">{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_PASS}</div>
+	</if>
+	<div class="menu-sep"></div>
+	<div data-options="iconCls:'icon-theme'">
+		<span>{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_THEM}</span>
+		<div style="width: 100px;">
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('default');"><eq name="_COOKIE.easyuiThemeName" value="default">@</eq>{$Think.lang.LANG_THEMES_DEFAU}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('bootstrap');"><eq name="_COOKIE.easyuiThemeName" value="bootstrap">@</eq>{$Think.lang.LANG_THEMES_GRAYS}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('metro');"><eq name="_COOKIE.easyuiThemeName" value="metro">@</eq>{$Think.lang.LANG_THEMES_METRO}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('cupertino');"><eq name="_COOKIE.easyuiThemeName" value="cupertino">@</eq>{$Think.lang.LANG_THEMES_CUPER}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('dark-hive');"><eq name="_COOKIE.easyuiThemeName" value="dark-hive">@</eq>{$Think.lang.LANG_THEMES_DARKH}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('grinder');"><eq name="_COOKIE.easyuiThemeName" value="grinder">@</eq>{$Think.lang.LANG_THEMES_PEPER}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('sunny');"><eq name="_COOKIE.easyuiThemeName" value="sunny">@</eq>{$Think.lang.LANG_THEMES_SUNNY}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('green');"><eq name="_COOKIE.easyuiThemeName" value="green">@</eq>{$Think.lang.LANG_THEMES_GREEN}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('blue');"><eq name="_COOKIE.easyuiThemeName" value="blue">@</eq>{$Think.lang.LANG_THEMES_BLUE}</div>
+			<div data-options="iconCls:'icon-theme'" onclick="changeTheme('orange');"><eq name="_COOKIE.easyuiThemeName" value="orange">@</eq>{$Think.lang.LANG_THEMES_ORANGE}</div>
+		</div>
+	</div>
+    <div class="menu-sep"></div>
+	<div data-options="iconCls:'icon-font'">
+		<span>{$Think.lang.LANG_INDEXTOP_CONTROLPANEL_LANG}</span>
+		<div style="width: 100px;">
+			<div data-options="iconCls:'icon-font'" onclick="changeLang('en-us');"><eq name="Think.LANG_SET" value="en-us">@</eq>English</div>
+			<!-- <div data-options="iconCls:'icon-font'" onclick="changeLang('zh-cn');"><eq name="Think.LANG_SET" value="zh-cn">@</eq>简体</div> -->
+			<div data-options="iconCls:'icon-font'" onclick="changeLang('zh-tw');"><eq name="Think.LANG_SET" value="zh-tw">@</eq>繁體</div>
+		</div>
+	</div>
+</div>
+
+<div id="layout_north_zxMenu" style="width: 110px; display: none;">
+	<div onclick="sysInfoFun();" data-options="iconCls:'icon-information'">{$Think.lang.LANG_INDEXTOP_LOGOUT_ABOUT}</div>
+	<div class="menu-sep"></div>
+    <div onclick="changeLoginUser();" data-options="iconCls:'icon-user_go'">{$Think.lang.LANG_INDEXTOP_LOGOUT_SWUSER}</div>
+    <div onclick="systemLockFun();" data-options="iconCls:'icon-lock'">{$Think.lang.LANG_INDEXTOP_LOGOUT_LOCK}</div>
+	<div onclick="logoutFun(true);" data-options="iconCls:'icon-exit'">{$Think.lang.LANG_INDEXTOP_LOGOUT_LOGOFF}</div>
+</div>
+<if condition="$_SESSION['lockSystemSession']">
+<script>systemLockFun();</script>
+</if>

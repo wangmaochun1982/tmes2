@@ -1,0 +1,503 @@
+<div id="__MODULE__PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div data-options="title:'公司組織架構樹',region:'west'" style="width:240px;padding:0px">
+		 <ul id="__MODULE__LeftTree"></ul>
+	</div>
+	<div id="__MODULE__NodeChild" data-options="region:'center',border:false">
+		<div id="__MODULE__InnerPanel" class="easyui-layout" data-options="fit:true,border:false"> 
+			<div data-options="region:'center',border:false">
+				<table  id="__MODULE__DataGrid" data-options="
+					url : '__URL__/x_xgetTableJson',
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :15,
+					pageList : [10,15,20,30,40,50],
+					sortName : 'id',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					nowrap : true,
+					singleSelect:true,
+					onBeforeLoad:function(param){ 
+						$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections'); 
+					},
+					toolbar : [ {
+						text : '新增',
+						iconCls : 'icon-add',
+						handler : function() {
+							__MODULE__AddFun();
+						}
+					}, '-', {
+						text : '編輯',
+						iconCls : 'icon-edit',
+						handler : function() {
+							__MODULE__EditFun();
+						}
+					}, '-', {
+						text : '指派',
+						iconCls : 'icon-group_gear',
+						handler : function() {
+							__MODULE__PrvlgSetFun();
+						}
+					},'-']
+				">
+					<thead>
+						<th data-options="field:'id',checkbox:true,width:50">編號</th>
+						<th data-options="field:'role_name',width:100">角色名</th> 
+						<th data-options="field:'dept_name',width:280">部門</th>
+						<th data-options="field:'type_name2',width:100">角色類別</th>
+						<th data-options="field:'type_name3',width:100">維度</th>
+						<th data-options="field:'status_name',width:100">狀態</th>
+						<th data-options="field:'remark',width:100">備註</th>
+					</thead>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<script>
+	var jHeight = document.body.clientHeight;
+	var jWidth = document.body.clientWidth;
+	function __MODULE__EnFilter(){
+		var __MODULE__FilterDG = $('#__MODULE__DataGrid').datagrid();
+		__MODULE__FilterDG.datagrid('removeFilterRule');
+		__MODULE__FilterDG.datagrid('enableFilter',[
+							{
+								field:'role_name',
+								type:'text' 
+							},						
+							{
+								field:'dept_name',
+								type:'text'
+							},{
+								field:'status_name',
+								type:'combobox',
+								options:{
+									panelHeight:'auto',
+									url: '__URL__/x_xgetOption?cusCode=status&filter=1',
+									valueField:'id',  
+									textField:'text',
+									onChange:function(value){
+										if (value == ''){
+											__MODULE__FilterDG.datagrid('removeFilterRule', 'status');
+										} else {
+											__MODULE__FilterDG.datagrid('addFilterRule', {
+												field: 'status',
+												op: 'equal',
+												value: value
+											});
+										}
+										__MODULE__FilterDG.datagrid('doFilter');
+									}
+								}
+							},{
+								field:'type_name2',
+								type:'combobox',
+								options:{
+									panelHeight:'auto',
+									url: '__URL__/x_xgetOption?cusCode=role_type2&filter=1',
+									valueField:'id',  
+									textField:'text',
+									onChange:function(value){
+										if (value == ''){
+											__MODULE__FilterDG.datagrid('removeFilterRule', 'role_type2');
+										} else {
+											__MODULE__FilterDG.datagrid('addFilterRule', {
+												field: 'role_type2',
+												op: 'equal',
+												value: value
+											});
+										}
+										__MODULE__FilterDG.datagrid('doFilter');
+									}
+								}
+							},{
+								field:'type_name3',
+								type:'combobox',
+								options:{
+									panelHeight:'auto',
+									url: '__URL__/x_xgetOption?cusCode=role_type3&filter=1',
+									valueField:'id',  
+									textField:'text',
+									onChange:function(value){
+										if (value == ''){
+											__MODULE__FilterDG.datagrid('removeFilterRule', 'role_type3');
+										} else {
+											__MODULE__FilterDG.datagrid('addFilterRule', {
+												field: 'role_type3',
+												op: 'equal',
+												value: value
+											});
+										}
+										__MODULE__FilterDG.datagrid('doFilter');
+									}
+								}
+							}]);		
+	}
+	$(function(){
+		__MODULE__EnFilter();
+		$('#__MODULE__LeftTree').tree({
+                 checkbox: false,
+                 animate:true,
+                 lines:true,
+                 url: '__URL__/x_xgetDeptTree',
+				 onLoadSuccess:function(node){
+					var node = $(this).tree('find', 1); 
+					$(this).tree('expand',node.target);
+				 },
+                 onBeforeExpand:function(node,param){ 
+					 $('#__MODULE__LeftTree').tree('options').url = "__URL__/x_xgetDeptTree/id/" + node.id ;
+                 },
+                onClick:function(node){  
+						$('#__MODULE__DataGrid').datagrid({
+							url:'__URL__/x_xgetTableJson',
+							queryParams:{
+								id: node.id
+							} 
+						});  
+						__MODULE__EnFilter();
+               }
+            });
+	}); 
+	//---------------------------------------增加角色 ----------------------------------------------
+	function  __MODULE__AddFun(){
+		$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		var node = $('#__MODULE__LeftTree').tree('getSelected');
+		$('<div/>').dialog({
+			href : '__URL__/add',
+			width : 400,
+			height :350,
+			modal : true,
+			title : '添加',
+			id : '__MODULE__AddDia',
+			buttons : [ {
+				text : '保存',
+				iconCls : 'icon-add',
+				handler : function() { 
+					$('#__MODULE__AddForm').form('submit', {
+						url : '__URL__/x_xInsert',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('reload');
+									$('#__MODULE__AddDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			},{
+				text:'取消',
+				iconCls:'icon-cancel',
+				handler: function(){
+					$('#__MODULE__AddDia').dialog('destroy');
+				}
+			} ],
+			onClose : function() {
+				
+				$(this).dialog('destroy');
+			} 
+		});	
+	}
+	//-------------------------------------- 編輯角色 ---------------------------------------------------
+	function __MODULE__EditFun(){
+		var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+			$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同时编辑多条记录，请选择一条！'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '请勾选要编辑的记录！'
+				});
+		}else {
+			$('<div/>').dialog({
+				href : '__URL__/edit',
+				width : 400,
+				height :350,
+				modal : true,
+				title : '编辑- '+rows[0].role_name,
+				id : '__MODULE__EdtDia',
+				buttons : [ {
+					text : '保存',
+					iconCls : 'icon-edit',
+					handler : function() { 
+						$('#__MODULE__EdtForm').form('submit', {
+							url : '__URL__/x_xUpdate',
+							success : function(result) {
+								try {
+									var r = $.parseJSON(result);
+									if (r.status==1) {
+										$('#__MODULE__DataGrid').datagrid('reload');
+										$('#__MODULE__EdtDia').dialog('destroy');
+										$.messager.show({
+										title : '提示',
+										msg :r.info,
+										});
+									}else{
+										$.messager.show({
+										title : '提示',
+										msg :r.info,
+										});
+									}
+								} catch (e) {
+									$.messager.alert('提示', result);
+								}
+							}
+						});
+					}
+				},{
+					text : '取消',
+					iconCls : 'icon-cancel',
+					handler :function(){
+						$('#__MODULE__EdtDia').dialog('destroy');
+					}
+				} ],
+				onClose : function() {
+					$(this).dialog('destroy');
+				},
+				onLoad : function() {
+					//var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+					var editData =rows[0]; 
+					//console.log(editData);
+					var node = $('#__MODULE__LeftTree').tree('getSelected'); 
+					editData.pathid = node.pathid;
+					$('#__MODULE__EdtForm').form('load',editData);
+				}
+			});
+		}	
+	}
+	//-------------------------------------- 指派 --------------------------------------------------------
+	function __MODULE__PrvlgSetFun(){
+		var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+		if (rows.length > 1) {
+			$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同时编辑多条记录，请选择一条！'
+			});
+		}else if (rows.length == 0) {
+			$.messager.show({
+				title: '提示',
+				msg: '请勾选要编辑的记录！'
+			});
+		}else {
+			$('<div/>').dialog({
+				href : '__URL__/prvlgSet/roleId/'+rows[0].id,
+				width : 1000,
+				height :600,
+				modal : true,
+				maximizable:true,
+				resizable:true,
+				title : '指派- '+rows[0].role_name,
+				id : '__MODULE__PrvlgDia',
+				buttons : [{
+					text : '保存',
+					id : '__MODULE__ApSave',
+					iconCls : 'icon-filesave',
+					handler : function(){
+						//var vTitle = $('#__MODULE__Tab').tabs('getSelected').panel('options').title;
+						var index =  $('#__MODULE__Tab').tabs('getTabIndex', $('#__MODULE__Tab').tabs('getSelected'));
+						switch(index){
+						case 1: /*角色繼承*/
+							__MODULE__SaveInherit(rows[0].id);
+							break;
+						case 2: /*資源指派*/
+							__MODULE__SaveResource(rows[0].id);
+							break;
+						case 3: /*用戶刪除*/
+							__MODULE__CancelUserFun(rows[0].id);
+							break;
+						case 4: /*用戶指派*/
+							__MODULE__SaveUser(rows[0].id);
+							break;
+						}
+					}
+				},{
+					text:'關閉',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#__MODULE__PrvlgDia').dialog('destroy');
+					}
+				}],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}
+	function __MODULE__SaveInherit(roleIdGet){
+		var roleList = []; 
+		roleList  = $('#__MODULE__RoleAppoint').datagrid('getRows'); 
+		$.ajax({
+			type : 'post',
+			url : '__URL__/x_xRoleInsert',
+			data:{roleId:roleIdGet,role:roleList},
+			dataType :'json',
+			success :function(res){
+						//alert(O2String(res));
+				if(res.status == 1){
+					$.messager.show({
+						title : '提示',
+						msg : res.info
+					});							
+				}else{
+					$.messager.show({
+					title : '提示',
+					msg :res.info,
+					});
+				}
+			}
+		});
+	}
+	function __MODULE__SaveResource(roleIdGet){
+		var ckdList = []; 
+		var resourceRows = $('#__MODULE__Resource').datagrid('getChecked');
+		for ( var i = 0; i < resourceRows.length; i++) {
+			ckdList.push(resourceRows[i].action_id);
+		} 
+		var ckdList = []; var ndList = [];
+		var NdTmp;
+		var CkdTmp;
+		var NdAllTmp; 
+        $("input[name='setNodeId']").each(function(){ 
+            if($(this).attr("checked")){
+				if(!NdTmp){ 
+					NdTmp = $(this).attr("nodeId");
+					CkdTmp = $(this).val();
+				}else{
+					if($(this).attr("nodeId")==NdTmp){
+						CkdTmp = CkdTmp+','+$(this).val();
+					}else{
+						ckdList.push(NdTmp+':'+CkdTmp);
+						NdTmp = $(this).attr("nodeId");
+						CkdTmp = $(this).val();
+					}
+				}
+            }
+			if(!NdAllTmp){ 
+				NdAllTmp = $(this).attr("nodeId"); 
+			}else{
+				if($(this).attr("nodeId")!=NdAllTmp){ 
+					ndList.push(NdAllTmp); 
+					NdAllTmp = $(this).attr("nodeId"); 
+				}
+			}
+        });
+		if(NdTmp){ 
+			ckdList.push(NdTmp+':'+CkdTmp);
+		}
+		ndList.push(NdAllTmp); 
+		var nodeIdGet = '';
+		var node = $('#__MODULE__NodeTree').tree('getSelected');
+		if(node){nodeIdGet = node.id;}
+		$.ajax({
+			type:'post',
+			url : '__URL__/x_xSaveResource',
+			data : { ckActionList: ckdList,nodeList:ndList,roleId:roleIdGet,nodeId:nodeIdGet},
+			dataType : 'json',
+			success : function(result) {
+				if (result.status==1){ 
+					$.messager.show({
+						title : '提示',
+						msg : result.info
+					});
+				}else{
+					$.messager.show({
+					title : '提示',
+					msg :result.info,
+					});
+				}							
+			}
+		});
+	}
+	function __MODULE__SaveUser(roleIdGet){
+		//var userRows = $('#__MODULE__UserAppoint').datagrid('getChecked');	
+		var userRows = $('#__MODULE__UserAppoint').datagrid('getRows','id');
+		var chkArr = [];
+		for ( var i = 0; i < userRows.length; i++) {
+			chkArr.push(userRows[i].id);
+		}  
+		var nodeGet = 1;
+		var node = $('#__MODULE__Bu').tree('getSelected');
+		if(node){nodeGet = node.id;}
+		$.ajax({
+			url : '__URL__/x_xSaveUser',
+			data : { chkUser: chkArr,roleId:roleIdGet,nodeId:nodeGet},
+			dataType : 'json',
+			success : function(result) {
+				try {
+					if (result.status==1) {
+						$('#__MODULE__UserBu').datagrid('load');
+						$('#__MODULE__UserBu').datagrid('clearChecked').datagrid('clearSelections');
+						$.messager.show({
+							title : '提示',
+							msg : result.info
+						});
+					}else{
+						$.messager.alert('提示', result.info);
+					}
+				} catch (e) {
+					$.messager.alert('提示', result.info);
+				}
+			}
+		});
+	}
+	function __MODULE__CancelUserFun() {
+		var rows = $('#__MODULE__UserList').datagrid('getChecked');  
+		var ids = [];
+		if (rows.length > 0) {
+			$.messager.confirm('确认', '是否要将当前选中的项删除？', function(r) {
+				if (r) {
+					for ( var i = 0; i < rows.length; i++) {
+					    ids.push(rows[i].id);
+					}          
+					$.ajax({
+						url : '__URL__/x_xCancleUser',
+						data : { usersId: ids,roleId: '{$roleId}' },
+						dataType : 'json',
+						success : function(result) {
+							if (result.status==1){
+								$('#__MODULE__UserList').datagrid('reload');
+								$('#__MODULE__UserList').datagrid('clearChecked').datagrid('clearSelections');
+								$.messager.show({
+									title : '提示',
+									msg : result.info
+								});
+							}else{
+									$.messager.show({
+									title : '提示',
+									msg :result.info,
+									});
+							}							
+						}
+					});
+				}
+			});
+		} else {
+			$.messager.show({
+				title : '提示',
+				msg : '请勾选要删除的记录！'
+			});
+		}
+	}
+</script>

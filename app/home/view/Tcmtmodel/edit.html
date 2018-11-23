@@ -1,0 +1,279 @@
+<div>
+	<form id="__MODULE__EditForm" method="post" >
+	{//<volist name="result" id="vo">}
+		<input type="hidden" name="power" id="power" value="{$result[0][qty]}"/>
+	{//</volist>}
+	<div class="easyui-accordion">
+				<input type="hidden" name="model_type2" >
+				<input type="hidden" name="sn_rule" >
+				<input type="hidden" name="cust_1" >
+				<input type="hidden" name="cust_3" >
+				<input type="hidden" name="erp_id" >
+				<input type="hidden" name="m_3" >
+				<input type="hidden" name="id" >
+		<div title="{$Think.lang.LANG_MODEL_BASE_INFO}" data-options="collapsed:false,collapsible:false" style="padding:1px;">
+            <table class="tableForm" style="white-space: nowrap;width:100%">
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_NAME}</td>
+                    <td><input class="easyui-validatebox" type="text" name="model_name" readonly data-options="required:true" >(*{$Think.lang.LANG_READONLY})</td>
+                    <td>{$Think.lang.LANG_MODEL_MFLAG}</td>
+                    <td><input class="easyui-validatebox" type="text" name="m_flag">
+					例如：塗裝別
+					</td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_SERIAL}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="model_serial"/>例如：MS009
+                    </td>
+                    <td>{$Think.lang.LANG_MODEL_NO}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="model_no"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_REMRAK}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="model_desc" id="model_desc" data-options="required:false" />
+                    </td>
+                    <td>{$Think.lang.LANG_MODEL_SEMI}</td>
+                    <td>
+					 <select id="__MODULE__AddModelModelName" name="semi_product" class="easyui-combogrid"
+						  data-options="panelWidth: 413,
+										panelHeight: 270,
+										width: 145,
+										required:false,
+										singleSelect:true,
+										checkOnSelect : true,
+										selectOnCheck : true,
+										idField: 'model_name',
+										textField: 'model_name',
+										url: '__URL__/x_xgetModelJson1',
+										queryParams : { tp:'2' },
+										pagination: true,
+										rownumbers: true,
+										collapsible: false,
+										fit: true,
+										mode:'remote',
+										pageSize: 10,
+										pageList: [10,20,40,100,200,1000],
+										method: 'post',
+										columns: [[
+										{field:'model_name',title:'料號',width:150},
+										{field:'model_serial',title:'型號',width:200}
+										]]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_TYPE1}</td>
+                    <td>
+					 <input class="easyui-combobox"  name="model_type1"
+							data-options=" valueField: 'id',
+											required:true,
+                                            textField: 'text',
+                                            url: '__URL__/x_xgetOption?cusCode=model_type1',
+                                            panelHeight:'auto'" />
+                    </td>
+					<td>{$Think.lang.LANG_MODEL_TYPE3}</td>
+                    <td>
+					 <input class="easyui-combobox"  name="model_type3"
+							data-options=" valueField: 'id',
+											required:false,
+                                            textField: 'text',
+                                            url: '__URL__/x_xgetOption?cusCode=model_type3',
+                                            panelHeight:'auto'" />
+                    </td>
+                    <!--<td>SN產生規則</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="sn_rule" data-options="required:false"/>
+                    </td>-->
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_M1}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="m_1"/>
+                    </td>
+                    <td>{$Think.lang.LANG_MODEL_M2}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="m_2"/>
+                    </td>
+                </tr>
+                <tr><td>{$Think.lang.LANG_MODEL_ROUTE}</td>
+                    <td>
+                    <input  class="easyui-combogrid"  name="route_code"
+					data-options="
+								panelWidth:520,
+								idField:'route_code',
+								textField:'route_desc',
+								required:true,
+								url:'__URL__/x_xgetRouteJson',
+								columns:[[
+									{field:'route_code',title:'途程編號',width:60},
+									{field:'route_name',title:'途程名稱',width:150},
+									{field:'route_desc',title:'途程描述',width:290}
+								]]"/>
+					</td>
+                    <td>{$Think.lang.LANG_MODEL_PACK_TYPE}</td>
+                    <td>
+					  <input class="easyui-combobox"  name="pack_type"
+							data-options=" valueField: 'id',
+											required:false,
+                                            textField: 'text',
+                                            url: '__URL__/x_xgetOption?cusCode=pack_type',
+                                            panelHeight:'auto'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_RTYPE}</td>
+                    <td>
+					  <input class="easyui-combobox"  name="r_type"
+								data-options=" valueField: 'id',
+											   required:true,
+                                               textField: 'text',
+                                               url: '__URL__/x_xgetOption?cusCode=r_type',
+                                               panelHeight:'auto'" />
+                    </td>
+                    <td>{$Think.lang.LANG_MODEL_UNIT}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="unit" data-options="required:true" />  例如：PC
+                    </td>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="m_size" data-options="required:false" />
+                    </td>
+                    <td>
+					{$Think.lang.LANG_STATUS}
+					</td>
+                    <td>
+					 <input class="easyui-combobox"  name="m_status"
+								data-options=" valueField: 'id',
+                                                textField: 'text',
+												required:true,
+                                                url: '__URL__/x_xgetOption?cusCode=m_status',
+                                                panelHeight:'auto'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_REMARK}</td>
+                    <td colspan="3">
+                     <textarea name="remark" style="width:90%" rows="1"></textarea>
+                    </td>
+                    <td>
+                </tr>
+			</table>
+		</div>
+		<div title="{$Think.lang.LANG_MODEL_CUS_INFO}" data-options="collapsed:false,collapsible:false" style="padding:1px;">
+            <table class="tableForm" style="white-space: nowrap;width:100%">
+                <tr>
+					<td>{$Think.lang.LANG_MODEL_CUST}</td>
+                    <td>
+					<select id="__MODULE__cusCode" name="cust_code" class="easyui-combogrid"  style="width:145px"
+        					  data-options="panelWidth: 360,
+        									idField: 'cus_code',
+        									textField: 'cus_name',
+                                            required:true,
+        									url: '__APP__/TpCusInfo/x_xgetCusTableJson',
+        									pagination: true,
+        									rownumbers: true,
+        									collapsible: false,
+        									fit: true,
+        									mode:'remote',
+                                            sortName : 'cus_code',
+											multiple: false,
+        									pageSize: 15,
+        									pageList: [15],
+        									method: 'post',
+        									columns: [[
+        									{field:'cus_code',title:'代碼',width:60},
+        									{field:'cus_name',title:'客戶',width:120},
+        									{field:'cus_full_name',title:'備註',width:120}
+        									]]">
+						</select>
+					</td>
+					<td>{$Think.lang.LANG_MODEL_EAN_CODE}</td>
+                    <td><input class="easyui-validatebox" type="text" name="ean_code"></td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_CUST_MODEL}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="cust_model"/>
+                    </td>
+                    <td>{$Think.lang.LANG_MODEL_CUST_DESC}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="cust_desc"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{$Think.lang.LANG_MODEL_CUST2}</td>
+                    <td>
+                     <input class="easyui-validatebox"  name="cust_2"/>
+                    </td>
+                </tr>
+            </table>
+		</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$(function(){
+    var afFlag = '{$Think.request.atflag}';
+    if(afFlag){
+        var rows = JSON.parse('{$datas}');
+        var EdtMetd = new DatagridMethod('TcMtModel',true,'TcMtModel');
+        var btnSave = EdtMetd.getBtnSave();
+        $(btnSave).linkbutton({
+               onClick: function(){
+                    formSubmit('#__MODULE__EditForm', '__URL__/x_xUpdate', function(res){
+                        $('#TcMtModelDiaLog').dialog('close');
+                    });
+                }
+        });
+    }else{
+    	var power=$("#power").val();
+    	if(power != 1){
+    		$('#model_desc').attr("disabled",true);
+    	}
+        var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+    }
+    $("#__MODULE__EditForm").form("load", rows[0]);
+    /*設置combogrid分頁的text*/
+    var findc = false,findm = false;
+    $('#__MODULE__cusCode').combogrid({onLoadSuccess: function(data) {
+            if(rows[0].cust_code){
+                $.each(data.rows, function(index, value) {
+                    if (rows[0].cust_code == value.cus_code) {
+                        findc = true;
+                        $('#__MODULE__cusCode').combogrid('setValue',value.cus_code);
+                        return false;
+                    }
+                });
+                if (!findc) {
+                    // combogrid获取下一页页码
+                    var nextPage = $('#__MODULE__cusCode').combogrid('grid').datagrid('options').pageNumber + 1;
+                    $('#__MODULE__cusCode').combogrid('grid').datagrid('getPager').pagination("select", nextPage);
+                }
+            }
+        }
+    });
+    /*設置combogrid分頁的text*/
+    $('#__MODULE__AddModelModelName').combogrid({onLoadSuccess: function(data) {
+            if(rows[0].semi_product){
+                $.each(data.rows, function(index, value) {
+                    if (rows[0].semi_product == value.model_name) {
+                        findm = true;
+                        $('#__MODULE__AddModelModelName').combogrid('setValue',value.cus_code);
+                        return false;
+                    }
+                });
+                if (!findm) {
+                    // combogrid获取下一页页码
+                    var nextPage = $('#__MODULE__AddModelModelName').combogrid('grid').datagrid('options').pageNumber + 1;
+                    $('#__MODULE__AddModelModelName').combogrid('grid').datagrid('getPager').pagination("select", nextPage);
+                }
+            }
+        }
+    });
+})
+</script>

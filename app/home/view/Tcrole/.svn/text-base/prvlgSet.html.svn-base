@@ -1,0 +1,609 @@
+<div id="__MODULE__Tab" class="easyui-tabs" data-options="border:false,onSelect:__MODULE__TabSelectFun" >
+	<div title="角色關係"style="padding:10px" data-options="border:false" >
+		<div class="easyui-layout" data-options="border:false"  style="height:460px;">
+			<div data-options="region:'north',collapsible:false,split:true,title:'繼承的角色'" style="height:200px">
+				<table class="easyui-datagrid" id="__MODULE__ExtendGrig"
+				data-options="
+					url:'__URL__/x_xgetExtendRole?roleId={$_REQUEST['roleId']}',
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :10,
+					pageList : dg_pageList,
+					sortName : 'role_name',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					nowrap : true,
+					singleSelect:false">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:50,checkbox:true">ID</th>
+							<th data-options="field:'role_name',width:100">角色名</th>
+							<th data-options="field:'dept_name',width:200">部門名</th>
+							<th data-options="field:'remark',width:100">備註</th>
+							<th data-options="field:'frole_id',width:100,hidden:true">父角色ID</th>
+							<th data-options="field:'brole_id',width:100,hidden:true">子角色ID</th>
+							<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div data-options="region:'center',title:'被繼承的角色'" >
+				<table class="easyui-datagrid" id="__MODULE__ReExtendGrig"  
+				data-options="
+					url:'__URL__/x_xgetReExtendRole?roleId={$_REQUEST['roleId']}',
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :10,
+					pageList : dg_pageList,
+					sortName : 'role_name',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					nowrap : true,
+					singleSelect:false">
+					<thead>
+						<th data-options="field:'id',width:50,checkbox:true">ID</th>
+						<th data-options="field:'role_name',width:100">角色名</th>
+						<th data-options="field:'dept_name',width:200">部門名</th>
+						<th data-options="field:'frole_id',width:100,hidden:true">父角色ID</th>
+						<th data-options="field:'brole_id',width:100,hidden:true">子角色ID</th>
+						<th data-options="field:'remark',width:100">備註</th>
+						<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div title="角色繼承"style="padding:10px" data-options="border:false" >
+		<div id="__MODULE__rolediv" data-options="border:false" style="height:460px" >
+			<div data-options="region:'west',collapsible:false,title:'部門列表'" style="width:250px;"> 
+				 <ul id="__MODULE__Selections" 
+					 data-options="checkbox: false,
+						animate:true,
+						lines:true, 
+						onBeforeExpand:function(node,param){
+							$('#__MODULE__LeftTree').tree('options').url = '__URL__/x_xgetDeptTree/id/' + node.id ;
+						},
+						onClick:function(node){ 
+							var node = $('#__MODULE__LeftTree').tree('getSelected');
+							$('#__MODULE__RoleGrid').datagrid({
+								url:'__URL__/x_xgetTableJson/id/'+node.id,
+								queryParams:{
+									id: node.id,
+									rId: '{$roleId}'
+								},
+								striped:true
+							}); 
+							$('#__MODULE__RoleGrid').datagrid('removeFilterRule');
+							$('#__MODULE__RoleGrid').datagrid('enableFilter',[{
+								field:'role_name',
+								type:'text'
+							},{
+								field:'remark',
+								type:'text'
+							}]);
+						}"></ul>
+			</div>  
+			<div data-options="region:'center',split:false" >
+				<div id="__MODULE__roleundiv" data-options="border : false,fit:true"  style="height:425px" >
+					<div data-options="region:'west',split:false" style="width:300px">
+						<table id="__MODULE__RoleGrid" title = "未指派"
+								data-options="checkOnSelect : true,
+								fit : true,
+								idField : 'id', 
+								border : false, 
+								pagination : true, 
+								pageSize : 10,
+								pageList : dg_pageList,
+								sortName : 'role_name',
+								sortOrder : 'desc', 
+								checkOnSelect : true,
+								selectOnCheck : true">
+							<thead>
+								<tr>
+									<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+									<th data-options="field:'role_name',width:180">角色名</th>
+									<th data-options="field:'remark',width:180">备注</th>
+								</tr>
+							</thead>
+						</table> 
+					</div>
+					<div data-options="region:'center',split:false" align="center">
+						<div style="padding-top:100px" align="center" >
+							<a href="javascript:void(0);" class="easyui-linkbutton" onclick="tableAppoint('__MODULE__RoleGrid','__MODULE__RoleAppoint');" data-options="iconCls:'icon-forward',iconAlign:'bottom'"></a>
+						</div>
+						<div style="padding-top:100px" align="center" >
+							<a href="javascript:void(0);" class="easyui-linkbutton" onclick="tableAppoint('__MODULE__RoleAppoint','__MODULE__RoleGrid');" data-options="iconCls:'icon-backward',iconAlign:'bottom'"></a>
+						</div>
+					</div>
+					<div data-options="region:'east',split:false" style="width:350px">
+						<table id="__MODULE__RoleAppoint" title = "待指派"
+							data-options="checkOnSelect : true,
+								fit : true,
+								idField : 'id',  
+								queryParams:{rId:'{$roleId}'},
+								onBeforeLoad:function(){
+									$(this).datagrid('clearChecked').datagrid('clearSelections');
+								},
+								border : false, 
+								pagination : false,  
+								sortName : 'role_name',
+								sortOrder : 'desc', 
+								checkOnSelect : true,
+								selectOnCheck : true">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+								<th data-options="field:'role_name',width:180">角色名</th>
+								<th data-options="field:'remark',width:180">备注</th>
+							</tr>
+						</thead>
+					</table> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>             
+	<div id="__MODULE__SetNodePagePanel"  title="資源指派"style="padding:10px" data-options="border:false" >
+		<div id="__MODULE__Nodediv" data-options="border : false"  style="height:460px" >
+			<div data-options="title:'菜单节点筛选=>右侧显示',region:'west',collapsible:false" style="width:250px;">
+				 <ul id="__MODULE__NodeTree" 
+				 data-options="checkbox: true,
+							animate:true,
+							lines:true, 
+							onBeforeExpand:function(node,param){
+								$(this).tree('options').url = '__APP__/TcNode/x_xgetNodeTree';
+							} ,
+							onClick:function(node){ 
+								if(node.state=='closed'){
+									$(this).tree('expand',node.target);
+								}else if(node.state=='open'){
+									$(this).tree('collapse',node.target);
+								}
+							}"></ul>
+			</div>
+			<div data-options="region:'center',border:false" >
+				<div style="padding-top:100px" align="center" >
+					<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__OkSelect();" data-options="iconCls:'icon-forward',iconAlign:'bottom'"></a>
+				 </div> 
+			</div> 
+			<div data-options="region:'east'" style="width:660px">
+				<table id="__MODULE__Resource"> 
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:20,checkbox:true" sortable="true">编号</th>
+							<th data-options="field:'title',width:200,sortable:true">节点名称</th>
+							<th data-options="field:'ckbox',width:0,formatter:__MODULE__CkFormat ">操作授权</th> 
+						</tr>
+					</thead>  
+				</table>
+			</div> 
+		</div>
+	</div>
+	<div id="__MODULE__SetUserPagePanel" title="用戶列表"style="padding:10px" data-options="border:false" >
+		<div id="__MODULE__Userdiv" data-options="border : false"  style="height:460px" >
+			<div data-options="region:'west',collapsible:false,split:false,title:'部門'" style="width:250px"> 							
+				 <ul id="__MODULE__DeptUs" 
+					data-options="checkbox: false,
+								animate:true,
+								lines:true, 
+								onBeforeExpand:function(node,param){ 
+									$(this).tree('options').url = '__URL__/x_xgetDeptTree/id/' + node.id ;
+								},
+								onClick:function(node){
+									if(node.state=='closed')
+										$(this).tree('expand',node.target);
+									else if(node.state=='open')
+										$(this).tree('collapse',node.target);  
+									$('#__MODULE__UserList').datagrid({
+										url:'__URL__/x_xgetUserAppoint',
+										queryParams:{
+											id: node.id,
+											rId: '{$roleId}'
+										},
+										striped:true
+									});
+									$('#__MODULE__UserList').datagrid('removeFilterRule');
+									$('#__MODULE__UserList').datagrid('enableFilter',[{
+										field:'u_account',
+										type:'text'
+									},{
+										field:'user_title',
+										type:'text'
+									}]); 
+									
+								}"
+				 ></ul>
+			</div> 
+			<div data-options="region:'center',split:false" > 
+				<table id="__MODULE__UserList"
+					data-options="
+								fit : true,
+								title: '用戶列表',
+								border : false,
+								rownumbers : true,
+								pagination : true,
+								idField : 'id', 
+								pageSize :20,
+								pageList : dg_pageList,            
+								sortName : 'okflag',
+								sortOrder : 'desc',
+								checkOnSelect : true,
+								selectOnCheck : true,
+								nowrap : true,
+								striped:true,
+								singleSelect:false ">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:20,checkbox:true" sortable="true">编号</th>
+							<th data-options="field:'u_account',width:80">员工账号</th>
+							<th data-options="field:'user_title',width:80">员工姓名</th>
+							<th data-options="field:'dept_name',width:250">部门</th>
+						</tr>
+					</thead>
+				</table>   
+			</div>
+		</div>
+	</div>
+	<!-----------------------------------------------------------------  1.17             -->
+	<div id="__MODULE__SetUserPagePanel" title="用戶指派"style="padding:10px" data-options="border:false" >
+		<div id="__MODULE__UsApdiv" data-options="border : false"  style="height:460px" >
+			<div data-options="region:'west',collapsible:false,split:false,title:'部門檢索'" style="width:250px"> 
+				 <ul id="__MODULE__Bu" 
+				 data-options="checkbox: false,
+						animate:true,
+						lines:true, 
+						onBeforeExpand:function(node,param){ 
+							$(this).tree('options').url = '__URL__/x_xgetDeptTree/id/' + node.id ;
+						},
+						onClick:function(node){
+							var node = $(this).tree('getSelected');
+							$('#__MODULE__UserBu').datagrid({
+								url:'__URL__/x_xgetUserBu',
+								queryParams:{
+									id: node.id,
+									rId: '{$roleId}'
+								},
+								striped:true
+							});
+							
+							$('#__MODULE__UserBu').datagrid('removeFilterRule');
+							$('#__MODULE__UserBu').datagrid('enableFilter',[{
+								field:'u_account',
+								type:'text'
+							},{
+								field:'user_title',
+								type:'text'
+							}]); 
+						}"></ul>
+			</div> 
+			<div data-options="region:'center',split:false" >
+				<div id="__MODULE__updDiv"  data-options="border : false"  style="height:425px" >
+					<div data-options="region:'west',split:false" style="width:300px">
+						<table id="__MODULE__UserBu"
+							data-options="
+									fit : true,
+									title: '未指派',
+									border : false,//定义边框
+									rownumbers : true,//显示行号
+									pagination : true,//定义分页组件
+									idField : 'id',
+									pageSize :20,
+									pageList : dg_pageList,            
+									sortName : 'okflag',
+									sortOrder : 'desc',
+									checkOnSelect : true,//选择checkbox则选择行
+									selectOnCheck : true,//选择行则选择checkbox
+									nowrap : true,
+									striped:true,//单元格显示条纹
+									singleSelect:false,//默认不单选  
+									onBeforeLoad:function(){
+										$(this).datagrid('clearChecked').datagrid('clearSelections');
+									},
+									onLoadSuccess:function(row){
+										var rowData = row.rows;
+										$.each(rowData,function(idx,val){
+											  if(val.okflag==1){
+												$(this).datagrid('selectRow', idx);
+											  }
+										});
+									}">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:10,checkbox:true">编号</th>
+								<th data-options="field:'u_account',width:100,sortable:true">员工账号</th>
+								<th data-options="field:'user_title',width:100">员工姓名</th>
+								<th data-options="field:'dept_name',width:180,hidden:true">部門</th> 
+							</tr>
+						</thead>   
+						</table>
+					</div>
+					<div data-options="region:'center',split:false" align="center"> 
+						<div style="width:26px;padding-top:100px" align="center" >
+							<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddAction('__MODULE__UserBu','__MODULE__UserAppoint');" data-options="iconCls:'icon-forward',iconAlign:'bottom'"></a>
+						</div>
+						<div style="padding-top:100px" align="center" >
+							<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddAction('__MODULE__UserAppoint','__MODULE__UserBu');" data-options="iconCls:'icon-backward',iconAlign:'bottom'"></a>
+						</div>
+					</div>
+					<div data-options="region:'east',split:false" style="width:350px">
+						<table id="__MODULE__UserAppoint"
+							data-options="fit : true,
+										title: '待指派',
+										border : false,
+										rownumbers : true,
+										pagination : false,
+										idField : 'id',
+										pageSize :20,
+										pageList : dg_pageList,            
+										sortName : 'okflag',
+										sortOrder : 'desc',
+										checkOnSelect : true,
+										selectOnCheck : true,
+										nowrap : true,
+										striped:true,
+										singleSelect:false,   
+										onBeforeLoad:function(){
+											$(this).datagrid('clearChecked').datagrid('clearSelections');
+										}">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:10,checkbox:true">编号</th>
+								<th data-options="field:'u_account',width:80,sortable:true">员工账号</th>
+								<th data-options="field:'user_title',width:80">员工姓名</th>
+								<th data-options="field:'dept_name',width:180">部門</th> 
+							</tr>
+						</thead>   
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">  
+	
+	//------------------------------------------------- 角色關係 ----------------------------------------------
+	function __MODULE__Action(value,row,index){ 
+		var d = "<a href=\"javascript:void(0);\" onclick=\"__MODULE__Step('"+row.frole_id+"','"+row.brole_id+"')\">"+'取消'+"</a>";
+		return d;
+	}
+	function __MODULE__Step(frole,brole){ 
+		$.ajax({
+			url:'__URL__/x_xCancelExtend',
+			type:'post',
+			data:{frole:frole,brole:brole},
+			dataType:'json',
+			success:function(r){
+				if(r.status==1){
+					$('#__MODULE__ExtendGrig').datagrid('reload');
+					$('#__MODULE__ReExtendGrig').datagrid('reload');
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}else{
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}
+			}
+		});
+	}
+	function __MODULE__AddAction(t1,t2) {
+		var j_id1='#'+t1;
+		var j_id2='#'+t2;
+		var rowData = $(j_id1).datagrid('getChecked');
+		var rowLen=rowData.length;
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[0]);
+			if($(j_id2).datagrid('getRowIndex',rowData[0].id)==-1){
+				$(j_id2).datagrid('insertRow',{row:rowData[0]});
+			}
+			$(j_id1).datagrid('deleteRow',rowIndex);
+			rowData = $(j_id1).datagrid('getChecked');
+		}
+	}
+	function __MODULE__OkSelect(){
+	    var roleId = '{$roleId}';
+		var nodes = $('#__MODULE__NodeTree').tree('getChecked');  
+		var ckdList = [];  
+		for ( var i = 0; i < nodes.length; i++) {
+			ckdList.push(nodes[i].id);
+		}
+		$('#__MODULE__Resource').treegrid('loadData', { total: 0, rows: [] });
+		$('#__MODULE__Resource').treegrid({
+			url:'__URL__/x_xGetNodeGrid',
+				queryParams:{
+				pid: ckdList,
+				rId: roleId
+			}
+		}); 
+	}
+	function __MODULE__CancelUserFun() {
+		var rows = $('#__MODULE__UserList').datagrid('getChecked');  
+		var ids = [];
+		if (rows.length > 0) {
+			$.messager.confirm('确认', '是否要将当前选中的项删除？', function(r) {
+				if (r) {
+					for ( var i = 0; i < rows.length; i++) {
+					    ids.push(rows[i].id);
+					}                    
+					$.ajax({
+						url : "__URL__/x_xCancleUser",
+						data : { usersId: ids,roleId: '{$roleId}' },
+						dataType : 'json',
+						success : function(result) {
+							if (result.status==1){
+								$('#__MODULE__UserList').datagrid('reload');
+								$('#__MODULE__UserList').datagrid('clearChecked').datagrid('clearSelections');
+								$.messager.show({
+									title : '提示',
+									msg : result.info
+								});
+							}else{
+									$.messager.show({
+									title : '提示',
+									msg :result.info,
+									});
+							}							
+						}
+					});
+				}
+			});
+		} else {
+			$.messager.show({
+				title : '提示',
+				msg : '请勾选要删除的记录！'
+			});
+		}
+	}
+	function __MODULE__TabSelectFun(title,index){
+	    var roleId = '{$roleId}';
+		if(title=='角色關係'){
+			$('#__MODULE__ApSave').hide();
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("保存");
+		}else if(title=='用戶列表'){
+			$('#__MODULE__Userdiv').layout();
+			$('#__MODULE__ApSave').show();
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("刪除"); 
+			$('#__MODULE__DeptUs').tree();
+			var _deptop = $('#__MODULE__DeptUs').tree('options');
+			if(!_deptop.url){
+				$('#__MODULE__DeptUs').tree({url: '__URL__/x_xgetDeptTree'});
+			}
+			$('#__MODULE__UserList').datagrid();
+			var _userop = $('#__MODULE__UserList').datagrid('options');
+			if(!_userop.url){ 
+				var userList = $('#__MODULE__UserList').datagrid({url: '__URL__/x_xgetUserAppoint'});
+				userList.datagrid('removeFilterRule');
+				userList.datagrid('enableFilter',[{
+					field:'u_account',
+					type:'text'
+				},{
+					field:'user_title',
+					type:'text'
+				}]);
+			}
+		}else if(title=='資源指派'){
+			$('#__MODULE__Nodediv').layout();
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("保存"); 
+			$('#__MODULE__ApSave').show();			
+			$('#__MODULE__Resource').treegrid({ 
+				fit : true, 
+				border : false,
+				rownumbers : true,
+				pagination : false,
+				idField : 'id',
+				treeField:'title',          
+				sortName : 'id',
+				sortOrder : 'asc',
+				checkOnSelect : false, 
+				selectOnCheck : false, 
+				nowrap : true,
+				striped:true, 
+				singleSelect:false, 
+				autoRowHeight:false, 
+				toolbar : [ {
+							text : '全選', 
+							handler : function() {
+								 $("input[name='setNodeId']").attr("checked","true"); 
+							}
+						}, '-', {
+							text : '反選', 
+							handler : function() {
+								$("input[name='setNodeId']").each(function(){
+									if($(this).attr("checked")){
+										$(this).removeAttr("checked");
+									}else{
+										$(this).attr("checked","true");
+									}
+								});  
+							}
+						},'-'],
+				onLoadSuccess:function(value,row,index){
+					var rowData = row.rows;
+					$.each(rowData,function(idx,val){
+						  if(val.okflag==1 && idx!=0){ 
+						  }
+					});
+				}
+			}); 
+			$('#__MODULE__NodeTree').tree();
+			var __MODULE__nodeop = $('#__MODULE__NodeTree').tree('options');
+			if(!__MODULE__nodeop.url){
+				$('#__MODULE__NodeTree').tree({url: '__APP__/TcNode/x_xgetNodeTree'});
+			}
+		}else if(title=='角色繼承'){
+			$('#__MODULE__rolediv').layout();
+			$('#__MODULE__roleundiv').layout(); 
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("保存"); 
+			$('#__MODULE__ApSave').show();	
+			$('#__MODULE__Selections').tree();
+			var __MODULE__seltop = $('#__MODULE__Selections').tree('options');
+			if(!__MODULE__seltop.url){
+				$('#__MODULE__Selections').tree({url: '__URL__/x_xgetDeptTree'});
+				$('#__MODULE__RoleGrid').datagrid();
+				$('#__MODULE__RoleAppoint').datagrid(); 
+			}
+		}else if(title=='用戶指派'){
+			$('#__MODULE__UsApdiv').layout();
+			$('#__MODULE__updDiv').layout(); 
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("保存"); 
+			$('#__MODULE__ApSave').show();	
+			$('#__MODULE__Bu').tree();
+			var __MODULE__Buop = $('#__MODULE__Bu').tree('options');
+			if(!__MODULE__Buop.url){
+				$('#__MODULE__Bu').tree({url: '__URL__/x_xgetDeptTree'});
+			}
+			$('#__MODULE__UserBu').datagrid();
+			var __MODULE__UserBuop = $('#__MODULE__UserBu').datagrid('options');
+			if(!__MODULE__UserBuop.url){ 
+				var userDG = $('#__MODULE__UserBu').datagrid({
+					url : '__URL__/x_xgetUserBu',
+					queryParams:{rId:roleId}
+				});
+				userDG.datagrid('removeFilterRule');
+				userDG.datagrid('enableFilter',[{
+					field:'u_account',
+					type:'text'
+				},{
+					field:'user_title',
+					type:'text'
+				}]);
+			}
+			$('#__MODULE__UserAppoint').datagrid({ 
+				queryParams:{rId:roleId}
+			});
+		}else{
+			$('#__MODULE__ApSave>span>span:nth-child(1)').html("保存"); 
+			$('#__MODULE__ApSave').show();
+		}
+	}
+	function __MODULE__CkFormat(value, row, index) {
+		var row2 = row.operation;
+		var ckStr='';
+		if(row.ismenu==0){ 
+			$.each(row2,function(idx,val){
+				var checkStr='';
+				var fontStr='';
+				if(val.okflag==1){
+					checkStr = 'checked="checked"';
+					fontStr='<font style="font-weight: bold;">'+val.title+'</font>';
+				}else{
+					fontStr='<font style="color:gray;">'+val.title+'</font>';
+				}
+				ckStr = ckStr + '<input type="checkbox" nodeId="'+row.id+'" name="setNodeId" '+checkStr+' value="'+val.id+'" >'+fontStr+'.';
+			});             
+			return ckStr;
+		}					 
+	}
+</script>

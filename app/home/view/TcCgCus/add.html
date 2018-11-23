@@ -1,0 +1,42 @@
+<div>
+	<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm" style="white-space: nowrap;width:100%;">
+			<tr>
+				<th>{$Think.lang.LANG_CGCUS_NODE}</th>
+				<td><input name="snode_id" id="__MODULE__Add_snode_id"  class="easyui-combotree"
+					data-options="url:'__APP__/TcNode/x_xgetNodeTree'" required="true"/></td>
+			</tr>
+			<tr>
+			    <th>{$Think.lang.LANG_CGCUS_CODE}</th>
+				<td><input name="cus_code" id="__MODULE__Add_cus_code"  class="easyui-validatebox" required="true"></td>
+			</tr>
+			<tr>
+			    <th>{$Think.lang.LANG_CGCUS_NAME}</th>
+				<td><input name="cus_name" id="__MODULE__Add_cus_name"  class="easyui-validatebox" required="true"></td>
+			</tr>
+			<tr>
+			    <th>{$Think.lang.LANG_CGCUS_TYPE}</th>
+				<td><input name="cg_type" class="easyui-combobox" data-options=" valueField: 'id',
+																				textField: 'text',
+																				url: '__URL__/x_xgetOption?cusCode=cg_type',
+																				panelHeight:'auto'" /></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_REMARK}</th>
+				<td><input name="remark" id="__MODULE__Add_remark" class="easyui-validatebox" required="true"/></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_STATUS}</th>
+				<td>
+				<input  name="status" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/status',
+								panelWidth: 100,
+								width: 140" />
+				</td>
+			</tr>
+		</table>
+		<input id="cg_flag" name="cg_flag"  type="hidden" value="1">
+	</form>
+</div>

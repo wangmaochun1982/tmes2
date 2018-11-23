@@ -1,0 +1,121 @@
+<form name="__MODULE__AddResource" id="__MODULE__AddResource" method="POST">
+	<div class="easyui-tabs"  style="width:850px;height:700px;">
+		
+			<div id="__MODULE__SetNodePagePanel" title="角色指派" class="easyui-layout" data-options="fit : true,border : false" style="height:800px,width:200px">
+				<div data-options="title:'菜单节点筛选=>右侧显示',region:'west'" style="width:200px;">
+					 <ul id="__MODULE__SetNodeLeftTree"></ul>
+				</div>
+				
+				<div id="__MODULE__SetNodeNodeChild" data-options="region:'center',border:false">      
+					<table id="__MODULE__SetNodeDataGrid" class="easyui-treegrid" > 
+					</table>
+				</div>
+			</div>
+		
+		<div title="角色" style="padding:10px">
+		</div>
+		<div title="角色關係" style="padding:10px">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function() {
+	    var roleId = '{$roleId}';
+		$('#__MODULE__SetNodeDataGrid').treegrid({
+			url : '__URL__/x_xGetNodeGrid',
+			fit : true,
+			//fitColumns : true,//有了这个属性就不能用冻结列
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : false,//定义分页组件
+			idField : 'id',
+            treeField:'title',
+            queryParams:{rId:roleId},
+			//pageSize :200,
+			//pageList : [15,20,25,50,100,200],            
+			sortName : 'id',
+			sortOrder : 'asc',
+			checkOnSelect : false,//选择checkbox则选择行
+			selectOnCheck : false,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选
+            autoRowHeight:false,		
+			columns : [ [{
+				field : 'id',
+				title : '编号',
+				width : 10,
+				hidden : true
+			},{
+				field : 'title',
+				title : '节点名称',
+				width : 200,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'ckbox',
+				title : '操作授权',
+				width : 0,
+				sortable : false,
+				formatter : function(value, row, index) {
+				     var row2 = row.operation;
+					 var ckStr='';
+                     $.each(row2,function(idx,val){
+                       var checkStr='';
+					   var fontStr='';
+                       if(val.okflag==1){
+                            checkStr = 'checked="checked"';
+                            fontStr='<font style="font-weight: bold;">'+val.title+'</font>';
+                        }else{
+                            fontStr='<font style="color:gray;">'+val.title+'</font>';
+                        }
+                       ckStr = ckStr + '<input type="checkbox" name="setNodeId" '+checkStr+' value="'+val.id+'" >'+fontStr+'.';
+                     });
+                     var checkStr='';
+					 var fontStr='';
+                     if(row.okflag==1){
+                            checkStr = 'checked="checked"';
+                            fontStr='<font style="font-weight: bold;">'+row.title+'</font>';
+                        }else{
+                            fontStr='<font style="color:gray;">'+row.title+'</font>';
+                      }               
+                     return '<input type="checkbox" name="setNodeId" '+checkStr+' value="'+row.id+'" >'+fontStr+"."+ckStr;
+				}
+			} ] ],
+            onLoadSuccess:function(value,row,index){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1 && idx!=0){
+                        //$("#__MODULE__SetNodeDataGrid").treegrid("select", idx);
+                      }
+                });
+            }
+		});
+
+        $('#__MODULE__SetNodeLeftTree').tree({
+                 checkbox: false,
+                 animate:true,
+                 lines:true,
+                 url: '__APP__/TdNodeKt/x_xgetNodeTree',
+                 onBeforeExpand:function(node,param){
+					 $('#__MODULE__SetNodeLeftTree').tree('options').url = "__APP__/TdNodeKt/x_xgetNodeTree/id/" + node.id;
+                 },
+                onClick:function(node){
+					var nodeId = '';
+                    var node = $('#__MODULE__SetNodeLeftTree').tree('getSelected');
+                    if(node){nodeId = node.id;}
+                   // $('#__MODULE__SetNodeDataGrid').treegrid('loadData', { total: 0, rows: [] });
+    				$('#__MODULE__SetNodeDataGrid').treegrid({
+    					url:'__URL__/x_xGetNodeGrid',
+    					queryParams:{
+                            pid: nodeId,
+                            rId: roleId
+    					}
+    				});
+               }
+            });
+
+	});
+</script>

@@ -1,0 +1,92 @@
+<div id="__MODULE__SetGroupPagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div title="条件筛选卡" data-options="region:'north',closedTitle:'高级条件筛选卡(点击展开)',border:true,collapsed:true,iconCls:'icon-search'" style="height: 165px;overflow: auto;" align="center">
+		<form id="__MODULE__SetGroupSearchForm">
+			<table class="tableForm">
+				<tr>
+					<th style="width: 170px;">关键字(支持模糊查询)：</th>
+					<td>
+                        <input name="searchKeyWords" style="width: 315px;" />
+                        <input type="hidden" name="eId" value="{$empId}"/> 
+                    </td>
+				</tr>
+			</table>
+            <div>
+            	<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="__MODULE__SetGroupSearchFun();">过滤条件</a>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cross'" onclick="__MODULE__SetGroupCleanFun();">清空条件</a>
+            </div>
+		</form>
+	</div>
+	<div id="__MODULE__SetGroupNodeChild" data-options="region:'center',border:false">      
+		<table id="__MODULE__SetGroupDataGrid"></table>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+	    var eId = '{$empId}';
+		$('#__MODULE__SetGroupDataGrid').datagrid({
+			url : '__URL__/x_xGetGroupJson',
+			fit : true,
+			//fitColumns : true,//有了这个属性就不能用冻结列
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'group_code',
+            queryParams:{empId:eId},
+			pageSize :20,
+			pageList : [15,20,25,50,100],            
+			sortName : 'okflag',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选		
+			columns : [ [{
+				field : 'group_code',
+				title : '编号',
+				width : 10,
+				checkbox : true
+			},{
+				field : 'group_name',
+				title : '群组名称',
+				width : 200,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'group_desc',
+				title : '群组描述',
+				width : 200,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'okflag',
+				title : '指派状态',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					if(value==1){
+				     return '<span title="已指派"><font color=green>已指派</font></span>';   
+				    }else{
+				     return '<span title="未指派"><font color=gray>未指派</font></span>';   
+				    }
+				}
+			}] ],
+            onLoadSuccess:function(row){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1){
+                        $("#__MODULE__SetGroupDataGrid").datagrid("selectRow", idx);
+                      }
+                });
+            }
+		});
+
+	});
+    function __MODULE__SetGroupSearchFun() {
+		$('#__MODULE__SetGroupDataGrid').datagrid('load', serializeObject($('#__MODULE__SetGroupSearchForm')));
+	}
+</script>

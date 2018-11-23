@@ -1,0 +1,44 @@
+<div align="center">
+	<form id="__MODULE__EditPwdForm" method="post">
+      <input type="hidden" name="user_pwd" />
+		<table class="tableForm">
+			<tr>
+				<th>{$Think.lang.LANG_USER_ID}</th>
+				<td><input name="id" readonly="readonly" /></td>
+			</tr>
+            <tr>
+				<th>{$Think.lang.LANG_USER_U_ACCOUNT}</th>
+				<td><input name="u_account" disabled="disabled" /></td>
+			</tr>
+            <tr>
+				<th>{$Think.lang.LANG_USER_USER_TITLE}</th>
+				<td><input name="user_title" disabled="disabled" /></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_NO}</th>
+				<td><input name="emp_no" disabled="disabled" /></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_NPWD}</th>
+				<td><input type="password" name="new_pwd" class="easyui-validatebox" data-options="required:true" style="width: 150px;" />
+				</td>
+			</tr>
+            <tr>
+				<td colspan="2">
+                {$Think.lang.LANG_USER_NOTE_PWD}
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	$(function(){
+		var operate = '{$Think.request.operate}';
+		switch(operate){ // 判斷操作類型
+			case 'editPwd':
+				var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+				$("#__MODULE__EditPwdForm").form("load", rows[0]);
+				break;
+		}
+	});
+</script>

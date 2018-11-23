@@ -1,0 +1,322 @@
+<form id="__MODULE__SetAppointFrom" method="post">
+<div id="__MODULE__SetAppoint" class="easyui-tabs"  style="width:auto;height:494px;">
+	<div title="已有角色" class="easyui-layout" data-options="fit:true,border:false">
+		<div data-options="region:'north',border:false,title:'已有角色'" style="height:460px">
+			<table class="easyui-datagrid" id="__MODULE__ExtendGrig"
+				data-options="
+					url:'__URL__/x_xGetHavingRole?node_id={$_REQUEST['nodeId']}',
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :15,
+					pageList : [15,20,30,40,50],
+					sortName : 'role_name',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					toolbar:'#__MODULE__ExtendTool',
+					nowrap : true,
+					singleSelect:false">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:50,checkbox:true">ID</th>
+						<th data-options="field:'role_name',width:100">角色名</th>
+						<th data-options="field:'remark',width:100">備註</th>
+						<th data-options="field:'action',width:100,formatter:__MODULE__Action">操作</th>
+						<th data-options="field:'node_id',width:80,hidden:true">節點ID</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="__MODULE__ExtendTool" style="padding:0px;height:auto">
+			<span>角色/描述:</span>
+			<input name="txt" id="__MODULE__ExtendSearTxt"/>
+			<a href="#" class="easyui-linkbutton" plain="true" onclick="__MODULE__AddActionSearchFun('__MODULE__ExtendSearTxt','__MODULE__ExtendGrig')">搜索</a>
+		</div>
+	</div>	
+	<div title="指派角色" data-options="border:false" style="width:auto;height:490px" > 	
+		<div class="easyui-layout" data-options="border:false" style="width:auto;height:463px" > 
+			<div data-options="region:'west',title:'角色'" style="width:400px; padding:1px;"> 
+				 <ul id="__MODULE__Selections" ></ul>
+			</div> 
+			<div style="width:400px;padding:1px" data-options="region:'east',title:'角色'"> 
+				<table class="easyui-datagrid" id="__MODULE__SeachGrid" 
+								data-options=" 
+									idField : 'id',
+									fit : true,
+									border : false,//定义边框 
+									pagination : true,//定义分页组件 
+									pageSize : 10,
+									pageList : [10,20,50],
+									sortName : 'role_name',
+									sortOrder : 'desc', 
+									checkOnSelect : true,//选择checkbox则选择行
+									selectOnCheck : true">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+							<th data-options="field:'role_name',width:100">角色名</th>
+							<th data-options="field:'remark',width:100">備註</th>
+						
+						</tr>
+					</thead>
+				</table> 
+			</div>  
+			<div data-options="region:'center'" style="width:30px; " >
+				<div style="width:26px;padding-top:100px" align="left" >
+					<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddSelect();">>></a>
+				 </div>
+				<div style="padding-top:100px" align="left" >
+					<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__DelSelect();"><<</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div title="節點操作指派" class="easyui-layout" data-options="fit:true,border:false" style="width:800px;height:420px" > 
+		<div data-options="region:'west',title:'全部操作'" style="width:410px;height:400px; padding:1px"> 
+			<table id="__MODULE__ActionLeftGrid" 
+								data-options=" 
+								url: '__APP__/TcAction/x_xgetTableJson',
+								//url: '__APP__/TdActionDesc/x_xgetTableJson',
+								fit : true,
+								border : false,//定义边框 
+								pagination : false,//定义分页组件 
+								pageSize : 20,
+								pageList : [20,200,500], 
+								sortName : 'action_code',
+								sortOrder : 'asc', 
+								checkOnSelect : true,//选择checkbox则选择行
+								selectOnCheck : true,//选择行则选择checkbox 
+								striped:true ">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+						<th data-options="field:'action_code',width:100">ACTION代碼</th>
+						<th data-options="field:'lang_value',width:100">顯示名</th>
+					    <th data-options="field:'action_desc',width:130">描述</th>
+					</tr>
+				</thead>
+			</table>
+		</div> 
+		<div data-options="region:'east',border:false,title:'已有操作'" style="width:410px;height:420px; padding:1px" >
+			<table class="easyui-datagrid" id="__MODULE__ActionRightGrid" 
+							data-options="
+								idField : 'id',
+								fit:true,
+								url: '__APP__/TcActio/x_xgetTableJson/node_lnk/2/node_id/'+{$_REQUEST['nodeId']}, 
+								sortName : 'action_code',
+								checkOnSelect : true,//选择checkbox则选择行
+								selectOnCheck : true">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+						<th data-options="field:'action_code',width:100">ACTION代碼</th>
+						<th data-options="field:'lang_value',width:100">顯示名</th>
+					    <th data-options="field:'action_desc',width:130">描述</th>
+					</tr>
+				</thead>
+			</table>
+		</div>  
+		<div data-options="region:'center'" style="width:50px;height:390px" >
+			<div style="width:26px;padding-top:100px" align="left" >
+				<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddAction();">>></a>
+			 </div>
+			<div style="padding-top:100px" align="left" >
+				<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__DelAction();"><<</a>
+			</div>
+		</div>
+		<!--<div id="__MODULE__ActionLeftTool" style="padding:0px;height:auto">
+			<span>操作代碼/顯示名:</span>
+			<input name="left_txt" id="__MODULE__ActionLeftSearTxt"/>
+			<a href="#" class="easyui-linkbutton" plain="true" onclick="__MODULE__AddActionSearchFun('__MODULE__ActionLeftSearTxt','__MODULE__ActionLeftGrid')">搜索</a>
+		</div>
+		<div id="__MODULE__ActionRightTool" style="padding:0px;height:auto">
+			<span>操作代碼/顯示名:</span>
+			<input name="right_txt" id="__MODULE__ActionRightSearTxt"/>
+			<a href="#" class="easyui-linkbutton" plain="true" onclick="__MODULE__AddActionSearchFun('__MODULE__ActionRightSearTxt','__MODULE__ActionRightGrid')">搜索</a>
+		</div>-->
+	</div>
+</div>
+</form>
+<script>
+	//組織+角色的樹
+	 $(function(){
+		 $('#__MODULE__Selections').tree({
+                 checkbox: true,
+                 animate:true, 
+                 lines:true,
+				 onlyLeafCheck:true,
+                 url: '__URL__/x_xGetAllRole',
+                 onBeforeExpand:function(node,param){
+					 $('#__MODULE__Selections').tree('options').url = "__URL__/x_xGetAllRole/id/" + node.id+'/node_id/'+{$_REQUEST['nodeId']} ;
+                 }
+            });
+			var dg = $('#__MODULE__ActionLeftGrid').datagrid(); 
+			dg.datagrid('removeFilterRule');
+			dg.datagrid('enableFilter',[{field:'action_code',
+						 type:'text' 
+						},
+						{field:'lang_value',
+						 type:'text' 
+						},
+						{field:'action_desc',
+						 type:'text' 
+						}
+			]); 
+	}); 
+	
+	//點擊將左邊的角色移到右邊
+	function __MODULE__AddSelect() {
+		var rowData = $('#__MODULE__Selections').tree('getChecked');
+		//alert(rowData.length);
+		for ( var i = 0; i < rowData.length; i++) {
+			//alert(rowData[i].id);
+			//alert(rowData[i].role_name);
+			//delete rowData[i].rn;
+			//alert($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1);
+
+			if($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#__MODULE__SeachGrid').datagrid('insertRow',{
+					index:i,
+					row:{
+						id : rowData[i].id,
+						role_name :rowData[i].text,
+						remark :rowData[i].attributes.remark,
+					}
+				});
+			}//$('#__MODULE__Selections').tree('remove', rowData[i].target);
+		}
+		$('#__MODULE__Selections').datagrid('clearChecked');
+	}
+	
+	//將右邊的角色刪除
+	function __MODULE__DelSelect(){
+		var rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+		var rowLen=rows.length;
+		if (rowLen > 0) {
+			for ( var i = 0; i < rowLen; i++) {
+				var rowIndex = $('#__MODULE__SeachGrid').datagrid('getRowIndex',rows[0]);
+				if(rowIndex>-1){
+					$('#__MODULE__SeachGrid').datagrid('deleteRow',rowIndex); 
+					rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+				}
+			}
+			$('#__MODULE__SeachGrid').datagrid('clearChecked');
+		}else{
+			$.messager.show({
+					title : '提示',
+					msg : '请勾选要删除的记录！'
+				});
+		}
+	}
+	
+	function __MODULE__Action(value,row,index){
+		//alert(row.frole_id);
+		//alert(row.brole_id);
+		var d = "<a href=\"javascript:void(0);\" onclick=\"__MODULE__Step('"+row.id+"','"+row.node_id+"')\">"+'取消'+"</a>";
+		return d;
+	}
+	function __MODULE__Step(role_id,node_id){
+		//alert(role_id);
+		//alert(node_id);
+		$.ajax({
+			url:'__URL__/x_xCancelAppoint',
+			type:'post',
+			data:{role_id:role_id,node_id:node_id},
+			dataType:'json',
+			success:function(r){
+				if(r.status==1){
+					$('#__MODULE__ExtendGrig').datagrid('reload');
+					$('#__MODULE__ReExtendGrig').datagrid('reload');
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}else{
+					$.messager.show({
+						title:'提示',
+						msg:r.info
+					});
+				}
+			}
+		});
+		
+	}
+	//點擊將左邊的角色移到右邊
+	/*function __MODULE__AddAction2(t1,t2) {
+		var j_id1='#'+t1;
+		var j_id2='#'+t2;
+		var rowData = $(j_id1).datagrid('getChecked');
+		var rowLen=rowData.length;
+		//var rowDiff = [];
+		for ( var i = 0; i < rowLen; i++) {
+			//var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[i]);
+			//lastIndex = $(j_id2).datagrid('getRows','id').length;
+			//alert(rowData[0].id+'_'+rowIndex);
+			//delete rowData[i]; 
+			if($(j_id2).datagrid('getRowIndex',rowData[i].id)==-1){
+				$(j_id2).datagrid('insertRow',{row:rowData[i]});
+				//rowDiff.push(rowData[0].id);
+			}
+			//$(j_id1).datagrid('deleteRow',{row:rowData[i]});
+			//var rowIndex = $('#__MODULE__ActionLeftGrid').datagrid('getRowIndex',rowData[i].id);
+			//$(j_id1).datagrid('deleteRow',rowIndex);
+			//rowData = $(j_id1).datagrid('getChecked');
+		}
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[0]);
+			$(j_id1).datagrid('deleteRow',rowIndex);
+			rowData = $(j_id1).datagrid('getChecked');
+		}
+	}
+	function __MODULE__AddAction(t1,t2) {
+		var j_id1='#'+t1;
+		var j_id2='#'+t2;
+		var rowData = $(j_id1).datagrid('getChecked');
+		var rowLen=rowData.length;
+        //console.info(rowData);
+		//var rowDiff = [];
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[0]);
+            //alert(rowData[0].rn);
+			if($(j_id2).datagrid('getRowIndex',rowData[0].id)==-1){
+				$(j_id2).datagrid('insertRow',{row:rowData[0]});
+				//rowDiff.push(rowData[0].id);
+			}
+			$(j_id1).datagrid('deleteRow',rowIndex);
+			rowData = $(j_id1).datagrid('getChecked');
+		}
+	}*/
+	function __MODULE__AddAction() {
+		var rowData = $('#__MODULE__ActionLeftGrid').datagrid('getChecked');
+		var rowLen=rowData.length;
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $('#__MODULE__ActionLeftGrid').datagrid('getRowIndex',rowData[i]);
+            //alert(rowData[i].rn);
+			if($('#__MODULE__ActionRightGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#__MODULE__ActionRightGrid').datagrid('insertRow',{row:rowData[i]});
+				//rowDiff.push(rowData[i].id);
+			}
+		}
+		$('#__MODULE__ActionLeftGrid').datagrid('clearChecked');
+	}
+	//將右邊的角色刪除
+	function __MODULE__DelAction(){
+		var rowData = $('#__MODULE__ActionRightGrid').datagrid('getChecked');
+		var rowLen=rowData.length;
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $('#__MODULE__ActionRightGrid').datagrid('getRowIndex',rowData[0].id);
+			$('#__MODULE__ActionRightGrid').datagrid('deleteRow',rowIndex);
+			rowData = $('#__MODULE__ActionRightGrid').datagrid('getChecked');
+		}
+		$('#__MODULE__ActionRightGrid').datagrid('clearChecked');
+	}
+	function __MODULE__AddActionSearchFun(j_search,j_grid) {
+		var j_txt = $('#'+j_search).val();
+		//alert(j_txt);
+		$('#'+j_grid).datagrid('reload', {sear_code: j_txt});
+	} 
+</script>
+

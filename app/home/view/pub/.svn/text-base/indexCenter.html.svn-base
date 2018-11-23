@@ -1,0 +1,244 @@
+<script type="text/javascript">
+	$(function() {
+		$('#layout_center_tabsMenu').menu({
+			onClick : function(item) {
+				var curTabTitle = $(this).data('tabTitle');
+				var type = $(item.target).attr('type');
+
+				if (type === 'refresh') {
+					layout_center_refreshTab(curTabTitle);
+					return;
+				}
+
+				if (type === 'close') {
+					var t = $('#layout_center_tabs').tabs('getTab', curTabTitle);
+					if (t.panel('options').closable) {
+						$('#layout_center_tabs').tabs('close', curTabTitle);
+					}
+					return;
+				}
+
+				var allTabs = $('#layout_center_tabs').tabs('tabs');
+				var closeTabsTitle = [];
+
+				$.each(allTabs, function() {
+					var opt = $(this).panel('options');
+					if (opt.closable && opt.title != curTabTitle && type === 'closeOther') {
+						closeTabsTitle.push(opt.title);
+					} else if (opt.closable && type === 'closeAll') {
+						closeTabsTitle.push(opt.title);
+					}
+				});
+
+				for ( var i = 0; i < closeTabsTitle.length; i++) {
+					$('#layout_center_tabs').tabs('close', closeTabsTitle[i]);
+				}
+			}
+		});
+
+		$('#layout_center_tabs').tabs({
+			fit : true,
+			border : false,
+			onContextMenu : function(e, title) {
+				e.preventDefault();
+				$('#layout_center_tabsMenu').menu('show', {
+					left : e.pageX,
+					top : e.pageY
+				}).data('tabTitle', title);
+			},
+			tools : [ {
+				iconCls : 'icon-reload',
+				text : '{$Think.lang.LANG_REFRESH}',
+				handler : function() {
+					var href = $('#layout_center_tabs').tabs('getSelected').panel('options').href;
+					if (href) {/*说明tab是以href方式引入的目标页面*/
+						var index = $('#layout_center_tabs').tabs('getTabIndex', $('#layout_center_tabs').tabs('getSelected'));
+						$('#layout_center_tabs').tabs('getTab', index).panel('refresh');
+					} else {/*说明tab是以content方式引入的目标页面*/
+						var panel = $('#layout_center_tabs').tabs('getSelected').panel('panel');
+						var frame = panel.find('iframe');
+						try {
+							if (frame.length > 0) {
+								for ( var i = 0; i < frame.length; i++) {
+									frame[i].contentWindow.document.write('');
+									frame[i].contentWindow.close();
+									frame[i].src = frame[i].src;
+								}
+								if ($.browser.msie) {
+									CollectGarbage();
+								}
+							}
+						} catch (e) {
+						}
+					}
+				}
+			},{
+				iconCls : 'icon-no',
+				text : '{$Think.lang.LANG_CLOSE}',
+				handler : function() {
+					var index = $('#layout_center_tabs').tabs('getTabIndex', $('#layout_center_tabs').tabs('getSelected'));
+					var tab = $('#layout_center_tabs').tabs('getTab', index);
+					if (tab.panel('options').closable) {
+						$('#layout_center_tabs').tabs('close', index);
+					} else {
+						$.messager.alert('{$Think.lang.LANG_TIPS}', '[' + tab.panel('options').title + ']不可以被關閉', 'error');
+					}
+				}
+			} ]
+		});
+        $('#testdate').my97({
+            lang:'{$Think.LANG_SET}',
+            required:true,
+            disabled:false,
+            minDate:'2013-10-01',
+            maxDate:'2013-12-25'
+        });
+	});
+
+	function layout_center_refreshTab(title) {
+		$('#layout_center_tabs').tabs('getTab', title).panel('refresh');
+	}
+
+	function layout_center_addTabFun(opts) {
+		var t = $('#layout_center_tabs');
+		if (t.tabs('exists', opts.title)) {
+			t.tabs('select', opts.title);
+		} else {
+			t.tabs('add', opts);
+		}
+	}
+</script>
+<div id="layout_center_tabs" style="overflow: hidden;" >
+	<div title="{$Think.lang.LANG_INDEXCENTER_HOME}" data-options="fit:true,border:false,iconCls:'icon-house'">
+      <div data-options="region:'center',title:'{$Think.lang.LANG_INDEXCENTER_HOME}'" style="overflow: hidden;padding: 5px;">
+	    <input type="hidden" name="stime" id="stime">
+	    <input type="hidden" name="checktime1" id="checktime1" />
+	    <input type="hidden" name="checktime2" id="checktime2" />
+	   <if condition="$_SESSION['administrator']">
+       <table class="tableForm" width="100%">
+				<tr>
+					<th rowspan="3">MES開發</th>
+					<td><a href="__PUBLIC__/Uploads/standard/namedDesc.doc" target="_blank">命名規範</a></td>
+				</tr>
+                <tr>
+					<td><a href="__PUBLIC__/Uploads/standard/codedDesc.doc" target="_blank">注釋規範</a></td>
+				</tr>
+                <tr>
+					<td><a href="__PUBLIC__/Uploads/standard/fieldState.doc" target="_blank">字段統一規範</a></td>
+				</tr>
+				<tr>
+					<th>Easyui擴展</th>
+					<td><a href="http://www.easyui-extlib.com/" target="_blank">http://www.easyui-extlib.com/</a></td>
+				</tr>
+				<tr>
+					<th>ThinkPHP手册</th>
+					<td><a href="http://doc.thinkphp.cn/manual/" target="_blank">http://doc.thinkphp.cn/manual/</a></td>
+				</tr>
+                <tr>
+					<th>easyUI官网</th>
+					<td><a href="http://www.jeasyui.com/" target="_blank">http://www.jeasyui.com/</a></td>
+				</tr>
+                <!-- <tr>
+					<th>easyUI在线文档</th>
+					<td><a href="http://www.easyui.info/easyui/" target="_blank">http://www.easyui.info/easyui/</a></td>
+				</tr>
+                <tr>
+					<th>easyUI中文手册</th>
+					<td><a href="http://www.zi-han.net/case/easyui/index.html" target="_blank">http://www.zi-han.net/case/easyui/index.html</a></td>
+				</tr> -->
+                <tr>
+					<th>easyUI中文社区</th>
+					<td><a href="http://bbs.jeasyuicn.com" target="_blank">http://bbs.jeasyuicn.com</a></td>
+				</tr>
+                <tr>
+					<th>精益制造网</th>
+					<td><a href="http://www.e-works.net.cn/" target="_blank">http://www.e-works.net.cn/</a></td>
+				</tr>
+                <tr>
+					<th>jQuery 1.8 中文API</th>
+					<td><a href="http://api.btboys.com/jquery/" target="_blank">http://api.btboys.com/jquery/</a></td>
+				</tr>
+               <!--  <tr>
+					<th>ThinkPHP-GIT</th>
+					<td><a href="http://git.oschina.net/liu21st/thinkphp" target="_blank">http://git.oschina.net/liu21st/thinkphp</a></td>
+				</tr> -->
+                <tr>
+					<th>MES 系統開發文檔</th>
+					<td><a href="__PUBLIC__/doc" target="_blank"> &nbsp;持續更新中……</a>
+					</td>
+				</tr>
+                <tr>
+					<th>当前使用语言包</th>
+					<td>{$Think.LANG_SET}</td>
+				</tr>
+      </table>
+	  </if>
+      <br />
+      <table class="tableForm">
+          <tr>
+           <th colspan="4" style="text-align: center;">用户行为记录</th>
+          </tr>
+          <tr>
+           <th style="text-align: center;">位置</th>
+           <th style="text-align: center;">主機</th>
+           <th style="text-align: center;">時間</th>
+           <th style="text-align: center;">描述</th>
+          </tr>
+       <volist name="logResult" id="logVo">
+          <tr>
+            <td>{$logVo.action_name}</td>
+            <td>{$logVo.action_pcaddr}</td>
+            <td>{$logVo.action_time|friendlyDate}</td>
+            <td>{$logVo.action_title}</td>
+          </tr>
+       </volist>
+      </table> 
+		  <div style="display:none" >
+			<object classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" id="PlayId" width="100" height="100">
+			  <param name="URL" value="__PUBLIC__/Voice/OK.wav">
+			  <param name="rate" value="1">
+			  <param name="balance" value="0">
+			  <param name="currentPosition" value="0">
+			  <param name="defaultFrame" value>
+			  <param name="playCount" value="1">
+			  <param name="autoStart" value="0">
+			  <param name="currentMarker" value="0">
+			  <param name="invokeURLs" value="-1">
+			  <param name="baseURL" value="">
+			  <param name="volume" value="100">
+			  <param name="mute" value="0">
+			  <param name="uiMode" value="full">
+			  <param name="stretchToFit" value="0">
+			  <param name="windowlessVideo" value="0">
+			  <param name="enabled" value="-1">
+			  <param name="enableContextMenu" value="-1">
+			  <param name="fullScreen" value="0">
+			  <param name="SAMIStyle" value>
+			  <param name="SAMILang" value>
+			  <param name="SAMIFilename" value>
+			  <param name="captioningID" value>
+			  <param name="enableErrorDialogs" value="0">
+			  <param name="_cx" value="6482">
+			  <param name="_cy" value="6350">
+			</object>
+			</div>
+       </div>
+	</div>
+</div>
+<div id="layout_center_tabsMenu" style="width: 120px;display:none;">
+	<div type="refresh" data-options="iconCls:'icon-reload'">刷新</div>
+	<div class="menu-sep"></div>
+	<div type="close" data-options="iconCls:'icon-cross'">关闭</div>
+	<div type="closeOther" data-options="iconCls:'icon-cross'">关闭其他</div>
+	<div type="closeAll" data-options="iconCls:'icon-cross'">关闭所有</div>
+</div>
+<notempty name="ntrel">
+<script>
+	var opts = [];
+	opts.title = '{$nttite}';
+	opts.href = '__APP__/{$ntrel}';
+	opts.closable = true;
+	console.log(opts);
+	layout_center_addTabFun(opts);
+</script>
+</notempty>

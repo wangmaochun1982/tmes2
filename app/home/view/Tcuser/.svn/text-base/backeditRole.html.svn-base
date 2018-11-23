@@ -1,0 +1,122 @@
+<form id="__MODULE__EditRoleFrom" method="post">
+ <div title="角色繼承" class="easyui-layout" data-options="fit:true,border:false"  >
+	
+				<div data-options="region:'west',title:'用户列表'" style="width:400px;height:800px; padding:1px"> 
+					 <ul id="__MODULE__Selections"></ul>
+				</div> 
+				<div style="width:395px;height:650px; padding:1px" data-options="region:'east',border:false,title:'指派的用户'">
+				<div style="height:100%;width:350px;" align="left" >
+					<table class="easyui-datagrid" id="__MODULE__SeachGrid" style="height:324px;"
+							data-options="checkOnSelect : true,//选择checkbox则选择行
+							idField : 'id',
+							fit : true,
+							border : false,//定义边框 
+							pagination : true,//定义分页组件 
+							pageSize : 10,
+							pageList : [10,20,50],
+							sortName : 'role_name',
+							sortOrder : 'desc', 
+							checkOnSelect : true,//选择checkbox则选择行
+							selectOnCheck : true">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+								<th data-options="field:'role_name',width:180">角色名</th>
+								<th data-options="field:'remark',width:180">備註</th>
+							
+							</tr>
+						</thead>
+					</table>
+				</div>	
+				</div>  
+				<div data-options="region:'center'" style="width:100px" >
+					<div style="width:26px;padding-top:100px" align="left" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__AddSelect();">>></a>
+					 </div>
+					<div style="padding-top:100px" align="left" >
+						<a href="javascript:void(0);" class="easyui-linkbutton" onclick="__MODULE__DelSelect();"><<</a>
+					</div>
+				</div>
+		</div>
+</form>
+<script>
+	//組織+角色的樹
+	$(function(){
+		 $('#__MODULE__Selections').tree({
+                 checkbox: true,
+                 animate:true,
+                 lines:true,
+				 onlyLeafCheck:true,
+                 url: '__URL__/x_xGetAllRole',
+                 onBeforeExpand:function(node,param){
+					 $('#__MODULE__LeftTree').tree('options').url = "__URL__/x_xGetAllRole/id/" + node.id ;
+                 },
+                onClick:function(node){
+					var node = $('#__MODULE__LeftTree').tree('getSelected');
+						$('#__MODULE__DataGrid').datagrid({
+							url:'__URL__/x_xgetTableJson/id/'+node.id,
+							queryParams:{
+								id: node.id
+							},
+							striped:true
+						});
+					if (!node.state){
+						$.messager.show({
+										title : '提示',
+										msg :"已經到最底層了",
+										showType:'show',
+										height:100,
+										width:250,
+										timeout :1000
+										});
+					};
+               }
+            });
+	});
+	
+	//點擊將左邊的角色移到右邊
+	function __MODULE__AddSelect() {
+		var rowData = $('#__MODULE__Selections').tree('getChecked');
+		//alert(rowData.length);
+		for ( var i = 0; i < rowData.length; i++) {
+			//alert(rowData[i].id);
+			//alert(rowData[i].role_name);
+			//delete rowData[i].rn;
+			//alert($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1);
+
+			if($('#__MODULE__SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#__MODULE__SeachGrid').datagrid('insertRow',{
+					index:i,
+					row:{
+						id : rowData[i].id,
+						role_name :rowData[i].text,
+						remark :rowData[i].attributes.remark,
+					}
+				});
+			}
+		}
+		$('#__MODULE__Selections').datagrid('clearChecked');
+	}
+	
+	//將右邊的角色刪除
+	function __MODULE__DelSelect(){
+		var rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+		var rowLen=rows.length;
+		if (rowLen > 0) {
+			for ( var i = 0; i < rowLen; i++) {
+				var rowIndex = $('#__MODULE__SeachGrid').datagrid('getRowIndex',rows[0]);
+				if(rowIndex>-1){
+					$('#__MODULE__SeachGrid').datagrid('deleteRow',rowIndex); 
+					rows = $('#__MODULE__SeachGrid').datagrid('getChecked');
+				}
+			}
+			$('#__MODULE__SeachGrid').datagrid('clearChecked');
+		}else{
+			$.messager.show({
+					title : '提示',
+					msg : '请勾选要删除的记录！'
+				});
+		}
+	}
+</script>
+

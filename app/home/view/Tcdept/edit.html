@@ -1,0 +1,53 @@
+<div align="center">
+    <form  id="__MODULE__EditForm" method="post" novalidate>
+    <table class="tableForm" style="white-space: nowrap;">
+		<tr>
+			<th>
+				<label>{$Think.lang.LANG_DEPT_CODE}:</label>
+			</th>
+			<td >
+				<input type="text"  class="easyui-validatebox" name="dept_code" id="dept_code" value="" required="true" /><input type="hidden" name="id"  id="id"  />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label>{$Think.lang.LANG_DEPT_NAME}:</label>
+			</th>
+			<td>
+				<input type="text" class="easyui-validatebox" style="width: 250px;" name="dept_name" id="dept_name" value=""required="true" />
+			</td>
+		</tr>
+
+        <tr>
+			<th>{$Think.lang.LANG_DEPT_PNAME}</th>
+				<td>
+                <input id="__MODULE__AddComTree" class="easyui-combotree" data-options="url:'__URL__/x_xgetDeptTree'" name="pid" style="width:200px;" />
+				</td>
+        </tr>
+		<tr>
+			<th>{$Think.lang.LANG_DEPT_COST_CODE}</th>
+			<td>
+			<input type="text" class="easyui-validatebox" style="width: 250px;" name="cost_code" id="cost_code" />
+			</td>
+        </tr>
+		<tr>
+			<th>
+				<label>{$Think.lang.LANG_STATUS}：</label>
+			</th>
+			<td>
+				<input name="status" id="__MODULE__AddStatus" class="easyui-combobox"  data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption?cusCode=status',
+								required:true,
+								editable:false,
+								onLoadSuccess : function(){
+									$(this).combobox('setValue',1);
+								},
+								panelHeight: 'auto'" />
+			</td>
+			<input type="hidden" name="dept_lnk1" >
+			<input type="hidden" name="dept_level" >
+		</tr>
+	</table>
+    </form>
+</div>

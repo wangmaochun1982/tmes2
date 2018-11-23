@@ -1,0 +1,146 @@
+<div id="__MODULE__tt" class="easyui-tabs" data-options="border:false" >
+	<div id="tab1" title="{$Think.lang.LANG_MODEL_UPTITLE}" data-options="closable:false" style="overflow:hidden;padding:0px;">
+	<form id="__MODULE__updbmForm" method="post" enctype="multipart/form-data">
+		<div style="align:center;padding-top:50px;padding-left:30px;padding-right:30px;"">
+            <table class="gridForm" style="white-space: nowrap;width:100%">
+				<!-- <tr>
+					<th>文檔格式</th>
+					<td>
+					<input id="__MODULE__UpfileType" name="upfile_type" class="easyui-combobox"
+							data-options="valueField: 'id',
+										textField: 'text',
+										required:true,
+										editable:false,
+										panelHeight:'auto',
+										onSelect : function(row){
+											$('#__MODULE__aid').show();
+											var jhref = '__PUBLIC__/Uploads/UseFormat/__MODULE__.';
+											var j_suffix;
+											if(row.text=='Excel'){
+												j_suffix ='xls';
+											}else if(row.text=='Txt'){
+												j_suffix = 'txt';
+											}
+											jhref = jhref+j_suffix;
+											$('#__MODULE__aid').attr('href',jhref );
+										},
+										onLoadSuccess : function(){
+											var data = $(this).combobox('getData');
+											if (data.length > 0) {
+												$(this).combobox('select', data[0].id);
+											}
+										},
+										url: '__URL__/x_xgetOption/cusCode/upfile_type'" />
+					</td>
+					<td colspan="2">
+					<a id="__MODULE__aid" href="" hidden target="_blank">範本格式</a>
+					</td>
+				</tr> -->
+                <tr>
+                    <td><label>選擇上傳內容</label></td>
+                    <td>
+					<input id="__MODULE__UpCode" name="up_code" class="easyui-combobox"
+							data-options="valueField: 'id',
+										textField: 'text',
+										required:true,
+										editable:false,
+										panelHeight:'auto',
+										onLoadSuccess : function(){
+											var data = $(this).combobox('getData');
+											if (data.length > 0) {
+												$(this).combobox('select', data[0].id);
+											}
+										},
+										onSelect:function(rec){
+											if(rec.id == 'cust_1'){
+												$('#__MODUEL__model_name').validatebox({  required:true  });
+												$('#__MODUEL__trmd').show();
+												$('#__MODUEL__trref').show();
+											}else{
+												$('#__MODUEL__model_name').validatebox({  required:false  });
+												$('#__MODUEL__trmd').hide();
+												$('#__MODUEL__trref').hide();
+											}
+										},
+										url: '__URL__/x_xgetUpCode'" />
+										<font color="red">根據所選內容進行更新</font>
+					</td>
+                </tr>
+				<tr id="__MODUEL__trmd">
+                    <td><label>{$Think.lang.LANG_MODEL_NAME}:</label></td>
+                    <td><input class="easyui-validatebox" id="__MODUEL__model_name" type="text" value="{$_REQUEST['model_name']=='undefined'?'':$_REQUEST['model_name']}" name="model_name" data-options="required:true" style="width:183px;"></td>
+                </tr>
+                <tr id="__MODUEL__trref">
+                    <td><label>REF說明:</label></td>
+                    <td>
+                     <input type="text" name="refname" class="easyui-validatebox">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>上傳文檔:</label></td>
+                    <td>
+                     <input type="file" name="import" id="file1">
+                    </td>
+                </tr>
+            </table>
+		</div>
+	</form>
+	</div>
+	<if condition="($_REQUEST['model_name'] eq 'undefined')">
+	<div id="__MODULE__tab2" title="{$Think.lang.LANG_MODEL_UPTITLE2}" data-options="closable:false" style="overflow:hidden;padding:0px;">
+	<form id="__MODULE__updboForm" method="post" enctype="multipart/form-data">
+		<div style="align:center;padding-top:50px;padding-left:30px;padding-right:30px;">
+            <table class="gridForm" style="white-space: nowrap;width:100%">
+				<tr>
+                    <td><label>選擇上傳內容</label></td>
+                    <td>
+					<input id="__MODULE__UpCode" name="up_code" class="easyui-combobox"
+							data-options="valueField: 'id',
+										textField: 'text',
+										required:true,
+										editable:false,
+										panelHeight:'auto',
+										onLoadSuccess : function(){
+											var data = $(this).combobox('getData');
+											if (data.length > 0) {
+												$(this).combobox('select', data[0].id);
+											}
+										},
+										onSelect:function(rec){
+											if(rec.id == 'cust_1'){
+												$('#__MODUEL__model_name').validatebox({  required:true  });
+												$('#__MODUEL__trms').show();
+												$('#__MODUEL__trrn').show();
+											}else{
+												$('#__MODUEL__model_name').validatebox({  required:false  });
+												$('#__MODUEL__trms').hide();
+												$('#__MODUEL__trrn').hide();
+											}
+										},
+										url: '__URL__/x_xgetUpCode'" />
+					</td>
+                </tr>
+                <tr id="__MODUEL__trms">
+                    <td><label>排疊:</label></td>
+                    <td><input class="easyui-validatebox" id="__MODULE__layup_no" type="text" name="layup_no" data-options="required:true" style="width:183px;"></td>
+                </tr>
+                <tr id="__MODUEL__trrn">
+                    <td><label>REF說明:</label></td>
+                    <td>
+                     <input type="text" name="refname" class="easyui-validatebox">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>上傳文檔:</label></td>
+                    <td>
+                     <input type="file" name="import" id="file2">
+                    </td>
+                </tr>
+
+            </table>
+		</div>
+	</form>
+	</div>
+	</if>
+</div>
+

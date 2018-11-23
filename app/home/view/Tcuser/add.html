@@ -1,0 +1,157 @@
+<div id="__MODULE__Tab" class="easyui-tabs" data-options="fit:true,border:false" >
+	<!-- 標籤頁 -->
+	<!-- 標籤頁1 -->
+	<div id="__MODULE__AddEmp" title="{$Think.lang.LANG_USER_TAB_ADDUSER}" style="padding:20px;">
+		<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm" style="white-space: nowrap;">
+			<tr>
+				<th style="width: 100px;">{$Think.lang.LANG_USER_U_ACCOUNT}</th>
+				<td><input name="u_account"  class="easyui-validatebox" data-options="required:true" />
+				</td>
+				<th style="width: 80px;">{$Think.lang.LANG_USER_USER_TITLE}</th>
+				<td><input name="user_title" class="easyui-validatebox" data-options="required:true" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_LOGIN_USERPASS}</th>
+				<td><input name="user_pwd" type="password" class="easyui-validatebox" data-options="required:true" />
+				</td>
+				<th>{$Think.lang.LANG_STATUS}</th>
+				<td><input name="status" id="__MODULE__AddStatus" class="easyui-combobox"  data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption?cusCode=status',
+								required:true,
+								readonly:true,
+								editable:false,
+								onLoadSuccess : function(){
+									$(this).combobox('setValue',1);
+								},
+								panelHeight: 'auto'" />
+                </td>
+
+			</tr>
+            <tr>
+				<th>{$Think.lang.LANG_USER_USER_SEX}</th>
+				<td><input name="user_sex"  class="easyui-combobox"  data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption?cusCode=sex',
+								editable:false,
+								panelHeight: 'auto'" />
+				</td>
+                <th style="width: 80px;">{$Think.lang.LANG_USER_USER_NO}</th>
+				<td><input name="emp_no" class="easyui-validatebox" data-options="validType:'Account',required:true" />
+				</td>
+
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_PHONE}</th> <!--data-options="validType:'phone'"-->
+				<td><input name="user_phone" type="text" class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_LANGSETS}</th>
+				<td>
+                <input name="lang_sets"  class="easyui-combobox"  data-options="valueField: 'lang_flag',
+								textField: 'lang_name',
+								url: '__URL__/x_xgetCgLanguage',
+								editable:false,
+								onLoadSuccess : function(){
+									$(this).combobox('setValue','zh-tw');
+								},
+								panelHeight: 'auto'" />
+				</td>
+
+			</tr>
+            <tr>
+
+                <th>{$Think.lang.LANG_USER_USER_MOBILE}</th><!-- data-options="validType:'mobile'"-->
+				<td><input name="user_mobile" type="text" class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_EMAIL}</th>
+				<td><input name="user_email" type="text" class="easyui-validatebox" data-options="validType:'email'"/>
+				</td>
+            </tr>
+            <tr>
+                <th>{$Think.lang.LANG_USER_USER_DEPT}</th>
+				<td colspan="3">
+                <input id="dpartm_id" name="dept_id" class="easyui-combotree" style="width:300px;"
+							 data-options="url:'__URL__/x_xgetDeptTree',
+										   editable:false,
+										   onLoadSuccess:function(node){
+											  var node = $(this).tree('find', 1);
+											  $(this).tree('expand',node.target);
+										   }" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_MAG}</th>
+				<td><input name="manger_code"  class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_POST}</th>
+				<td><input name="post_code" class="easyui-validatebox" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_SHOW}</th>
+				<td colspan="3"><input name="photo_url" type="file"  />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_REMARK}</th>
+				<td colspan="3"><textarea name="remark" style="width:390px;height:50px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</div>
+	<!-- 標籤頁2 -->
+	<div id="__MODULE__AddHr" title="{$Think.lang.LANG_USER_TAB_ADDFROMHR}" style="padding:20px;">
+		<form id="__MODULE__AddHrForm" method="post">
+			<table class="tableForm" style="white-space: nowrap;">
+				<tr>
+					<th style="width: 100px;">{$Think.lang.LANG_USER_USER_NO}</th>
+					<td><input name="emp_no"  class="easyui-validatebox" data-options="required:true,validType:'Account'" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">{$Think.lang.LANG_USER_USER_NOTE}</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+<script>
+	$(function () {
+		//new DatagridMethod().opt(null,$('#__MODULE__Tab').tabs('getTabIndex', $('#__MODULE__Tab').tabs('getSelected'))==0?'#__MODULE__AddForm':'#__MODULE__AddHrForm',$('#__MODULE__Tab').tabs('getTabIndex', $('#__MODULE__Tab').tabs('getSelected'))==0?"__URL__/x_xInsert":"__URL__/x_xInsertHr");
+		// tab 操作
+		var AddMetd = new DatagridMethod();
+		$('#__MODULE__Tab').tabs({
+			onSelect: function(title, index){
+				var btnSave = new DatagridMethod().getBtnSave();
+				var btnCount = new DatagridMethod().getBtnSave();
+				$(btnSave).linkbutton({
+					onClick: function(){
+						__MODULE__FormSub();
+					}
+				});
+				$(btnCount).linkbutton({
+					onClick: function(){
+						__MODULE__FormSub();
+					}
+				});
+			}
+		});
+    });
+    function __MODULE__FormSub(){
+    	var index = $('#__MODULE__Tab').tabs('getTabIndex', $('#__MODULE__Tab').tabs('getSelected'));
+    	if (index==0){
+    		var opt_formId = '#__MODULE__AddForm';
+    		var opt_url = '__URL__/x_xInsert';
+    	}else{
+    		var opt_formId = '#__MODULE__AddHrForm';
+    		var opt_url = '__URL__/x_xInsertHr';
+    	}
+		var diaId  = '#' + getModule() + 'DiaLog';		// dialog ID 選擇器
+    	formSubmit(opt_formId, opt_url, function(res){
+						$('#__MODULE__DataGrid').datagrid('reload');
+					});
+    }
+</script>

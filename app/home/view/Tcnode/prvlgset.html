@@ -1,0 +1,379 @@
+<div id="{$Request.controller}SetAppoint" class="easyui-tabs"  style="width:auto;height:494px;" data-options="onSelect:{$Request.controller}TabSelectFun" >
+	<div title="{$Think.lang.LANG_NODE_HVROLE}" class="easyui-layout" data-options="fit:true,border:false">
+		<div data-options="region:'center',border:false,title:'{$Think.lang.LANG_NODE_HVROLE}'" style="height:460px">
+			<table class="easyui-datagrid" id="{$Request.controller}ExtendGrig"
+				data-options="
+					url:'{:url('Xxroleactionlist')}',
+					queryParams :{ node_id:'{$Request.param.node_id}' },
+					fit : true,
+					border : false,
+					rownumbers:true,
+					pagination : true,
+					idField : 'id',
+					pageSize :15,
+					pageList : [15,20,30,40,50],
+					sortName : 'role_name',
+					sortOrder : 'asc',
+					checkOnSelect : true,
+					selectOnCheck : true,
+					toolbar:'#{$Request.controller}ExtendTool',
+					nowrap : true,
+					singleSelect:false">
+				<thead>
+					<tr>
+						<th data-options="field:'role_name',width:100">{$Think.lang.LANG_NODE_ROLENAME}</th>
+						<volist id="columnList" name="columnList">
+						<th data-options="field:'{$columnList.remark}',width:100">{$columnList.remark}</th>
+					    </volist>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+	</div>
+	{if condition="$Request.param.nodeType eq '2'"}
+	<div title="{$Think.lang.LANG_NODE_NDAP}" data-options="border:false" style="width:auto;height:490px" >
+		<div class="easyui-layout" data-options="fit:true,border:false" >
+			<div data-options="region:'west',title:'{$Think.lang.LANG_NODE_NHVACTION}'" style="width:410px;height:400px; padding:1px">
+				<table id="{$Request.controller}ActionLeftGrid" style="height:400px;"
+									data-options="
+									url:'{:url('/home/Tcaction/Xxgettablejson')}',
+					                queryParams :{ node_lnk:1,node_id:'{$Request.param.node_id}' },
+									fit : true,
+									//border : false,//定义边框
+									//pagination : true,//定义分页组件
+									//pageSize : 100,
+									//pageList : [100,200,500],
+									remoteFilter: false,//不使用後臺查找
+									rownumbers:true,
+									sortName : 'action_code',
+									sortOrder : 'asc',
+									checkOnSelect : true,//选择checkbox则选择行
+									selectOnCheck : true,//选择行则选择checkbox
+									striped:true ">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+							<th data-options="field:'action_code',width:100">{$Think.lang.LANG_NODE_ACTIONCODE}</th>
+							<th data-options="field:'lang_value',width:100">{$Think.lang.LANG_NODE_ACTIONNAME}</th>
+							<th data-options="field:'remark',width:130">{$Think.lang.LANG_REMARK}</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div data-options="region:'east',border:false,title:'{$Think.lang.LANG_NODE_HVACTION}'" style="width:410px;height:420px; padding:1px" >
+				<table class="easyui-datagrid" id="{$Request.controller}ActionRightGrid" style="height:410px;"
+								data-options="
+									idField : 'id',
+									url:'{:url('/home/Tcaction/Xxgettablejson')}',
+					                queryParams :{ node_lnk:2,node_id:'{$Request.param.node_id}' },
+									fit : true,
+									rownumbers:true,
+									sortName : 'action_code',
+									checkOnSelect : true,//选择checkbox则选择行
+									selectOnCheck : true">
+						<thead>
+							<tr>
+								<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+								<th data-options="field:'action_code',width:100">{$Think.lang.LANG_NODE_ACTIONCODE}</th>
+								<th data-options="field:'lang_value',width:100">{$Think.lang.LANG_NODE_ACTIONNAME}</th>
+								<th data-options="field:'remark',width:130">{$Think.lang.LANG_REMARK}</th>
+							</tr>
+						</thead>
+					</table>
+			</div>
+			<div data-options="region:'center'" style="width:50px;height:390px" >
+				<div style="padding-top:100px" align="center" >
+					<a href="javascript:void(0);" class="easyui-linkbutton" onclick="{$Request.controller}AddAction('{$Request.controller}ActionLeftGrid','{$Request.controller}ActionRightGrid');" data-options="iconCls:'icon-forward',iconAlign:'bottom'">add</a>
+				 </div>
+				<div style="padding-top:100px" align="center" >
+					<a href="javascript:void(0);" class="easyui-linkbutton" onclick="{$Request.controller}AddAction('{$Request.controller}ActionRightGrid','{$Request.controller}ActionLeftGrid');" data-options="iconCls:'icon-backward',iconAlign:'bottom'">&nbsp;del&nbsp;</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
+	<div title="{$Think.lang.LANG_NODE_ROLEAP}" data-options="border:false" style="width:auto;height:490px" >
+		<div class="easyui-layout" data-options="fit:true,border:false" >
+			<div data-options="region:'west',border:false,title:'{$Think.lang.LANG_NODE_ACTIONLIST}'" style="width:200px;height:420px; padding:1px" >
+				<table class="easyui-datagrid" id="{$Request.controller}ActionGrid" style="height:410px;"
+							data-options="
+								url:'{:url('/home/Tcaction/Xxgettablejson')}',
+					            queryParams :{ node_lnk:2,node_id:'{$Request.param.node_id}' },
+								fit : true,
+								border : false,
+								rownumbers:true,
+								pagination : false,
+								idField : 'id',
+								pageSize :15,
+								pageList : [15,20,30,40,50],
+								sortName : 'action_code',
+								sortOrder : 'asc',
+								checkOnSelect : true,
+								selectOnCheck : true,
+								nowrap : true,
+								singleSelect:false,
+								onSelect:{$Request.controller}ReGetRole,
+								onUnselect:{$Request.controller}ReGetRole">
+					<thead>
+						<tr>
+							<th data-options="field:'id',width:20,checkbox:true" sortable="true">ID</th>
+							<th data-options="field:'remark',width:130">{$Think.lang.LANG_REMARK}</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div data-options="region:'center',border:false" style="width:410px;height:420px; padding:1px" >
+				<div class="easyui-layout" data-options="fit:true,border:false" >
+					<div data-options="title:'{$Think.lang.LANG_NODE_HAB}',region:'west'" style="width:240px;padding:0px">
+						 <ul id="{$Request.controller}DepartmentTree"></ul>
+					</div>
+					<div data-options="region:'center'" style="width:400px;">
+						<div class="easyui-layout" data-options="fit:true,border:false" >
+							<div data-options="region:'north'" style="height:210px;">
+								<table class="easyui-datagrid" id="{$Request.controller}RoldGrid" data-options="
+									url:'{:url('Xxgetpartrole')}',
+									title:'{$Think.lang.LANG_NODE_ROLELIST}',
+									fit : true,
+									border : false,
+									rownumbers:true,
+									pagination : false,
+									idField : 'id',
+									pageSize :10,
+									pageList : [10,15,20,30,40,50],
+									sortName : 'id',
+									sortOrder : 'asc',
+									checkOnSelect : true,
+									selectOnCheck : true,
+									nowrap : true,
+									singleSelect:false
+								">
+									<thead>
+										<th data-options="field:'id',checkbox:true,width:50">編號</th>
+										<th data-options="field:'name',width:80">{$Think.lang.LANG_NODE_ROLENAME}</th>
+										<th data-options="field:'org_code',width:100,hidden:true">{$Think.lang.LANG_NODE_DEPT}ID</th>
+										<th data-options="field:'dept_name',width:200">{$Think.lang.LANG_NODE_DEPT}</th>
+										<th data-options="field:'remark',width:100">{$Think.lang.LANG_REMARK}</th>
+									</thead>
+								</table>
+							</div>
+							<div data-options="region:'center'" style="width:400px;" align="center">
+								<a href="javascript:void(0);" class="easyui-linkbutton" onclick="{$Request.controller}AddAction('{$Request.controller}RoldGrid','{$Request.controller}RoldAppoint');" data-options="iconCls:'icon-downward',iconAlign:'bottom'"></a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="javascript:void(0);" class="easyui-linkbutton" onclick="{$Request.controller}AddAction('{$Request.controller}RoldAppoint','{$Request.controller}RoldGrid');" data-options="iconCls:'icon-upward',iconAlign:'bottom'"></a>
+							</div>
+							<div data-options="region:'south'" style="height:210px;">
+								<table class="easyui-datagrid" id="{$Request.controller}RoldAppoint" data-options="fit:true">
+									<thead>
+										<th data-options="field:'id',checkbox:true,width:50">編號</th>
+										<th data-options="field:'name',width:80">{$Think.lang.LANG_NODE_ROLENAME}</th>
+										<th data-options="field:'org_code',width:100,hidden:true">{$Think.lang.LANG_NODE_DEPT}ID</th>
+										<th data-options="field:'dept_name',width:200">{$Think.lang.LANG_NODE_DEPT}</th>
+										<th data-options="field:'remark',width:100">{$Think.lang.LANG_REMARK}</th>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	//組織+角色的樹
+	 $(function(){
+		$('#{$Request.controller}Selections').tree({
+                 checkbox: true,
+                 animate:true,
+                 lines:true,
+				 onlyLeafCheck:true,
+                 url: '{:url('XxGetAllRole')}',
+            });
+			var dg = $('#{$Request.controller}ActionLeftGrid').datagrid();
+			dg.datagrid('removeFilterRule');
+			dg.datagrid('enableFilter',[{field:'action_code',
+						 type:'text'
+						},
+						{field:'lang_value',
+						 type:'text'
+						},
+						{field:'remark',
+						 type:'text'
+						}
+			]);
+		$('#{$Request.controller}DepartmentTree').tree({
+			checkbox: false,
+			animate:true,
+			lines:true,
+			url: '{:url('XxgetDeptTree')}',
+			onClick:function(node){
+				var node_id ='{$node_id}';
+				var actionArr = [];
+				var actionRows = $('#{$Request.controller}ActionGrid').datagrid('getChecked');
+				var org = $('#{$Request.controller}DepartmentTree').tree('getSelected');
+				for ( var i = 0; i < actionRows.length; i++) {
+					actionArr.push(actionRows[i].id);
+				}
+				$('#{$Request.controller}RoldGrid').datagrid({
+				    url: '{:url('XxgetPartRole')}',
+					queryParams:{
+						id: node_id,
+						orgCode: org.id,
+						actionList:actionArr
+					},
+					striped:true
+				});
+		    }
+		});
+	});
+	function {$Request.controller}ReGetRole(){
+		var node_id ='{$node_id}';
+		var actionArr = [];
+		var orgId=1;
+		var actionRows = $('#{$Request.controller}ActionGrid').datagrid('getChecked');
+		var org = $('#{$Request.controller}DepartmentTree').tree('getSelected');
+		for ( var i = 0; i < actionRows.length; i++) {
+			actionArr.push(actionRows[i].id);
+		}
+		if (org!=null) orgId=org.id;
+		$('#{$Request.controller}RoldGrid').datagrid({
+			url: '{:url('XxgetPartRole')}',
+			queryParams:{
+				id: node_id,
+				orgCode: orgId,
+				actionList:actionArr
+			},
+			striped:true
+		});
+		$('#{$Request.controller}RoldAppoint').datagrid({
+			url: '{:url('XxgetRoleAppoint')}',
+			queryParams:{
+				id: node_id,
+				actionList:actionArr
+			},
+			striped:true
+		});
+	};
+	//點擊將左邊的角色移到右邊
+	function {$Request.controller}AddSelect() {
+		var rowData = $('#{$Request.controller}Selections').tree('getChecked');
+		//alert(rowData.length);
+		for ( var i = 0; i < rowData.length; i++) {
+			//alert(rowData[i].id);
+			//alert(rowData[i].role_name);
+			//delete rowData[i].rn;
+			//alert($('#{$Request.controller}SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1);
+
+			if($('#{$Request.controller}SeachGrid').datagrid('getRowIndex',rowData[i].id)==-1){
+				$('#{$Request.controller}SeachGrid').datagrid('insertRow',{
+					index:i,
+					row:{
+						id : rowData[i].id,
+						role_name :rowData[i].text,
+						remark :rowData[i].attributes.remark,
+					}
+				});
+			}//$('#{$Request.controller}Selections').tree('remove', rowData[i].target);
+		}
+		$('#{$Request.controller}Selections').datagrid('clearChecked');
+	}
+
+	//將右邊的角色刪除
+	function {$Request.controller}DelSelect(){
+		var rows = $('#{$Request.controller}SeachGrid').datagrid('getChecked');
+		var rowLen=rows.length;
+		if (rowLen > 0) {
+			for ( var i = 0; i < rowLen; i++) {
+				var rowIndex = $('#{$Request.controller}SeachGrid').datagrid('getRowIndex',rows[0]);
+				if(rowIndex>-1){
+					$('#{$Request.controller}SeachGrid').datagrid('deleteRow',rowIndex);
+					rows = $('#{$Request.controller}SeachGrid').datagrid('getChecked');
+				}
+			}
+			$('#{$Request.controller}SeachGrid').datagrid('clearChecked');
+		}else{
+			$.messager.show({
+					title : '{$Think.lang.LANG_TIPS}',
+					msg : '{$Think.lang.LANG_DEL_CONFIRM}'
+				});
+		}
+	}
+
+	function {$Request.controller}Action(value,row,index){
+		//alert(row.frole_id);
+		//alert(row.brole_id);
+		var d = "<a href=\"javascript:void(0);\" onclick=\"{$Request.controller}Step('"+row.id+"','"+row.node_id+"')\">"+'{$Think.lang.LANG_CANCEL}'+"</a>";
+		return d;
+	}
+	function {$Request.controller}Step(role_id,node_id){
+		//alert(role_id);
+		//alert(node_id);
+		$.ajax({
+			url: '{:url('Xxcancelappoint')}',
+			type:'post',
+			data:{role_id:role_id,node_id:node_id},
+			dataType:'json',
+			success:function(r){
+				if(r.status==1){
+					$('#{$Request.controller}ExtendGrig').datagrid('reload');
+					$('#{$Request.controller}ReExtendGrig').datagrid('reload');
+					$.messager.show({
+						title:'{$Think.lang.LANG_TIPS}',
+						msg:r.info
+					});
+				}else{
+					$.messager.show({
+						title:'{$Think.lang.LANG_TIPS}',
+						msg:r.info
+					});
+				}
+			}
+		});
+
+	}
+	function {$Request.controller}AddAction(t1,t2) {
+		var j_id1='#'+t1;
+		var j_id2='#'+t2;
+		var rowData = $(j_id1).datagrid('getChecked');
+		var rowLen=rowData.length;
+        //console.info(rowData);
+		//var rowDiff = [];
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $(j_id1).datagrid('getRowIndex',rowData[0]);
+            //alert(rowData[0].rn);
+			if($(j_id2).datagrid('getRowIndex',rowData[0].id)==-1){
+				$(j_id2).datagrid('insertRow',{row:rowData[0]});
+				//rowDiff.push(rowData[0].id);
+			}
+			$(j_id1).datagrid('deleteRow',rowIndex);
+			rowData = $(j_id1).datagrid('getChecked');
+		}
+	}
+	//將右邊的角色刪除
+	function {$Request.controller}DelAction(){
+		var rowData = $('#{$Request.controller}ActionRightGrid').datagrid('getChecked');
+		var rowLen=rowData.length;
+		for ( var i = 0; i < rowLen; i++) {
+			var rowIndex = $('#{$Request.controller}ActionRightGrid').datagrid('getRowIndex',rowData[0].id);
+			$('#{$Request.controller}ActionRightGrid').datagrid('deleteRow',rowIndex);
+			rowData = $('#{$Request.controller}ActionRightGrid').datagrid('getChecked');
+		}
+		$('#{$Request.controller}ActionRightGrid').datagrid('clearChecked');
+	}
+	function {$Request.controller}AddActionSearchFun(j_search,j_grid) {
+		var j_txt = $('#'+j_search).val();
+		//alert(j_txt);
+		$('#'+j_grid).datagrid('reload', {sear_code: j_txt});
+	}
+
+	function {$Request.controller}TabSelectFun(title,index){
+		if(title=='{$Think.lang.LANG_NODE_HVROLE}'){
+			$('#{$Request.controller}ApSave').hide();
+		}else{
+			//$('#{$Request.controller}ApSave>span>span:nth-child(1)').html("{$Think.lang.LANG_SAVE}");
+			$('#{$Request.controller}ApSave').show();
+		}
+	}
+</script>
+

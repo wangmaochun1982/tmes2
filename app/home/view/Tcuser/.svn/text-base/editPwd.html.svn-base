@@ -1,0 +1,33 @@
+<div align="center">
+	<form id="__MODULE__EditPwdForm" method="post">
+      <input type="hidden" name="user_pwd" />
+		<table class="tableForm">
+			<tr>
+				<th>编号</th>
+				<td><input name="id" readonly="readonly" /></td>
+			</tr>
+            <tr>
+				<th>用户账户</th>
+				<td><input name="u_account" disabled="disabled" /></td>
+			</tr>
+            <tr>
+				<th>用户姓名</th>
+				<td><input name="user_title" disabled="disabled" /></td>
+			</tr>
+			<tr>
+				<th>員工卡號</th>
+				<td><input name="emp_no" disabled="disabled" /></td>
+			</tr>
+			<tr>
+				<th>新密码</th>
+				<td><input type="password" name="new_pwd" class="easyui-validatebox" data-options="required:true" style="width: 150px;" />
+				</td>
+			</tr>
+            <tr>
+				<td colspan="2">
+                注意：新密码修改成功后，用户下次登录即可生效。
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

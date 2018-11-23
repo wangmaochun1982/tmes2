@@ -1,0 +1,62 @@
+<div align="center">
+<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm" style="width: 100%;">
+			<tr>
+				<th>{$Think.lang.LANG_ROLE_ROLETYPE}</th>
+				<td><input  name="role_type2" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type2',
+								panelHeight: 'auto'" /></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_ROLE_ROLELAT}</th>
+				<td><input  name="role_type3" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type3',
+								panelHeight: 'auto'" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_ROLE_DEPTNAME}</th>
+				<td>
+					<input name="dept_id" class="easyui-combotree"  style="width:220px"
+						data-options="url:'__URL__/x_xgetDeptTree',
+									  required:true,
+									  editable:false,
+									 onLoadSuccess:function(node){
+										var node = $(this).tree('find', 1);
+										$(this).tree('expand',node.target);
+									 }" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_ROLE_ROLENAME}</th>
+				<td><input name="role_name" class="easyui-validatebox" data-options="required:true" />
+				</td>
+            </tr>
+			<tr>
+				<th>{$Think.lang.LANG_STATUS}</th>
+				<td><input  name="status" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								readonly:true,
+								url: '__URL__/x_xgetOption/cusCode/status',
+								onLoadSuccess : function(){
+									$(this).combobox('setValue',1);
+								},
+								panelHeight: 'auto'" />
+				</td>
+
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_REMARK}</th>
+				<td colspan="3"><textarea name="remark" style="width:250px;height:80px;"></textarea>
+				</td>
+			</tr>
+		</table>
+</form>
+</div>

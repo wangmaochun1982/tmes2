@@ -1,0 +1,452 @@
+<div id="{$Request.controller}PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div data-options="title:'{$Think.lang.LANG_NODE_TITLE_MENUTREE}',border:false,region:'west',split:true,hideCollapsedContent:false" style="width:240px;padding:0px">
+		 <ul id="{$Request.controller}LeftTree"></ul>
+	</div>
+	<div id="{$Request.controller}NodeChild" data-options="region:'center',border:false">
+		<table id="{$Request.controller}DataGrid"></table>
+	</div>
+	<div id="{$Request.controller}DiaLog"></div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$('#{$Request.controller}DataGrid').datagrid({
+			url : '{:url('XxgetTableJson')}',
+			fit : true,
+			//fitColumns : true,
+			border : false,
+            rownumbers:true,
+			pagination : true,
+			idField : 'id',
+			pageSize :20,
+			pageList : dg_pageList,
+			sortName : 'id',
+			sortOrder : 'asc',
+			checkOnSelect : true,
+			selectOnCheck : true,
+			nowrap : true,
+            striped:true,
+			singleSelect:true,
+            autoRowHeight:false,
+			frozenColumns : [ [ {
+				field : 'id',
+				title : '{$Think.lang.LANG_NODE_ID}',
+				width : 0,
+				checkbox : true
+			}, {
+				field : 'node_name',
+				title : '{$Think.lang.LANG_NODE_NAME}',
+				width : 0,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'lang_code',
+				title : '{$Think.lang.LANG_NODE_LANGCODE}',
+				width : 0,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			}, {
+				field : 'node_code',
+				title : '{$Think.lang.LANG_NODE_CODE}',
+				width : 0,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			} ] ],
+			columns : [ [{
+				field : 'pname',
+				title : '{$Think.lang.LANG_NODE_PNAME}',
+				width : 0,
+                sortable : true
+			},{
+				field : 'node_level',
+				title : '{$Think.lang.LANG_NODE_LEVEL}',
+				sortable : true,
+				width : 0,
+                align: 'center'
+			},{
+				field : 'action_lang',
+				title : '{$Think.lang.LANG_NODE_ACTION}',
+				sortable : true,
+				width : 0,
+                align: 'center',
+                formatter: function(value,row,index){
+					if (row.node_type==2){
+						return '<font color=red>'+value+'</font>';
+					}else{
+						return '<font color=blue>'+value+'</font>';
+					}
+				}
+			},{
+				field : 'ismenu_lang',
+				title : '{$Think.lang.LANG_NODE_ISMENU}',
+				width : 0,
+                align: 'center',
+				formatter: function(value,row,index){
+					if (row.ismenu==0){
+						return '<font color=red>'+value+'</font>';
+					}else{
+						return value;
+					}
+				}
+			},{
+				field : 'isshow_lang',
+				title : '{$Think.lang.LANG_NODE_ISSHOW}',
+				width : 0,
+                align: 'center',
+				formatter: function(value,row,index){
+					if (row.ismenu==0){
+						return '<font color=red>'+value+'</font>';
+					}else{
+						return value;
+					}
+				}
+			},  {
+				field : 'node_sort',
+				title : '{$Think.lang.LANG_NODE_SORT}',
+                align: 'center'
+			},  {
+				field : 'node_icon',
+				title : '{$Think.lang.LANG_NODE_ICON}',
+				sortable : true,
+				width : 0,
+                align: 'center'
+			},  {
+				field : 'status',
+				title : '{$Think.lang.LANG_STATUS}',
+				sortable : true,
+				width : 0,
+                align: 'center',
+				formatter: formatStatus
+			},  {
+				field : 'remark',
+				title : '{$Think.lang.LANG_REMARK}',
+				sortable : true,
+				width : 0
+			},{
+				field:'pid',
+				title:'父ID',
+				hidden:true
+			},{
+				field:'node_type',
+				title:'{$Think.lang.LANG_NODE_ACTION}',
+				hidden:true
+			},{
+				field:'ismenu',
+				title:'{$Think.lang.LANG_NODE_ISMENU}',
+				hidden:true
+			} ] ],
+			toolbar : [ {
+				text : '{$Think.lang.LANG_ADD}',
+				iconCls : 'icon-add',
+				handler : function() {
+					{$Request.controller}AddFun();
+				}
+			}, '-',{
+				text : '{$Think.lang.LANG_DEL}',
+				iconCls : 'icon-delete',
+				handler : function() {
+					{$Request.controller}DeleteFun();
+				}
+			}, '-',{
+				text : '{$Think.lang.LANG_EDIT}',
+				iconCls : 'icon-edit',
+				handler : function() {
+					{$Request.controller}EditFun();
+				}
+			}, '-',{
+				text :'{$Think.lang.LANG_APPOINT}',
+				iconCls :'icon-group_gear',
+				handler : function(){
+					{$Request.controller}PrvlgSetFun();
+				}
+			} , '-',{
+				text : '{$Think.lang.LANG_NODE_BTN_AUTOLEVEL}',
+				iconCls : 'icon-control_equalizer',
+				handler : function() {
+					{$Request.controller}AutoLevelFun();
+				}
+			}]
+		});
+
+        $('#{$Request.controller}LeftTree').tree({
+                 checkbox: false,
+                 animate:true,
+                 lines:true,
+                 url : '{:url('Xxgetnodetree')}',
+                 queryParams : { node_type:1 },
+				 onLoadSuccess:function(node){
+					var node = $('#{$Request.controller}LeftTree').tree('find', 1);
+				 	//console.log(node)
+					$('#{$Request.controller}LeftTree').tree('expand',node.target);
+				 },
+                onClick:function(node){
+				var node = $('#{$Request.controller}LeftTree').tree('getSelected');
+				$('#{$Request.controller}DataGrid').datagrid('unselectAll');
+                $('#{$Request.controller}DataGrid').datagrid('loadData', { total: 0, rows: [] });
+				$('#{$Request.controller}DataGrid').datagrid({
+					url : '{:url('XxgetTableJson')}',
+					queryParams:{
+						id: node.id,
+                        pid: node.id
+					}
+				});
+               }
+            });
+
+	});
+
+    function {$Request.controller}CheckNodeFun(){
+        $.messager.progress({
+            title:'{$Think.lang.LANG_NODE_TITLE_AUTOUP}',
+            msg:'{$Think.lang.LANG_NODE_MSG1}'
+        });
+        $.ajax({
+            type:"post",
+            url : '{:url('XxCheckNodeName')}',
+            dataType:"html",
+            data:"a=0",
+            success:function(htmlVal){
+                $.messager.progress('close');
+                $.messager.alert('{$Think.lang.LANG_TIPS}', htmlVal);
+                $('#{$Request.controller}DataGrid').datagrid('reload');
+				$('#{$Request.controller}LeftTree').tree('reload');
+            }
+        });
+    }
+
+    function {$Request.controller}AutoLevelFun(){
+        $.messager.progress({
+            title:'{$Think.lang.LANG_NODE_BTN_AUTOLEVEL}',
+            msg:'{$Think.lang.LANG_NODE_MSG1}'
+        });
+        $.ajax({
+            type:"post",
+            url : '{:url('XxAutoLevelId')}',
+            dataType:"html",
+            data:"a=0",
+            success:function(htmlVal){
+                $.messager.progress('close');
+                $.messager.alert('{$Think.lang.LANG_TIPS}', htmlVal);
+                $('#{$Request.controller}DataGrid').datagrid('reload');
+				$('#{$Request.controller}LeftTree').tree('reload');
+            }
+        });
+    }
+ 
+	//新增
+	function {$Request.controller}AddFun() {
+		new DatagridMethod().show('add', '580', '350', '{$Think.lang.LANG_ADD}');
+	}
+	// 編輯
+	function {$Request.controller}EditFun(){
+		if(isChecked('#{$Request.controller}DataGrid', 0)){
+			var rows= $('#{$Request.controller}DataGrid').datagrid('getChecked');
+			new DatagridMethod().show('edit', '600px', '350px','{$Think.lang.LANG_EDIT}-'+rows[0].node_name).opt({},"#{$Request.controller}EditForm");
+		}
+	}
+
+	function {$Request.controller}DeleteFun(id) {
+		if (id != undefined) {
+			$('#{$Request.controller}DataGrid').datagrid('select', id);
+		}
+		var node = $('#{$Request.controller}DataGrid').datagrid('getSelected');
+		if (node) {
+			$.messager.confirm('{$Think.lang.LANG_TIPS}', '{$Think.lang.LANG_NODE_ASKMSG}:' + node.title + '？', function(b) {
+				if (b) {
+					$.ajax({
+						url : '{:url('delete')}',
+						data : {
+							id : node.id
+						},
+						cache : false,
+						dataType : 'JSON',
+						success : function(r) {
+							if (r.status) {
+								//$('#{$Request.controller}DataGrid').datagrid('remove', r.data.id);
+								$('#{$Request.controller}LeftTree').tree('reload');
+								$('#{$Request.controller}DataGrid').datagrid('reload');//这里的reload是重新加载所有数据，而remove是根据id移除一条数据
+							}
+							$.messager.show({
+								msg : r.info,
+								title : '{$Think.lang.LANG_TIPS}'
+							});
+						}
+					});
+				}
+			});
+		}
+	}
+	// Add By 
+	function {$Request.controller}PrvlgSetFun()
+	{
+		var rows = $('#{$Request.controller}DataGrid').datagrid('getChecked');
+	
+		if(rows.length == 0){
+			$.messager.show({
+				title:'{$Think.lang.LANG_TIPS}',
+				msg:'{$Think.lang._NO_SELECT_ERROR_}'
+			});
+		}else if(rows.length > 1){
+			 $('#{$Request.controller}DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+				$.messager.show({
+					title: '{$Think.lang.LANG_TIPS}',
+					msg: '{$Think.lang._SELECT_ERROR_}'
+				});
+
+		}else{
+			
+			$('<div/>').dialog({
+				href : '{:url('prvlgSet')}',
+				queryParams : { node_id:rows[0].id,nodeType:rows[0].node_type },
+				width : 900,
+				height : 580,
+				modal : true,
+				//maximizable:true,
+				//maximized:true,
+				title : '{$Think.lang.LANG_APPOINT}:'+rows[0].id+':'+rows[0].node_code+':'+rows[0].node_name,
+				id : '{$Request.controller}prvlgDia',
+				buttons : [ {
+					text : '{$Think.lang.LANG_SAVE}',
+					id : '{$Request.controller}ApSave',
+					iconCls : 'icon-filesave',
+					handler : function() {
+						var roleList = [];
+						//節點操作指派不是每次都會出現, 故用標題來定點TAB
+						var vTitle = $('#{$Request.controller}SetAppoint').tabs('getSelected').panel('options').title;
+						//var index = $('#{$Request.controller}SetAppoint').tabs('getTabIndex', $('#{$Request.controller}SetAppoint').tabs('getSelected'));
+						//每個TAB設定參數
+						var j_action,j_roleStr,j_actionStr;
+						switch (vTitle){
+							case '{$Think.lang.LANG_NODE_NDAP}':
+								j_action="XxNodeActionInsert";
+								var rowData  = $('#{$Request.controller}ActionRightGrid').datagrid('getRows','id');//全部
+								var actionArr = [];
+								for ( var i = 0; i < rowData.length; i++) {
+									actionArr.push(rowData[i].id);
+								}
+								j_actionStr= actionArr.join(',');
+								break;
+							case '{$Think.lang.LANG_NODE_ROLEAP}':
+								j_action="XxNodeRoleInserts";
+								var actionsData  = $('#{$Request.controller}ActionGrid').datagrid('getChecked');
+								var actionArr = [];
+								for ( var i = 0; i < actionsData.length; i++) {
+									actionArr.push(actionsData[i].id);
+								}
+								j_actionStr= actionArr.join(',');
+								var roleData  = $('#{$Request.controller}RoldAppoint').datagrid('getRows','id');//全部
+								var roleArr = [];
+								for ( var i = 0; i < roleData.length; i++) {
+									roleArr.push(roleData[i].id);
+								}
+								j_roleStr= roleArr.join(',');
+								break;
+						}
+						$.ajax({
+								type : 'post',
+								url : '{:url('+j_action+')}',
+								data:{nodeId:rows[0].id,pid:rows[0].pid,level:rows[0].node_level,actionData:j_actionStr,roleData:j_roleStr},
+								dataType :'json',
+								success :function(res){
+									if(res.status == 1){
+										$.messager.show({
+											title : '{$Think.lang.LANG_TIPS}',
+											msg : res.info
+										});
+									}else{
+										$.messager.show({
+										title : '{$Think.lang.LANG_TIPS}',
+										msg :res.info,
+										});
+									}
+									$('#{$Request.controller}ExtendGrig').datagrid('reload');
+									$('#{$Request.controller}Selections').tree('reload');
+								}
+						});
+					}
+				},{
+					text:'{$Think.lang.LANG_CLOSE}',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#{$Request.controller}PrvlgDia').dialog('destroy');
+					}
+				} ],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}
+	function {$Request.controller}AppointRole()
+	{
+		var rows = $('#{$Request.controller}DataGrid').datagrid('getChecked');
+		if(rows.length == 0){
+			$.messager.show({
+				title:'{$Think.lang.LANG_TIPS}',
+				msg:'{$Think.lang._NO_SELECT_ERROR_}'
+			});
+		}else if(rows.length > 1){
+			 $('#{$Request.controller}DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+				$.messager.show({
+					title: '{$Think.lang.LANG_TIPS}',
+					msg: '{$Think.lang._SELECT_ERROR_}'
+				});
+
+		}else{
+			$('<div/>').dialog({
+				href : '{:url('setNodeRole')}',
+				queryParams : { nodeId:rows[0].id },
+				width : 700,
+				height : 600,
+				modal : true,
+				title : '{$Think.lang.LANG_NODE_ROLESET}- '+rows[0].title,
+				id : '{$Request.controller}ApointDia',
+				buttons : [{
+					text : '{$Think.lang.LANG_SAVE}',
+					iconCls : 'icon-filesave',
+					handler : function() {
+						var roleList = [];
+						//指派角色的數據
+							$('#{$Request.controller}SeachGrid').datagrid('checkAll');
+							roleList  = $('#{$Request.controller}SeachGrid').datagrid('getChecked');
+
+							$.ajax({
+								type : 'post',
+								url : '{:url('XxNodeRoleInsert')}',
+								data:{nodeId:rows[0].id,pid:rows[0].pid,level:rows[0].node_level,role:roleList},
+								dataType :'json',
+								success :function(res){
+											//alert(O2String(res));
+									if(res.status == 1){
+										$.messager.show({
+											title : '{$Think.lang.LANG_TIPS}',
+											msg : res.info
+										});
+									}else{
+										$.messager.show({
+										title : '{$Think.lang.LANG_TIPS}',
+										msg :res.info,
+										});
+									}
+								}
+							});
+					}
+				},{
+					text:'{$Think.lang.LANG_CLOSE}',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#{$Request.controller}ApointDia').dialog('destroy');
+					}
+				}],
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+		}
+	}
+</script>

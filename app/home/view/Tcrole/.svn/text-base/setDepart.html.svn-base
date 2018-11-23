@@ -1,0 +1,32 @@
+<div >
+	<form id="__MODULE__SetDepart" name="__MODULE__SetDepart" method="post">
+		<table id="tableForm" name="tableForm">
+			
+			<tr>
+				<th>部門名</th>
+				<td><input id="org_name" name="org_name" class="easyui-validatebox" ></td>
+			</tr>
+			<tr>
+				<th>成本中心代碼</th>
+				<td><input id="org_code" name="org_code" class="easyui-validatebox"></td>
+			</tr>
+			<tr>
+				<th>角色名</th>
+				<td><select id="role_name" name="role_name" class="easyui-combotree" url="__URL__/x_xgetRole" style="width:180px" ></select></td>
+			</tr>
+			<tr>
+				<th>状态</th>
+				<td><select name="status">  
+				    <option value="1">可用</option>  
+				    <option value="0">禁用</option> 
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<th>备注</th>
+				<td colspan="3"><textarea name="remark" style="width:250px;height:80px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

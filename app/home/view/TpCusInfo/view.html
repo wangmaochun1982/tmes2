@@ -1,0 +1,205 @@
+﻿<div id="wyctest" data-options="region:'center'" title="Main Title" style="overflow:hidden;" >  
+    <div class="easyui-tabs" data-options="border:false" style="overflow:hidden;height:520px;">  
+		<div title="基礎信息" >  
+			<br>
+			<table class="tableForm" style="width: 60%;min-width:500px;">
+				<tr>
+					<th style="width: 20%;">客戶編號</th>
+					<td style="width: 200px;">
+					{$vo[0].cus_code}
+					</td>
+					<td rowspan="4" style="width: 200px;">
+					<a class="example-image-link" href="/Public/Uploads/UserPhoto/{$vo[0].organization}" data-lightbox="example-1"><img class="example-image" src="/Public/Uploads/UserPhoto/_200{$vo[0].organization}" alt="thumb-1" width="150" height="150"/></a>
+					</td> 				
+				</tr>
+				<tr>
+					<th>客戶全稱</th>
+					<td>{$vo[0].cus_full_name}
+					</td>
+				</tr>
+				<tr>
+					<th>客戶名稱(簡稱)</th>
+					<td>{$vo[0].cus_name}
+					</td>
+				</tr>
+				<tr>
+					<th>Logo</th>
+					<td  colspan="2">
+						<php> for($i=0;$i<$num;$i++){
+								if(!empty($logo[$i])){
+									echo '<img src="/Public/Uploads/UserPhoto/m_'.$logo[$i].'" />';
+								}
+							}
+						</php> 
+					</td>
+				</tr>
+				<tr>
+					<th>公司網站</th>
+					<td  colspan="2"><a href="{$vo[0].website}" target="_blank">{$vo[0].website}</a>
+					</td>
+				</tr>
+				<tr>
+					<th>產品</th>
+					<td  colspan="2">{$vo[0].production}
+					</td>
+				</tr>
+				<tr>
+					<th>客戶行業</th>
+					<td colspan="2">
+						{$vo[0].cus_trade|getCgCusName=TpCusInfo,CUS_TRADE}
+					</td>
+				</tr>
+				<tr>
+					<th>客戶性質</th>
+					<td colspan="2">{$vo[0].cus_nature|getCgCusName=TpCusInfo,CUS_NATURE}
+					</td>
+				</tr>
+				<tr>
+					<th>客戶類型</th>
+					<td  colspan="2">{$vo[0].cus_type|getCgCusName=TpCusInfo,CUS_TYPE}
+					</td>
+			   </tr>
+				<tr>
+					<th>員工數</th>
+					<td  colspan="2">{$vo[0].staff_num}
+					</td>
+				</tr>
+				<tr>
+					<th>狀態</th>
+					<td  colspan="2">{$vo[0].status|getStatus='false',2}
+					</td>
+				</tr> 
+				<tr style="min-height: 200px;">
+					<th>企業簡介</th>
+					<td  colspan="2">
+					 <div class="showContent">{$vo[0].describe}</div>
+					</td>				
+				</tr>
+			</table> 
+		</div>
+		<div title="交易方式" >  
+			<br>
+				<table class="tableForm" style="width: 60%;min-width:500px;">
+					<tr>
+						<th>交易幣別</th>
+						<td  colspan="2">{$vo[0].money}
+						</td>
+					</tr>
+					<tr>
+						<th>訂單方式</th>
+						<td  colspan="2">{$vo[0].order_type|getCgCusName=TpCusInfo,ORDER_TYPE}
+						</td>
+					</tr>
+				</table> 
+		</div>		
+		<div title="聯繫方式" >  
+			<br>
+				<table class="tableForm" style="width: 60%;min-width:500px;">
+					<tr>
+						<th>國家</th>
+						<td>{$vo[0].country}
+						</td>
+					</tr>
+					<tr>
+						<th>客戶所在地</th>
+						<td>{$vo[0].cus_address}
+						</td>
+					</tr> 
+					<tr>
+						<th>電話</th>
+						<td  colspan="2">{$vo[0].tel}
+						</td>
+					</tr>
+					<tr>
+						<th>傳真</th>
+						<td  colspan="2">{$vo[0].fax}
+						</td>
+					</tr>
+				</table> 
+		</div> 
+		<div title="大事記" >  
+			<br>
+				<table class="tableForm" style="width: 60%;min-width:500px;">
+					<tr style="min-height: 200px;">
+						<!-- <td>{$Think.lang.LANG_CUS_CHRONICLE}</td> -->
+						<td  colspan="2">
+						 <div class="showContent">{$vo[0].chronicle}</div>
+						</td>				
+					</tr>
+				</table> 
+		</div> 		
+		<div title="其他" >  
+			<br>
+			<table class="tableForm" style="width: 60%;min-width:500px;">
+            
+            <tr>
+				<th>事業部別</th>
+				<td  colspan="2">{$vo[0].cus_busi|getCgCusName=TpCusInfo,CUS_BUSI}
+				</td>
+             </tr>
+             <tr>
+                <th>客戶優先級</th>
+				<td  colspan="2">{$vo[0].cus_maste|getCgCusName=TpCusInfo,CUS_MASTE}
+				</td>
+			</tr>
+            <tr>
+                <th>貿易術語</th>
+				<td  colspan="2">{$vo[0].trade_terms|getCgCusName=TpCusInfo,TRADE_TERMS}
+				</td>
+			</tr>
+            <tr>
+                <th>收款方式</th>
+				<td  colspan="2">{$vo[0].payment|getCgCusName=TpCusInfo,PAYMENT}
+				</td>
+			</tr> 
+			</table> 
+	</div>   		
+	<!--<div title="{$Think.lang.LANG_CUS_KEYMAN}" >   
+		<table id="__MODULE__DatagridUser" style="height:100%" class="easyui-datagrid"
+		 data-options="url : '__APP__/TpCusUserInfo/x_xgetTableJson/custCode/{$cusCode}',
+			fit : true,
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :20,
+			pageList : [10,20,50],
+			sortName : 'cus_power',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : false,
+            striped:true,//单元格显示条纹
+			singleSelect:true,//默认不单选
+            onDblClickRow: function() {
+                                __MODULE__viewUserFun();
+                                        },//雙擊查看
+			toolbar : [{
+				text : '{$Think.lang.LANG_VIEW}',
+				iconCls : 'icon-eye',
+				handler : function() {
+					__MODULE__viewUserFun();
+				}
+			}, '-']
+			">  
+		 <thead>
+		    <tr>                
+				<th data-options="field:'id',width:30,checkbox:true" sortable="true">ID</th>
+                <th data-options="field:'cust_name',width:160" sortable="true">客戶編號</th> 
+                <th data-options="field:'cus_name',width:160" sortable="true">客戶名稱(簡稱)</th>
+                <th data-options="field:'birth',width:100,hidden:true">{$Think.lang.LANG_CUS_BIRTH}</th>
+                <th data-options="field:'busi_title',width:120" sortable="true">職位</th>
+                <th data-options="field:'tel',width:60" sortable="true">電話</th>
+                <th data-options="field:'fax',width:60" sortable="true">傳真</th>
+                <th data-options="field:'mobile',width:90" sortable="true">行動電話</th>
+                <th data-options="field:'email',width:160" sortable="true">E-mail</th>
+                <th data-options="field:'cus_power_desc',width:60" sortable="true">影響力</th>
+                <th data-options="field:'job_scope',width:60" sortable="true">職務範圍</th>
+                <th data-options="field:'passport',width:60" sortable="true">護照號碼</th>
+                <th data-options="field:'working_place',width:120" sortable="true">工作地址</th>
+                <th data-options="field:'state_desc',width:120" sortable="true">在職狀態</th>
+            </tr>   
+		</table>  
+	</div>  -->
+</div>   
+<!-- </div>   -->

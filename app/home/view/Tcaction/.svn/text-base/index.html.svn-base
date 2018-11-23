@@ -1,0 +1,271 @@
+<div class="easyui-layout" data-options="fit : true,border : false">
+	<div title="条件筛选卡" data-options="region:'north',closedTitle:'高级条件筛选卡(点击展开)',border:true,collapsed:true,iconCls:'icon-search'" style="height: 70px;overflow: auto;" align="left">
+		<form id="__MODULE__SearchForm">
+			<table class="tableForm">
+				<tr>
+					<td>操作類型: </td>
+					<td>
+					<input  name="action_type" id="__MODULE__SearActionType" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption/cusCode/action_type',
+								panelWidth: 100,
+								width: 140" />
+					</td>
+					<td>操作代碼/描述: </td>
+					<td><input id="__MODULE__SearCode" name="sear_code" style="width:120px">
+					</td>
+					<td>
+				      <a href="javascript:void(0);" id="__MODULE__Sear" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="__MODULE__SearchFun();">查詢</a>
+			          <a href="javascript:void(0);" id="__MODULE__Clean" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="__MODULE__CleanFun();">清空條件</a>
+			        </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',border:false">
+     <table id="__MODULE__DataGrid"
+		 data-options="url : '__URL__/x_xgetTableJson',
+			fit : true,
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :20,
+			pageList : [10,20,50],
+			sortName : 'id',
+			sortOrder : 'asc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : false,
+            striped:true,//单元格显示条纹
+			singleSelect:true,//默认不单选
+			onBeforeLoad:function(param){
+				$(this).datagrid('clearChecked').datagrid('clearSelections');
+			},
+			toolbar : [ {$toolBar} ]
+			">
+		<thead>
+            <tr>
+			<th data-options="field:'id',width:30,checkbox:true" sortable="true">ID</th>
+			<th data-options="field:'action_code',width:100">操作代碼</th>
+			<th data-options="field:'action_name',width:100">語言常量</th>
+			<th data-options="field:'lang_value',width:100">顯示名</th>
+			<th data-options="field:'icon',width:100,formatter:__MODULE__Icon">圖標</th>
+			<th data-options="field:'status',width:90,formatter:formatStatus">狀態</th>
+			<th data-options="field:'list_value',width:90">操作類型</th>
+			<th data-options="field:'remark',width:100">描述</th>
+			<th data-options="field:'action_type',width:90,hidden:true">ACTION類型</th>
+			</tr>
+		</thead>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+
+$(function(){
+	var dg = $('#__MODULE__DataGrid').datagrid();
+	dg.datagrid('removeFilterRule');
+	dg.datagrid('enableFilter',[{field:'action_code',
+						 type:'text'
+						},
+						{field:'pic_code',
+						 type:'text'
+						},
+						{field:'remark',
+						 type:'text'
+						}
+	]);
+});
+
+function __MODULE__SearchFun() {
+	$('#__MODULE__DataGrid').datagrid('load', serializeObject($('#__MODULE__SearchForm')));
+}
+function __MODULE__CleanFun() {
+	$('#__MODULE__SearchForm input').val('');
+	$('#__MODULE__DataGrid').datagrid('load', {});
+}
+function __MODULE__Icon(value,row,index){
+	if (value!=''){
+		var imageFile = '__PUBLIC__/js/jquery-easyui-1.3.6/themes/icons/' + value+'.png';
+        return '<img class="item-img" src="'+imageFile+'"/><span class="item-text">'+value+'</span>';
+	}
+}
+
+function __MODULE__AddFun(){
+	$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		$('<div/>').dialog({
+			href : '__URL__/add',
+			width : 400,
+			height : 300,
+			modal : true,
+			title : '新增',
+			id : '__MODULE__AddDia',
+			buttons : [ {
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					$('#__MODULE__AddForm').form('submit', {
+						url : '__URL__/x_xInsert',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('load');
+									$('#__MODULE__AddDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			},{
+				text : '關閉',
+				iconCls :'icon-cancel',
+				handler: function(){
+					$('#__MODULE__AddDia').dialog('destroy');
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+}
+function __MODULE__AddExcelFun(){
+	$('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+		$('<div/>').dialog({
+			href : '__URL__/addExcel',
+			width : 400,
+			height : 300,
+			modal : true,
+			title : '批量新增',
+			id : '__MODULE__AddExlDia',
+			buttons : [ {
+				text : '批量新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					$('#__MODULE__AddExcelForm').form('submit', {
+						url : '__URL__/x_xInsertExcel',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__DataGrid').datagrid('load');
+									$('#__MODULE__AddExlDia').dialog('destroy');
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '提示',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('提示', result);
+							}
+						}
+					});
+				}
+			},{
+				text : '關閉',
+				iconCls :'icon-cancel',
+				handler: function(){
+					$('#__MODULE__AddExlDia').dialog('destroy');
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+}
+function __MODULE__EditFun(){
+	var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+		if (rows.length > 1) {
+		    $('#__MODULE__DataGrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同时编辑多条记录，请选择一条！'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '请勾选要编辑的记录！'
+				});
+		}else {
+			$('<div/>').dialog({
+				href : '__URL__/edit',
+				width : 400,
+			    height : 300,
+				modal : true,
+				title : '編輯',
+				id : '__MODULE__EdtDia',
+				buttons : [ {
+					text : '保存',
+					iconCls : 'icon-edit',
+					handler : function() {
+						$('#__MODULE__EditForm').form('submit', {
+							url : '__URL__/x_xUpdate',
+							success : function(result) {
+								try {
+									var r = $.parseJSON(result);
+									if (r.status==1) {
+										$('#__MODULE__DataGrid').datagrid('load');
+										$('#__MODULE__EdtDia').dialog('destroy');
+										$.messager.show({
+										title : '提示',
+										msg :r.info,
+										});
+									}else{
+										$.messager.show({
+										title : '提示',
+										msg :r.info,
+										});
+									}
+								} catch (e) {
+									$.messager.alert('提示', result);
+								}
+							}
+						});
+					}
+				} ,{
+					text : '關閉',
+					iconCls :'icon-cancel',
+					handler: function(){
+						$('#__MODULE__EdtDia').dialog('destroy');
+					}
+				}],
+				onClose : function() {
+					$(this).dialog('destroy');
+				},
+				onLoad : function() {
+				var rows= $('#__MODULE__DataGrid').datagrid('getChecked');
+				var editData =rows[0];
+				$('#__MODULE__EditForm').form('load',editData);
+			}
+			});
+		}
+}
+function __MODULE__ExportExcelFun() {
+    	$('#__MODULE__SearchForm').form('submit', {
+    		url : '__URL__/x_xExportExcel',
+            success : function(result) {
+				try {
+					return true;
+				} catch (e) {
+					$.messager.alert('提示', result);
+				}
+			}
+    	});
+	}
+</script>

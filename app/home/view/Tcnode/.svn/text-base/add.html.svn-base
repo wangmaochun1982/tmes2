@@ -1,0 +1,107 @@
+<script type="text/javascript">
+	$(function() {
+		$('#__MODULE__NodeIconCom').combobox({
+			url : '__URL__/x_xgetIconJson',
+			formatter : function(row) {
+				if(row.value=='blank'){
+					return;
+				}else{
+					var imageFile = '__PUBLIC__/js/jquery-easyui-1.3.6/themes/icons/' + row.value+'.png';    
+					return '<img class="item-img" src="'+imageFile+'"/><span class="item-text">'+row.text+'</span>';
+				}
+			}
+		});
+	});
+</script>
+<div align="center">
+<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm">
+            <tr>
+				<th>上级节点</th>
+				<td colspan="3">
+                <input id="__MODULE__AddComTree" class="easyui-combotree" name="pid" style="width:200px;"
+							data-options="url:'__URL__/x_xgetNodeTree/node_type/1',
+										  onLoadSuccess:function(node){
+											var node = $(this).tree('find', 1); 
+											$(this).tree('expand',node.target);
+										  },
+										  onSelect : function (node){
+											var levelId = node.attributes.node_level*1+1; 
+											$('__MODULE__nlev').val(levelId);
+										  }" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>節點名稱</th>
+				<td><input name="node_name" class="easyui-validatebox" data-options="required:true" />
+				</td>
+				<th>節點代碼</th>
+				<td><input name="node_code"  class="easyui-validatebox" data-options="required:true" />
+				</td>
+			</tr>
+			<tr>
+				<th>排序</th>
+				<td><input name="node_sort" class="easyui-numberspinner" data-options="min:0,max:999,editable:false,required:true,missingMessage:'请选择菜单排序'" value="10" style="width: 155px;" />
+				</td>
+				<th>图标</th>
+				<td><input id="__MODULE__NodeIconCom"  name="node_icon" style="width: 200px;" />
+				</td>
+			</tr>
+			<tr>
+				<th>有無操作</th>
+				<td><input id="node_type" class="easyui-combobox"  name="node_type"
+						data-options=" valueField: 'id',
+                                       textField: 'text',
+									   editable:false,
+                                       url: '__URL__/x_xgetOption?cusCode=node_type',
+									   onSelect : function(row){ 
+											if(row.id==2){
+												$('#ismenu').combobox('setValue',0);
+												$('#ismenu').combobox('readonly',true);
+											}else{ 
+												$('#ismenu').combobox('readonly',false);
+											}
+									   },
+                                       panelHeight:'auto'" /> 
+				</td>
+				<th>状态</th>
+				<td><input id="status" class="easyui-combobox"  name="status"
+						 data-options=" valueField: 'id',
+                                        textField: 'text',
+										editable:false,
+										readonly:true,
+                                        url: '__URL__/x_xgetOption?cusCode=status',
+										onLoadSuccess : function(){
+											$(this).combobox('setValue',1);
+										},
+                                        panelHeight:'auto'" />  
+				</td>
+			</tr>
+			<tr >
+				<th>是否菜单</th>
+				<td><input id="ismenu" class="easyui-combobox"  name="ismenu" 
+							 data-options=" valueField: 'id',
+                                            textField: 'text',
+											editable:false,
+                                            url: '__URL__/x_xgetOption?cusCode=ismenu',
+                                            panelHeight:'auto'" />  
+				</td>
+				<th>是否顯示</th>
+				<td><input class="easyui-combobox"  name="isshow"
+							 data-options=" valueField: 'id',
+                                            textField: 'text',
+											editable:false,
+                                            url: '__URL__/x_xgetOption?cusCode=ismenu',
+											onLoadSuccess : function(){
+												$(this).combobox('setValue',1);
+											},
+                                            panelHeight:'auto'" /> 				
+				<input type="hidden" id="__MODULE__nlev" name="node_level" />&nbsp;</td>
+			</tr>
+			<tr>
+				<th>备注</th>
+				<td colspan="3"><textarea name="remark" style="width:390px;height:80px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</form></div>

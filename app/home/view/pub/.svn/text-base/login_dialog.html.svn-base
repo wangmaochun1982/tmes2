@@ -1,0 +1,39 @@
+<div class="easyui-layout" data-options="fit:true">
+	<form id="user_userInfo_form" method="post">
+		<table class="tableForm" width="100%">
+            <tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th width="35%">账号</th>
+				<td><input type="text" value="{$Think.cookie.loginAccount}" name="account" class="easyui-validatebox" data-options="required:true" />
+				</td>
+			</tr>
+			<tr>
+				<th>密码</th>
+				<td>
+                <input type="password" id="password" name="password" class="easyui-validatebox" data-options="required:true" />
+                </td>
+			</tr>
+            <tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+            <tr>
+				<th colspan="2">提示：请使用您的员工卡号作为账号进行登录。</th>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	$("#user_userInfo_form").keypress(function(e){
+        var key =  e.which;
+		var flag = '{$Think.request.flag}';
+        if(key == 13){
+		 	if(flag==1){
+				$('#login_dialog_sub').click();
+			}else if(flag==2){
+				$('#login_timeout_sub').click();
+			}
+        }
+    });
+</script>

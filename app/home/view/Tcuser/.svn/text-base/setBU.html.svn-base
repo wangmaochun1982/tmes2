@@ -1,0 +1,25 @@
+<script>
+ function ckSelectDB(sid){
+    $("[name='selectDB[]']").removeAttr("checked");
+    $("#selectDB"+sid).attr("checked",true);
+ }
+</script>
+<div>
+	<form id="__MODULE__SetBUForm" method="post">
+    <input type="hidden" name="id" value="{$_REQUEST['id']}" />
+		<table class="tableForm" style="white-space: nowrap;">
+          <tr>
+            <th>接入点名称</th>
+            <th>默认位置</th>
+            <th>切换可选</th>
+          </tr>
+          <volist id="vo" name="dbConnData">
+          <tr>
+           <td style="text-align:center;">{$vo.dbName}</td>
+           <td style="text-align:center;"><input type="radio" <?=($vo['dbId']==$firstCkd)?'checked="checked"':''?> onclick="ckSelectDB( {$vo.dbId} )" name="firstDB" id="firstDB{$vo.dbId}" value="{$vo.dbId}" /></td>
+           <td style="text-align:center;"><input type="checkbox" <?php echo in_array($vo['dbId'], $selecCkd) ? 'checked="checked"' : '' ?> name="selectDB[]"  value="{$vo.dbId}" id="selectDB{$vo.dbId}" /></td>
+          </tr>
+          </volist> 
+        </table>
+	</form>
+</div>

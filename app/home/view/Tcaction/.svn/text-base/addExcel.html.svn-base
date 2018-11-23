@@ -1,0 +1,27 @@
+<form id="__MODULE__AddExcelForm" method="post" enctype="multipart/form-data">
+	<table class="tableForm">
+			<tr>
+				<th>狀態</th>
+				<td>
+					<select name="status" id="__MODULE__AddExcelStatus" class="easyui-combox">
+						<option value="1">開啟</option>
+						<option value="0">關閉</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>選擇文件</th>
+				<td><input class="required" name="import" type="file" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<a href="__PUBLIC__/Uploads/UseFormat/__MODULE__AddExcel.xls" target="_blank">範本格式</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">注意：選擇要導入的檔必須是Excel表格,為保證導入品質,表格內容最好統一為繁體中文,並儘量減少一些特殊字元及空格輸入
+				</td>
+			</tr>
+		</table>
+</form>
+<script>

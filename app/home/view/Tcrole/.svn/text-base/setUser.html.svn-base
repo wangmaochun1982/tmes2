@@ -1,0 +1,121 @@
+<div id="__MODULE__SetUserPagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div id="__MODULE__SetUserNodeChild" data-options="region:'center',border:false">      
+		<table id="__MODULE__SetUserDataGrid"></table>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+	    var roleId = '{$roleId}';
+		var userDG = $('#__MODULE__SetUserDataGrid').datagrid({
+			url : '__URL__/x_xGetUserData',
+			fit : true,
+			//fitColumns : true,//有了这个属性就不能用冻结列
+			border : false,//定义边框
+            rownumbers : true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+            queryParams:{rId:roleId},
+			pageSize :20,
+			pageList : [15,20,25,50,100],            
+			sortName : 'okflag',
+			sortOrder : 'desc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : true,
+            striped:true,//单元格显示条纹
+			singleSelect:false,//默认不单选            
+			columns : [ [{
+				field : 'id',
+				title : '编号',
+				width : 10,
+				checkbox : true
+			},{
+				field : 'account',
+				title : '员工账号',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'nickname',
+				title : '员工姓名',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'sex',
+				title : '性别',
+				width : 50,
+				sortable : true,
+				formatter : function(value, row, index) {
+					if(value==1){
+            			return '<span title="'+value+'">男</span>';
+            		}else if(value==0){
+            			return '<span title="'+value+'">女</span>';
+            		}
+				}
+			},{
+				field : 'partname',
+				title : '部门',
+				width : 150,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return '<span title="'+value+'">'+value+'</span>';
+				}
+			},{
+				field : 'okflag',
+				title : '指派状态',
+				width : 100,
+				sortable : true,
+				formatter : function(value, row, index) {
+					if(value==1){
+				     return '<span title="已指派"><font color=green>已指派</font></span>';   
+				    }else{
+				     return '<span title="未指派"><font color=gray>未指派</font></span>';   
+				    }
+				}
+			}] ],
+            onLoadSuccess:function(row){
+                var rowData = row.rows;
+                $.each(rowData,function(idx,val){
+                      if(val.okflag==1){
+                        $("#__MODULE__SetUserDataGrid").datagrid("selectRow", idx);
+                      }
+                });
+            }
+		});
+		userDG.datagrid('removeFilterRule');
+		userDG.datagrid('enableFilter', [{
+			field:'account',
+			type:'text'
+		},{
+			field:'nickname',
+			type:'text'
+		},{
+			field:'status',
+			type:'combobox',
+			options:{
+				panelHeight:'auto',
+				data:[{value:'',text:'全部'},{value:'1',text:'正常'},{value:'0',text:'禁用'}],
+				onChange:function(value){
+					if (value == ''){
+						userDG.datagrid('removeFilterRule', 'status');
+					} else {
+						userDG.datagrid('addFilterRule', {
+							field: 'status',
+							op: 'equal',
+							value: value,
+							type:'combobox'
+						});
+					}
+					userDG.datagrid('doFilter');
+				}
+			}
+		}]);
+	});
+	
+	
+</script>

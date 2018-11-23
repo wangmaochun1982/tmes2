@@ -1,0 +1,92 @@
+<script>
+	function __MODULE__SetDepartment(){
+		var categoryVal = $('#category').combobox('getValue');
+		
+		if(categoryVal ==1){
+			$('#dimensionality').combobox({
+				required:true,
+				valueField:'id',
+				textField:'text',
+				data:[{
+					id:'1',
+					text:'生產',
+				},{
+					id:'2',
+					text:'業務',
+				},{
+					id:'3',
+					text:'品保',
+				}]
+			});
+			
+		}else{
+			$('#dimensionality').hide();
+			$('#org_code').combotree({
+				url:'__URL__/x_xgetDepartment',
+				required:true
+			});
+		}
+	}
+</script>
+<div align="center">
+<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm" style="width: 100%;">
+			<tr>
+				<th>角色類別:</th> 
+				<td><input  name="role_type2" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type2',
+								panelHeight: 'auto'" /></td> 
+			</tr>
+			<tr>
+				<th>維度管理:</th> 
+				<td><input  name="role_type3" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/role_type3', 
+								panelHeight: 'auto'" />
+				</td>
+			</tr>
+			<tr>
+				<th>部門:</th>
+				<td>
+					<input name="dept_id" class="easyui-combotree"  style="width:220px" 
+						data-options="url:'__URL__/x_xgetDeptTree',
+									  required:true,
+									  editable:false,
+									 onLoadSuccess:function(node){
+										var node = $(this).tree('find', 1); 
+										$(this).tree('expand',node.target);
+									 }" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>角色名称:</th>
+				<td><input name="role_name" class="easyui-validatebox" data-options="required:true" />
+				</td>
+            </tr>
+			<tr>
+				<th>状态</th> 
+				<td><input  name="status" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								required:true,
+								readonly:true,
+								url: '__URL__/x_xgetOption/cusCode/status', 
+								onLoadSuccess : function(){
+									$(this).combobox('setValue',1);
+								},
+								panelHeight: 'auto'" />
+				</td>
+				
+			</tr>
+			<tr>
+				<th>备注</th>
+				<td colspan="3"><textarea name="remark" style="width:250px;height:80px;"></textarea>
+				</td>
+			</tr>
+		</table>
+</form>
+</div>

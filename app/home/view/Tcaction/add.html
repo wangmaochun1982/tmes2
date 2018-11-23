@@ -1,0 +1,52 @@
+<script type="text/javascript">
+	$(function() {
+		$('#__MODULE__AddIcon').combobox({
+			url : '__APP__/TcNode/x_xgetIconJson',
+			formatter : function(row) {
+				var imageFile = '__PUBLIC__/js/easyui/themes/icons/' + row.value+'.png';
+                return '<img class="item-img" src="'+imageFile+'"/><span class="item-text">'+row.text+'</span>';
+			}
+		});
+	});
+</script>
+<div>
+	<form id="__MODULE__AddForm" method="post">
+		<table class="tableForm" style="white-space: nowrap;width:100%;">
+			<tr>
+			    <th>{$Think.lang.LANG_ACTION_NAMEVALUE}</th>
+				<td><input name="action_name" id="__MODULE__AddActionCode"  class="easyui-validatebox" required="true"></td>
+			</tr>
+			<tr>
+			    <th>{$Think.lang.LANG_ACTION_CODE}</th>
+				<td><input name="action_code" id="__MODULE__AddActionCode"  class="easyui-validatebox" required="true"></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_ACTION_TYPE}</th>
+				<td><input  name="action_type" id="__MODULE__AddActionType" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption/cusCode/action_type',
+								panelWidth: 100,
+								width: 140" /></td>
+			</tr>
+			<tr>
+			    <th>{$Think.lang.LANG_ACTION_ICON}</th>
+				<td><input name="icon" id="__MODULE__AddIcon"  class="easyui-validatebox"></td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_REMARK}</th>
+				<td><input name="remark" id="__MODULE__AddActionDesc" class="easyui-validatebox"></td>
+			</tr>
+			<tr>
+				<th>狀態</th>
+				<td>
+				<input  name="status" class="easyui-combobox" data-options="valueField: 'id',
+								textField: 'text',
+								editable:false,
+								url: '__URL__/x_xgetOption/cusCode/status',
+								panelWidth: 100,
+								width: 140" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

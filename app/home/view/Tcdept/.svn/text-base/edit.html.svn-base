@@ -1,0 +1,48 @@
+<div align="center">
+    <form  id="admin_department_editForm" method="post" novalidate>
+    <table class="tableForm" style="white-space: nowrap;">
+		<tr>
+			<th>
+				<label>部門代碼:</label>
+			</th>
+			<td >
+				<input type="text"  class="easyui-validatebox" name="dept_code" id="dept_code" value="" required="true" /><input type="hidden" name="id"  id="id"  />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label>部門名稱:</label>
+			</th>
+			<td>
+				<input type="text" class="easyui-validatebox" style="width: 250px;" name="dept_name" id="dept_name" value=""required="true" />
+			</td>
+		</tr>	
+		
+        <tr>
+			<th>上级组织</th>
+				<td>
+                <input id="__MODULE__AddComTree" class="easyui-combotree" data-options="url:'__URL__/x_xgetDeptTree'" name="pid" style="width:200px;" /> 
+				</td>
+        </tr>
+		<tr>
+			<th>成本中心</th>
+			<td>
+			<input type="text" class="easyui-validatebox" style="width: 250px;" name="cost_code" id="cost_code" />
+			</td>
+        </tr>
+		<tr>
+			<th>
+				<label>狀態：</label>
+			</th>
+			<td>
+				<SELECT name="status" required="true" class="easyui-combobox" panelHeight="50">
+					<option value="1">启用</option>
+					<option value="0">禁用</option>
+				</SELECT>	
+			</td>
+			<input type="hidden" name="dept_lnk1" >
+			<input type="hidden" name="dept_level" >
+		</tr>
+	</table>
+    </form>
+</div>

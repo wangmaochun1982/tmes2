@@ -1,0 +1,110 @@
+<div>
+	<form id="__MODULE__EditForm" method="post">
+	<input name="id" type="hidden"/>
+		<table class="tableForm" style="white-space: nowrap;">
+			<tr>
+				<th style="width: 100px;">{$Think.lang.LANG_USER_U_ACCOUNT}</th>
+				<td><input name="u_account"  class="easyui-validatebox" data-options="required:true" />
+				</td>
+				<th style="width: 80px;">{$Think.lang.LANG_USER_USER_TITLE}</th>
+				<td><input name="user_title" class="easyui-validatebox" data-options="required:true" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_STATUS}</th>
+				<td><input name="status" id="__MODULE__EditStatus" class="easyui-combobox"  data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption?cusCode=status',
+								required:true,
+								editable:false,
+								panelHeight: 'auto'" />
+                </td>
+
+			</tr>
+            <tr>
+				<th>{$Think.lang.LANG_USER_USER_SEX}</th>
+				<td><input name="user_sex"  class="easyui-combobox"  data-options="valueField: 'id',
+								textField: 'text',
+								url: '__URL__/x_xgetOption?cusCode=sex',
+								editable:false,
+								panelHeight: 'auto'" />
+				</td>
+                <th style="width: 80px;">{$Think.lang.LANG_USER_USER_NO}</th>
+				<td><input name="emp_no" class="easyui-validatebox" data-options="validType:'Account'" />
+				</td>
+
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_PHONE}</th> <!--data-options="validType:'phone'"-->
+				<td><input name="user_phone" type="text" class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_LANGSETS}</th>
+				<td>
+                <input name="lang_sets"  class="easyui-combobox"  data-options="valueField: 'lang_flag',
+								textField: 'lang_name',
+								url: '__URL__/x_xgetCgLanguage',
+								editable:false,
+								panelHeight: 'auto'" />
+				</td>
+
+			</tr>
+            <tr>
+
+                <th>{$Think.lang.LANG_USER_USER_MOBILE}</th><!-- data-options="validType:'mobile'"-->
+				<td><input name="user_mobile" type="text" class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_EMAIL}</th>
+				<td><input name="user_email" type="text" class="easyui-validatebox" data-options="validType:'email'"/>
+				</td>
+            </tr>
+            <tr>
+                <th>{$Think.lang.LANG_USER_USER_DEPT}</th>
+				<td colspan="3">
+                <input id="dpartm_id" name="dept_id" class="easyui-combotree" style="width:300px;"
+						 data-options="url:'__URL__/x_xgetDeptTree',
+									   editable:false" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_MAG}</th>
+				<td><input name="manger_code"  class="easyui-validatebox" />
+				</td>
+				<th>{$Think.lang.LANG_USER_USER_POST}</th>
+				<td><input name="post_code" class="easyui-validatebox" />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_USER_USER_SHOW}</th>
+				<td colspan="3"><input name="photo_url" type="file"  />
+				</td>
+			</tr>
+			<tr>
+				<th>{$Think.lang.LANG_REMARK}</th>
+				<td colspan="3"><textarea name="remark" style="width:390px;height:50px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	$(function(){
+		$("#__MODULE__EditForm textarea").blur(inputBind);
+		var operate = '{$Think.request.operate}';
+		switch(operate){	// 判斷操作類型
+			case "add":
+				$('#__MODULE__EditForm .today').val(new Date().toLocaleDateString()); // 日期賦值
+				break;
+
+			case "edit":
+				var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+				$("#__MODULE__EditForm").form("load", rows[0]);
+				break;
+
+			case "view":
+				var rows = $('#__MODULE__DataGrid').datagrid('getChecked');
+				$("#__MODULE__EditForm").form("load", rows[0]);
+				$("#__MODULE__EditForm input, #__MODULE__EditForm textarea").prop( {readonly:true} );
+				break;
+		}
+	});
+</script>

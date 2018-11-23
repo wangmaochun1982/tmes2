@@ -1,0 +1,272 @@
+		<div id="__MODULE__PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+			<div data-options="region:'north',border:false,split:false"> 
+				<form id="__MODULE__AddForm" method="post" >
+					<table id="__MODULE__Head" class="tableForm" style="white-space: nowrap;width:100%">
+						<tr>
+							<td><label>{$Think.lang.LANG_SO_NO}</label>1</td>
+							<td><input name="so_number" id="__MODULE__soNumber" class="easyui-validatebox" value="{:input('param.so_number')}"></td>
+							<td><label>{$Think.lang.LANG_SO_TYPE}</label></td>
+							<td>
+							<input name="so_type" id="__MODULE__soType" class="easyui-combobox" style="width:180px" required="true" data-options="valueField: 'id', 
+																											textField: 'text', 
+																											url: '{:url('XxgetOption')}'+'?cusCode=so_type',
+																											panelHeight:'auto'" />
+							</td>
+							<td><label>{$Think.lang.LANG_SO_PO_NO}</label></td>
+							<td><input name="po_no" id="__MODULE__poNo" class="easyui-validatebox"></td>
+						</tr>
+						<tr>
+							<td><label>{$Think.lang.LANG_SO_DEPT1_DESC}</label></td>
+							<td>
+							<input name="dept_1" id="__MODULE__dept1" class="easyui-combobox" style="width:180px" required="true" data-options=" valueField: 'id', 
+																											textField: 'text', 
+																											url: '{:url('XxgetOption')}'+'?cusCode=area',
+																											panelHeight:'auto'" />
+							</td> 
+							<td><label>{$Think.lang.LANG_SO_CUST_CODE}</label></td>
+							<td>
+							<select name="cust_code" id="__MODULE__custCode" class="easyui-combogrid" style="width:150px" 
+							  data-options="panelWidth: 360,
+											idField: 'cus_code',
+											textField: 'cus_name',
+											url: '{:url('Tpcusinfo/XxgetTableJson')}', 
+											pagination: true,//是否分页  
+											rownumbers: true,//序号  
+											collapsible: false,//是否可折叠的 
+											fit: true,//自动大小  
+											mode:'remote',
+											pageSize: 10,//每页显示的记录条数，默认为10  
+											pageList: [10],//可以设置每页记录条数的列表 									
+											method: 'post', 
+											columns: [[
+											{field:'cus_code',title:'代碼',width:60},
+											{field:'cus_name',title:'客戶簡稱',width:250}
+											]]">   
+							</select> 
+							</td><td><label>{$Think.lang.LANG_SO_FREIGHT_DESC}</label></td>
+							<td>
+							<input name="freight_id" id="__MODULE__freightId" class="easyui-combobox" style="width:180px" required="true" data-options=" valueField: 'id', 
+																											textField: 'text', 
+																											url: '{:url('XxgetOption')}'+'?cusCode=freight_id', 
+																											panelHeight:'auto'" />
+							</td>
+						</tr>
+						<tr>
+							<td><label>{$Think.lang.LANG_SO_PIN_DESC}</label></td>
+							<td>
+								<input name="pin_code" id="__MODULE__pinCode" class="easyui-combobox" style="width:180px" required="true" data-options=" valueField: 'id', 
+																											textField: 'text', 
+																											url: '{:url('XxgetOption')}'+'?cusCode=pin_code', 
+																											panelHeight:'auto'" />
+							</td>
+							<td><label>{$Think.lang.LANG_SO_PLAN_FINISH}</label></td>
+							<td>
+							<input name="plan_finish" id="__MODULE__planFinish" class="easyui-my97" data-options="lang:'zh-cn'" />
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><label>{$Think.lang.LANG_REMARK}</label></td>
+							<td>
+								<textarea name="remark" id="__MODULE__remark" rows="2" style="width: 90%;"></textarea> 
+							</td>
+						</tr>
+					</table>	
+				</form>
+			</div>
+			<div data-options="region:'center',border:false"> 
+				<table id="__MODULE__AddDataGrid" class="easyui-datagrid"
+						data-options="singleSelect:true,idField:'id', checkOnSelect : true, selectOnCheck : true, 
+									fit:true,
+									border:false,
+									pageSize :20,
+									pageList : dg_pageList,
+									toolbar : [ {
+										text : '{$Think.lang.LANG_ADD}', 
+										iconCls : 'icon-add',
+										handler : function() {
+											__MODULE__AddItemFun();
+										}
+									},'-',{
+										text : '{$Think.lang.LANG_EDIT}',
+										iconCls : 'icon-add', 
+										handler : function() {
+											__MODULE__EdtItemFun();
+										}
+									},'-',{
+										text : '{$Think.lang.LANG_DEL}',
+										iconCls : 'icon-delete', 
+										handler : function() { 
+											__MODULE__DelItemFun();
+										}
+									} ]">
+					<thead>
+						<tr>
+							<th data-options="field:'ln_code'">{$Think.lang.LANG_LN_CODE}</th>
+							<th data-options="field:'model_name',align:'center',width:120">{$Think.lang.LANG_MODEL_NAME}</th>
+							<th data-options="field:'cust_model',align:'center',width:120">{$Think.lang.LANG_CUST_MODEL}</th>
+							<th data-options="field:'target_qty',align:'center',width:65">{$Think.lang.LANG_SO_TARGET_QTY}</th>
+							<th data-options="field:'dept_1',align:'center',width:65">{$Think.lang.LANG_SO_DEPT1_DESC}</th>
+							<th data-options="field:'dept_2',align:'center',width:65">{$Think.lang.LANG_SO_DEPT2_DESC}</th>
+							<th data-options="field:'freight_id',align:'center',width:150">{$Think.lang.LANG_SO_FREIGHT_DESC}</th>
+							<th data-options="field:'pin_code',align:'center',width:150">{$Think.lang.LANG_SO_PIN_DESC}</th>
+							<th data-options="field:'prom_deli_date',align:'center',width:100">{$Think.lang.LANG_SO_PROM_DELI_DATE}</th>
+							<th data-options="field:'prom_ship_date',align:'center',width:100">{$Think.lang.LANG_SO_PROM_SHIP_DATE}</th>
+							<th data-options="field:'remark',align:'center',width:150">{$Think.lang.LANG_REMAKR}</th> 
+						</tr>
+					</thead>
+				</table> 
+			</div>
+		</div>
+<script>  
+	function __MODULE__AddItemFun() {
+		var rows = $('#__MODULE__AddDataGrid').datagrid('getData');
+		var index = rows.total?rows.total:0;
+		$('<div/>').dialog({
+			href : "{:url('XxwkItem')}"+'?grid=__MODULE__AddDataGrid',
+			resizable:true,
+			width : 500,
+			height :450, 
+			modal : true,
+			title : '{$Think.lang.LANG_ADD}',
+			id : '__MODULE__AddDvADDia',
+			buttons : [ {
+				text : '{$Think.lang.LANG_SAVE}',
+				iconCls : 'icon-accept',
+				handler : function() { 
+					$('#__MODULE__wkItemForm').form('submit', {
+						url : "{:url('XxInsCache')}",
+						success : function(result) {
+							$.messager.progress('close');
+							try {
+								var r = $.parseJSON(result) 
+								if (r.status==1) {
+									var itemData = {};
+									itemData.model_name = $('#__MODULE__modelName').combogrid('getValue');
+									itemData.cust_model = $('#__MODULE__custModel').val();
+									itemData.target_qty = $('#__MODULE__stargetQty').val();
+									itemData.dept_1 = $('#__MODULE__sdept1').combogrid('getText');
+									itemData.freight_id = $('#__MODULE__sfreightId').combogrid('getText');
+									itemData.pin_code = $('#__MODULE__spinCode').combogrid('getText'); 
+									itemData.prom_deli_date = $('#__MODULE__promDeliDate').val();  
+									itemData.prom_ship_date = $('#__MODULE__promShipDate').val();  
+									itemData.remark = $('#__MODULE__sremark').val();  
+									$('#__MODULE__AddDataGrid').datagrid('insertRow', { 
+														index: Number(index)+1,
+														row:  itemData
+									});
+									$('#__MODULE__AddDvADDia').dialog('destroy');
+									$.messager.show({
+										title : '{$Think.lang.LANG_TIPS}',
+										msg :r.info,
+									});
+								}else{
+									$.messager.show({
+										title : '{$Think.lang.LANG_TIPS}',
+										msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});  
+				}
+			} ,{
+					text:'{$Think.lang.LANG_CANCEL}',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#__MODULE__AddDvADDia').dialog('destroy');
+					}
+				}],
+			onLoad : function() { 
+				var item = {};
+				item.flag = 'A';
+				item.index = index;
+				$('#__MODULE__wkItemForm').form('load',item); 					
+			},
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		}); 
+	} 
+	function __MODULE__EdtItemFun() { 
+		var row = $('#__MODULE__AddDataGrid').datagrid('getSelected');  //getSelected  
+		var _index  = $('#__MODULE__AddDataGrid').datagrid('getRowIndex',row); 
+		$('<div/>').dialog({
+			href : "{:url('XxwkItem')}"+'?grid=__MODULE__AddDataGrid&model_name='+row.model_name, 
+			resizable:true,
+    		width : 500,
+			height :450, 
+			modal : true,
+			title : '{$Think.lang.LANG_EDIT}',
+			id : '__MODULE__ADDDvEDDia',
+			buttons : [{
+				text : '{$Think.lang.LANG_SAVE}',
+				iconCls : 'icon-accept',
+				handler : function() {
+					$('#__MODULE__wkItemForm').form('submit', {
+						url : "{:url('XxInsCache')}",
+						data : { index : _index,flag:'U' },
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									var index = _index;
+									var itemData = {};
+									itemData.model_name = $('#__MODULE__modelName').combogrid('getValue');
+									itemData.cust_model = $('#__MODULE__custModel').val();
+									itemData.target_qty = $('#__MODULE__stargetQty').val();
+									itemData.dept_1 = $('#__MODULE__sdept1').combogrid('getText');
+									itemData.freight_id = $('#__MODULE__sfreightId').combogrid('getText');
+									itemData.pin_code = $('#__MODULE__spinCode').combogrid('getText');
+									itemData.prom_deli_date = $('#__MODULE__promDeliDate').val();  
+									itemData.prom_ship_date = $('#__MODULE__promShipDate').val();  
+									itemData.remark = $('#__MODULE__sremark').val();  
+									$('#__MODULE__AddDataGrid').datagrid('updateRow', { 
+														index: _index,
+														row:  itemData
+									});
+									$('#__MODULE__ADDDvEDDia').dialog('destroy');
+								}
+							} catch (e) {
+								$.messager.alert('{$Think.lang.LANG_TIPS}', result);
+							}
+						}
+					});  
+				}
+			} ,{
+					text:'{$Think.lang.LANG_CANCEL}',
+					iconCls:'icon-cancel',
+					handler:function(){
+						$('#__MODULE__ADDDvEDDia').dialog('destroy');
+					}
+				}],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+				row.flag = 'U';
+				row.index = _index;
+				$('#__MODULE__wkItemForm').form('load',row);
+			}
+		});
+	}
+	function __MODULE__DelItemFun() {
+		var row = $('#__MODULE__AddDataGrid').datagrid('getSelected'); 
+		var _index  = $('#__MODULE__AddDataGrid').datagrid('getRowIndex',row); 
+		$.ajax({
+			url : "{:url('XxInsCache')}",
+			data : { index : _index,flag:'D' },
+			type : 'POST',
+			dataType : 'json',
+			success : function(result) {
+				if (result.status==1){
+					$('#__MODULE__AddDataGrid').datagrid('deleteRow',_index); 
+					$('#__MODULE__AddDataGrid').datagrid('unselectAll'); 
+				}		
+			}
+		});
+	} 
+</script>  

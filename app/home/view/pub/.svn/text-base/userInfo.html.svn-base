@@ -1,0 +1,64 @@
+<div class="easyui-layout" data-options="fit:true">
+	<div data-options="region:'east',title:'可访问资源',split:false" style="width: 300px;">
+		<ul id="user_userInfo_tree"></ul>
+	</div>
+	<div data-options="region:'center',title:'我的名片'" style="padding: 5px;" align="center">
+		<form id="user_userInfo_form" method="post">
+			<input name="id" type="hidden" value="<?=cookie(C('USER_AUTH_KEY'))?>" />
+			<table class="tableForm" width="100%">
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                    <!--<a href="javascript:void(0)" onclick="uploadPhotoFun();">
+                    <img src="__PUBLIC__/upPhoto/img/mystery.png" border="0" />
+                    </a>-->
+                    <iframe src="__APP__/Public/uploadPhoto/<?=date('Ymdhis')?>" width="100%" height="230px" scrolling="no" frameborder="0" border="0"></iframe>
+                   </td>
+                </tr>
+				<tr>
+					<td style="width:25%">我的账号</td>
+					<td><input type="text" name="nickname" value="{$Think.cookie.loginAccount}" disabled="disabled" /></td>
+				</tr>
+				<tr>
+					<td>我的姓名</td>
+					<td><input type="text" name="nickname" value="{$Think.cookie.loginUserName}"  class="easyui-validatebox" data-options="required:true" /></td>
+				</tr>
+                <tr>
+				<td>性別</td>
+				<td>
+                <input type="radio" name="sex" id="sex1" value="1" <eq name="vo.sex" value="1">checked="checked"</eq> /><label>男</label>
+                <input type="radio" name="sex" id="sex0" value="0" <eq name="vo.sex" value="0">checked="checked"</eq> /><label>女</label>
+				</td>
+    			</tr>
+    			<tr>
+    				<td>办公电话</td>
+    				<td><input name="phone_number" value="{$vo.phone_number}" type="text" class="easyui-validatebox" />
+    				</td>
+        </tr>
+                <tr>
+    				<td>移动电话</td>
+    				<td><input name="mobile_number" value="{$vo.mobile_number}" type="text" class="easyui-validatebox" data-options="validType:'mobile'"/>
+    				</td>
+    			</tr>
+				<tr>
+					<td>电子邮件</td>
+					<td><input type="text" name="email" value="{$Think.cookie.loginEmail}" class="easyui-validatebox" data-options="required:true,validType:'email'" /></td>
+				</tr>
+				<tr>
+				<td>备注</td>
+				<td><textarea name="remark" style="width: 100%;">{$vo.remark}</textarea>
+				</td>				
+			     </tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+<script>
+$('#user_userInfo_tree').tree({
+    url: '__APP__/Public/userInfoNode/',
+    parentField: 'pid',
+    lines: true
+});
+</script>

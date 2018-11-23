@@ -1,0 +1,315 @@
+<link rel="stylesheet" media="all" type="text/css" href="__PUBLIC__/js/jquery-lightbox-2.6/css/lightbox.css" />
+<div id="__MODULE__PagePanel" class="easyui-layout" data-options="fit : true,border : false">
+	<div id="__MODULE__SearchTab" title="{$Think.lang.LANG_SEARCH}" data-options="region:'north',closedTitle:'{$Think.lang.LANG_SEARCH}',border:true,collapsed:false,iconCls:'icon-search'" style="height: 130px;overflow: auto;" align="center">
+		<form id="__MODULE__SearchForm" onsubmit="$('#__MODULE__Search').click();return false;">
+			<table class="tableForm">
+                <tr>
+                <th>
+                <input id="searchC" class="easyui-combobox"  name="searchC" data-options=" valueField: 'id',
+                                                                                               textField: 'text',
+                                                                                               url: '__URL__/x_xgetsearchC',
+                                                                                               panelHeight:'auto'" />
+                </th>
+                <td>
+                <input name="searchCWords" style="width: 315px;" />
+                </td>
+                </tr>
+				<tr>
+					<td style="width: 170px;">{$Think.lang.LANG_KEYWORDS}</td>
+					<td><input name="searchKeyWords" style="width: 315px;" /></td>
+				</tr>
+			</table>
+            <div>
+            	<a id="__MODULE__Search" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="__MODULE__SearchFun();">{$Think.lang.LANG_SEARCH}</a>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cross'" onclick="__MODULE__CleanFun();">{$Think.lang.LANG_RESET}</a>
+            </div>
+		</form>
+	</div>
+	<div data-options="region:'center',border:false"> 
+		<table id="__MODULE__Datagrid" class="easyui-datagrid"
+		 data-options="url : '__URL__/x_xgetTableJson',
+			fit : true,
+			border : false,//定义边框
+            rownumbers:true,//显示行号
+			pagination : true,//定义分页组件
+			idField : 'id',
+			pageSize :20,
+			pageList : [10,20,50],
+			sortName : 'cus_code',
+			sortOrder : 'asc',
+			checkOnSelect : true,//选择checkbox则选择行
+			selectOnCheck : true,//选择行则选择checkbox
+			nowrap : false,
+            striped:true,//单元格显示条纹
+			singleSelect:true,//默认不单选
+            onDblClickRow: function() {
+                                __MODULE__viewFun();
+                                        },//雙擊查看
+			toolbar : [ {$toolBar} ]
+			">  
+		 <thead>
+		    <tr>                
+				<th data-options="field:'id',width:30,checkbox:true" sortable="true">ID</th>
+                <th data-options="field:'cus_code',width:80" sortable="true">客戶編號</th> 
+                <th data-options="field:'cus_name',width:160" sortable="true">客戶名稱(簡稱)</th>
+                <th data-options="field:'cus_full_name',width:160" sortable="true">客戶全稱</th>
+                <th data-options="field:'cus_busi_desc',width:100" sortable="true">事業部別</th> 
+                <th data-options="field:'country',width:60" sortable="true">國家</th>
+                <th data-options="field:'cus_address',width:160" sortable="true">客戶所在地</th>
+                <th data-options="field:'cus_trade_desc',width:60" sortable="true">客戶行業</th>
+                <th data-options="field:'cus_nature_desc',width:90" sortable="true">客戶性質</th>
+                <th data-options="field:'cus_type_desc',width:90" sortable="true">客戶類型</th>
+                <th data-options="field:'staff_num',width:90" sortable="true">員工數</th>
+                <th data-options="field:'money',width:90" sortable="true">交易幣別</th>
+                <th data-options="field:'order_type_desc',width:90" sortable="true">訂單方式</th> 
+                <th data-options="field:'website',width:90" sortable="true">公司網站</th>
+                <th data-options="field:'production',width:90" sortable="true">產品</th>
+                <th data-options="field:'tel',width:90" sortable="true">電話</th>
+                <th data-options="field:'fax',width:90" sortable="true">傳真</th> 
+                <th data-options="field:'status',width:50,formatter:formatStatus" sortable="true">狀態</th>
+            </tr> 
+           	<thead>  
+		</table> 
+	</div>
+</div>
+<script type="text/javascript"> 
+	function formatStatus(value, row, index) { //console.info(row);
+		if (value==1){
+			return '<font color=green>{$Think.lang.LANG_CUS_AVAIL}</font>';
+		}else if(value==-1){
+			return '<font color=red>{$Think.lang.LANG_CUS_DEL}</font>';
+		}else {
+			return '<font color=red>{$Think.lang.LANG_CUS_FORBID}</font>';
+		}				
+	}
+	function __MODULE__SearchFun() {
+		$('#__MODULE__Datagrid').datagrid('load', serializeObject($('#__MODULE__SearchForm')));
+	}
+	function __MODULE__CleanFun() {
+		$('#__MODULE__SearchForm input').val('');
+		$('#__MODULE__Datagrid').datagrid('load', {});
+	}
+    function __MODULE__AddFun() {
+		$('#__MODULE__Datagrid').datagrid('clearChecked').datagrid('clearSelections');
+		$('<div/>').dialog({
+			href : '__URL__/add',
+			width : 630,
+			height : 'auto',
+			maximized:true,
+			modal : true,
+            maximizable:true,
+			title : '新增',
+			id : '__MODULE__AddDia',
+			buttons : [ {
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() { 
+					$('#__MODULE__AddForm').form('submit', {
+						url : '__URL__/x_xinsert',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__Datagrid').datagrid('reload');
+									$('#__MODULE__AddDia').dialog('destroy');
+									$.messager.show({
+									title : '成功',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '失敗',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('異常', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+	}
+	function __MODULE__EditFun() {
+		var rows= $('#__MODULE__Datagrid').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+		    $('#__MODULE__Datagrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同時編輯多條記錄，請選擇一條！'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '請勾選要編輯的記錄!'
+				});
+		}else {
+		$('<div/>').dialog({
+			href : '__URL__/x_xshowEdit/id/'+rows[0].id,
+			width : 630,
+			height : 400,
+            maximized:true,
+			modal : true,
+            maximizable:true,
+			title : '編輯- '+rows[0].cus_name,
+			id : '__MODULE__EdtDia',
+			buttons : [ {
+				text : '編輯',
+				iconCls : 'icon-edit',
+				handler : function() { 
+					$('#__MODULE__EdtForm').form('submit', {
+						url : '__URL__/x_xupdate',
+						success : function(result) {
+							try {
+								var r = $.parseJSON(result);
+								if (r.status==1) {
+									$('#__MODULE__Datagrid').datagrid('reload'); 
+									$.messager.show({
+									title : '成功',
+									msg :r.info,
+									});
+								}else{
+									$.messager.show({
+									title : '失敗',
+									msg :r.info,
+									});
+								}
+							} catch (e) {
+								$.messager.alert('異常', result);
+							}
+						}
+					});
+				}
+			} ],
+			onClose : function() {
+				$(this).dialog('destroy');
+			},
+			onLoad : function() {
+				var rows= $('#__MODULE__Datagrid').datagrid('getChecked');
+				var editData =rows[0];
+				$('#__MODULE__EdtForm').form('load',editData);
+			}
+		});
+	}
+	}
+	
+	function __MODULE__DeleteFun() {
+	var rows = $('#__MODULE__Datagrid').datagrid('getChecked');
+	var ids = [];
+	if (rows.length > 0) {
+		$.messager.confirm('確認', '是否要將當前選中的項放入回收站？', function(r) {
+			if (r) {
+				for ( var i = 0; i < rows.length; i++) {
+						ids.push(rows[i].id);
+				}                   
+				$.ajax({
+					url : '__URL__/delete',
+					data : { id: ids.join('_') },
+					dataType : 'json',
+					success : function(result) {
+						if (result.status==1){
+							$('#__MODULE__Datagrid').datagrid('load');
+							$('#__MODULE__Datagrid').datagrid('clearChecked').datagrid('clearSelections');
+							$.messager.show({
+								title : '成功',
+								msg : result.info
+							});
+						}else{
+								$.messager.show({
+								title : '失敗',
+								msg :result.info,
+								});
+						}							
+					}
+				});
+			}
+		});
+    	} else {
+    		$.messager.show({
+    			title : '提示',
+    			msg : '請勾選要刪除的記錄!'
+    		});
+    	}
+    }
+    
+    function __MODULE__exportExcel() { 
+    	$('#__MODULE__SearchForm').form('submit', {
+    		url : '__URL__/exportExcel',
+            success : function(result) {
+				try {
+					return true;
+				} catch (e) {
+					$.messager.alert('提示', result);
+				}
+			}
+    	});
+	} 
+	
+	var js_Width = $(document).width()*2/3;
+	var js_Height = $(document).height()*6/7-10;  
+    function __MODULE__viewFun() {
+		var rows= $('#__MODULE__Datagrid').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+		    $('#__MODULE__Datagrid').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同時查看多條記錄，請選擇一條！'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '請勾選要查看的記錄!'
+				});
+		}else {
+			$('<div/>').dialog({
+				href : '__URL__/x_xshow/id/'+rows[0].id,
+				width : 630,
+				height : 400,
+				maximized:true,
+				modal : true,
+				maximizable:true,
+				title : '查看- '+rows[0].cust_name+'/'+rows[0].cus_name+'/'+rows[0].job_scope,
+				onClose : function() {
+					$(this).dialog('destroy');
+				}
+			});
+			$('#__MODULE__Datagrid').datagrid('clearChecked').datagrid('clearSelections');
+		}
+	} 
+	
+	function __MODULE__viewUserFun() {
+		var rows= $('#__MODULE__DatagridUser').datagrid('getChecked');
+		//console.info(rows);
+		if (rows.length > 1) {
+		    $('#__MODULE__DatagridUser').datagrid('clearChecked').datagrid('clearSelections');
+			$.messager.show({
+				title: '提示',
+				msg: '不能同時查看多條記錄，請選擇一條'
+			});
+		}else if (rows.length == 0) {
+				$.messager.show({
+					title: '提示',
+					msg: '請勾選要查看的記錄!'
+				});
+		}else {
+		$('<div/>').dialog({
+			href : '__APP__/TpCusUserInfo/x_xshow/id/'+rows[0].id,
+			width : 630,
+			height : 400,
+            maximized:true,
+			modal : true,
+            maximizable:true,
+			title : '查看- '+rows[0].cust_name+'/'+rows[0].cus_name+'/'+rows[0].job_scope,
+			onClose : function() {
+				$(this).dialog('destroy');
+			}
+		});
+	}
+	}
+</script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+<title>{$Think.config.sitename}</title>
+<link rel="icon" href="__STATIC__/style/images/mes_white_icon2.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__STATIC__/style/images/mes_white_icon2.ico" type="image/x-icon" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="{$Think.config.sitename}" />
+
+        <link rel="stylesheet" type="text/css" href="__STATIC__/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="__STATIC__/easyui/themes/icon.css">
+		<script src="__STATIC__/easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+	
+		<title>{:lang('button1')}</title>
+	</head>
+
+		
+
+ 
+<body class="easyui-layout">
+	<div data-options="region:'north',href:'/index/Pub/top',border : false," id="top_image" style="height:58px;overflow:hidden;"></div>
+	<!--<div data-options="region:'west',split:true,title:'West'" style="width:150px;padding:10px;">
+		west<ul id="ttree" class="easyui-tree"></ul>
+	</div>-->
+	
+	<div id="layoutMenu" data-options="iconCls:'icon-user',region:'west',title:'{$Think.lang.LANG_INDEX_LOGIN_USER}:<font color=red>{$Think.cookie.loginUserName}</font>',href:'/index/Pub/left',hideCollapsedContent:false" style="width:210px;overflow: hidden;">
+		
+	</div>
+	<!--<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">east region</div>-->
+	<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'" id="contentTabs" class="easyui-tabs" style="width:100%;height:100%;">
+		
+			<div title="Home">
+			<table class="easyui-datagrid"
+					data-options="url:'__JS__/datagrid_data1.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+				<thead>
+					<tr>
+						<th data-options="field:'itemid'" width="80">{$Think.lang.LANG_EMP_NULL}</th>
+						<th data-options="field:'productid'" width="100">List Price</th>
+						<th data-options="field:'listprice',align:'right'" width="80">{$Think.lang.LANG_LOGIN_USERNAME}</th>
+						<th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
+						<th data-options="field:'attr1'" width="150">Attribute</th>
+						<th data-options="field:'status',align:'center'" width="60">Status</th>
+					</tr>
+				</thead>
+			</table>
+			</div>
+		
+		</div>
+	</div>
+
+</body>
+</html>
